@@ -1,0 +1,270 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout
+  title="Amenities | Palma Miami Beach | Luxury Condos in Miami Beach"
+  description="At Palma, quality reigns supreme, with every amenity thoughtfully curated for your lifestyle. View our services and amenities, including the Palma Beach Club."
+>
+  <PageHero videoSrc="/videos/residences-video.mp4" title="Residences" />
+  <section class="text-box no-bg">
+    <p>
+      The residences at <span>Palma</span> are a harmonious blend of elegance and
+      comfort, designed to be your full-time home, a weekend getaway, or a flexible
+      rental with no restrictions. Each space exudes Mediterranean charm with airy
+      layouts, high ceilings, and handpicked finishes that evoke timeless beauty.
+      Sunlight streams through expansive windows, illuminating open living areas
+      that seamlessly flow into private terraces, many with water views. <span
+        >Palma</span
+      > offers unparalleled versatility that is delivered turn-key for you or your
+      guests. Every detail is crafted to enhance your lifestyle, providing a serene
+      retreat that remains connected to the vibrant energy of Miami Beach.
+    </p>
+  </section>
+  <section class="overlapped-image-section">
+    <div class="background-image">
+      <img src="/images/residences/residence-collage.webp" alt="Balcony View" />
+    </div>
+    <div class="overlay-image">
+      <img src="/images/residences/love-life.png" alt="Love Life" />
+    </div>
+  </section>
+  <section class="img-txt right">
+    <div class="img-txt-content">
+      <div class="content-wrapper">
+        <h2>Residential Features</h2>
+        <ul>
+          <li>Beach-luxe residences with modern open layouts</li>
+          <li>
+            All residences are delivered fully finished and furnished by
+            award-winning Studio Ramirez
+          </li>
+          <li>Panoramic ocean and bay views in select residences</li>
+          <li>Private balconies for outdoor enjoyment from your home</li>
+          <li>
+            Luxurious 9-10 ft ceilings giving space and light to the feeling of
+            your residence
+          </li>
+          <li>
+            Floor-to-ceiling sliding glass doors with impact-resistant glass
+          </li>
+          <li>Advanced technology Smart Building</li>
+          <li>Residences are pre-wired for high-speed internet</li>
+          <li>Energy efficient central air conditioning and heating system</li>
+          <li>Washer and dryer combo included with residence</li>
+          <li>Spacious closets for your beach-chic wardrobe</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-txt-image">
+      <img
+        src="/images/amenities/residential.webp"
+        alt="Residential Features"
+      />
+    </div>
+  </section>
+  <section class="img-txt left">
+    <div class="img-txt-content">
+      <div class="content-wrapper">
+        <h2>Kitchen</h2>
+        <ul>
+          <li>Imported European-cabinets with premium fittings</li>
+          <li>
+            Bosch appliance package with refrigerator, oven, cooktop, microwave,
+            and dishwasher
+          </li>
+          <li>
+            Premium stone countertops and backsplashes for the ultimate culinary
+            experience
+          </li>
+          <li>Contemporary stainless steel under-mounted sink</li>
+          <li>Elegant faucet with integrated spray handle</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-txt-image">
+      <img src="/images/amenities/kitchen.webp" alt="Kitchen" />
+    </div>
+  </section>
+  <section class="img-txt right">
+    <div class="img-txt-content">
+      <div class="content-wrapper">
+        <h2>Primary Bathroom</h2>
+        <ul>
+          <li>
+            Imported European cabinets with premium hardware and drawer pulls
+          </li>
+          <li>Premium stone countertops and backsplashes</li>
+          <li>
+            Rectangular trough porcelain sinks with dual elegant faucets (in
+            select residences)
+          </li>
+          <li>Custom-finished porcelain floors and walls in wet areas</li>
+          <li>Glass shower enclosures</li>
+          <li>Premium European-style fixtures and accessories</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-txt-image">
+      <img src="/images/amenities/bathroom.webp" alt="Primary Bathroom" />
+    </div>
+  </section>
+  <section class="full-view-img-text">
+    <div class="full-view-image">
+      <img
+        src="/images/residences/bedroom.webp"
+        alt="Breathtaking Views of Miami Beach"
+      />
+    </div>
+    <div class="full-view-text">
+      <h2>Breathtaking Views of Miami Beach</h2>
+    </div>
+  </section>
+  <section class="zoom-scroll-section" id="zoomSection">
+    <div class="zoom-background">
+      <img src="/images/residences/view.webp" alt="Miami Beach Views" />
+    </div>
+    <div class="zoom-content">
+      <button class="experience-btn">Experience The Views</button>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  class HorizontalGallery {
+    constructor() {
+      this.track = document.querySelector('.gallery-track');
+      this.items = document.querySelectorAll('.gallery-item');
+      this.prevBtn = document.querySelector('.gallery-prev');
+      this.nextBtn = document.querySelector('.gallery-next');
+      this.progressFill = document.querySelector('.progress-fill');
+
+      this.currentIndex = 0;
+      this.itemsToShow = window.innerWidth <= 768 ? 1 : 2;
+      this.totalItems = this.items.length;
+      this.maxIndex = Math.max(0, this.totalItems - this.itemsToShow);
+
+      this.init();
+    }
+
+    init() {
+      this.updateProgress();
+      // Remove updateButtons() since arrows no longer disable
+
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+      window.addEventListener('resize', () => {
+        this.itemsToShow = window.innerWidth <= 768 ? 1 : 2;
+        this.maxIndex = Math.max(0, this.totalItems - this.itemsToShow);
+        this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
+        this.updatePosition();
+        this.updateProgress();
+      });
+    }
+
+    prevSlide() {
+      // Loop to the end when at the beginning
+      if (this.currentIndex === 0) {
+        this.currentIndex = this.maxIndex;
+      } else {
+        this.currentIndex--;
+      }
+      this.updatePosition();
+      this.updateProgress();
+    }
+
+    nextSlide() {
+      // Loop to the beginning when at the end
+      if (this.currentIndex >= this.maxIndex) {
+        this.currentIndex = 0;
+      } else {
+        this.currentIndex++;
+      }
+      this.updatePosition();
+      this.updateProgress();
+    }
+
+    updatePosition() {
+      const itemWidth = 100 / this.itemsToShow; // 50% for 2 items, 100% for 1 item
+      const translateX = -(this.currentIndex * itemWidth);
+      this.track.style.transform = `translateX(${translateX}%)`;
+    }
+
+    updateProgress() {
+      // Progress based on current position through all possible slides
+      const progress =
+        this.maxIndex > 0 ? (this.currentIndex / this.maxIndex) * 100 : 0;
+      this.progressFill.style.width = `${progress}%`;
+    }
+  }
+
+  class ZoomScrollEffect {
+    constructor() {
+      this.section = document.getElementById('zoomSection');
+      this.image = this.section.querySelector('.zoom-background img');
+      this.isInViewport = false;
+      this.maxZoom = 1.3; // Maximum zoom level
+      this.minZoom = 1; // Minimum zoom level
+
+      this.init();
+    }
+
+    init() {
+      // Use Intersection Observer to detect when section is in viewport
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            this.isInViewport = entry.isIntersecting;
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: '50px 0px -50px 0px',
+        }
+      );
+
+      this.observer.observe(this.section);
+
+      // Add scroll listener
+      window.addEventListener('scroll', () => this.handleScroll());
+    }
+
+    handleScroll() {
+      if (!this.isInViewport) return;
+
+      const rect = this.section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const sectionHeight = rect.height;
+
+      // Calculate scroll progress through the section
+      // When section top is at window bottom: progress = 0
+      // When section bottom is at window top: progress = 1
+      let progress = 0;
+
+      if (rect.top <= windowHeight && rect.bottom >= 0) {
+        // Section is in viewport
+        const visibleHeight =
+          Math.min(windowHeight, rect.bottom) - Math.max(0, rect.top);
+        const totalScrollableDistance = windowHeight + sectionHeight;
+        const scrolledDistance = windowHeight - rect.top;
+
+        progress = Math.max(
+          0,
+          Math.min(1, scrolledDistance / totalScrollableDistance)
+        );
+      }
+
+      // Apply zoom based on progress
+      const zoomLevel = this.minZoom + progress * (this.maxZoom - this.minZoom);
+      this.image.style.transform = `scale(${zoomLevel})`;
+    }
+  }
+
+  // Initialize gallery when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new HorizontalGallery();
+    new ZoomScrollEffect();
+  });
+</script>

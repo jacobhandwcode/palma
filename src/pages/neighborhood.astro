@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import Map from '../components/Map.astro';
+---
+
+<Layout
+  title="Amenities | Palma Miami Beach | Luxury Condos in Miami Beach"
+  description="At Palma, quality reigns supreme, with every amenity thoughtfully curated for your lifestyle. View our services and amenities, including the Palma Beach Club."
+>
+  <PageHero videoSrc="/videos/neighborhood-video.mp4" title="Neighborhood" />
+  <section class="text-box no-bg">
+    <p>
+      In the heart of Miami Beach lies a neighborhood where life unfolds with
+      elegance and excitement. Fine dining and vibrant entertainment fill the
+      streets, while the Aquatic Center and Miami Beach Tennis Center cater to
+      your active side. The nearby Normandy Shores Golf Club offers lush greens
+      for a serene escape, and beach volleyball courts provide a sandy
+      playground for spirited matches.
+    </p>
+    <p>
+      As twilight falls, jazz concerts fill the air, creating moments of pure
+      magic. For adventure seekers, jet ski and kayak rentals promise thrilling
+      water escapades. The famed Miami Beach Boardwalk invites you on a scenic
+      journey from your doorstep to the lively South Pointe Park.
+    </p>
+  </section>
+  <section class="full-width-img">
+    <img src="/images/neighborhood/palma-view.webp" />
+  </section>
+  <Map />
+</Layout>

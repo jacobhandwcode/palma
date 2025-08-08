@@ -1,0 +1,21 @@
+---
+interface Props {
+  videoSrc: string;
+  title: string;
+}
+
+const { videoSrc, title } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="page-hero-video">
+    <video autoplay muted loop playsinline>
+      <source src={videoSrc} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="page-hero-content">
+    <h1 class="page-hero-title">{title}</h1>
+  </div>
+</section>

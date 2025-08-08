@@ -1,0 +1,104 @@
+---
+// LanguageSwitcher.astro
+interface Props {
+  currentLang?: 'en' | 'es' | 'pt';
+  baseUrl?: string;
+}
+
+const { currentLang = 'en', baseUrl = '' } = Astro.props;
+
+const languages = [
+  { code: 'en', label: 'EN', url: baseUrl || '/' },
+  { code: 'es', label: 'ES', url: `${baseUrl}/es/` },
+  { code: 'pt', label: 'PT', url: `${baseUrl}/pt/` },
+];
+
+const currentLanguage = languages.find((lang) => lang.code === currentLang);
+const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
+---
+
+<div class="language-switcher">
+  <div class="current-language">
+    <span>{currentLanguage?.label}</span>
+  </div>
+  <div class="language-dropdown">
+    {
+      otherLanguages.map((lang) => (
+        <a href={lang.url} class="language-option">{lang.label}</a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .language-switcher {
+    position: relative;
+    display: inline-block;
+    font-family: inherit;
+  }
+
+  .current-language {
+    color: white;
+    background-color: transparent;
+    padding: 8px 12px;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .language-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 60px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+  }
+
+  .language-switcher:hover .language-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .language-option {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease;
+    text-align: center;
+  }
+
+  .language-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .language-option:last-child {
+    border-radius: 0 0 4px 4px;
+  }
+
+  /* Accessibility improvements */
+  .language-switcher:focus-within .language-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .current-language:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+
+  .language-option:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    outline: none;
+  }
+</style>

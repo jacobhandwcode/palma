@@ -1,0 +1,28 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+---
+
+<header>
+  <div class="header-wrapper">
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <img
+      src="/images/icons/palma-logo.svg"
+      alt="Palma Miami Beach Logo"
+      class="logo"
+      height="70px"
+      width="100%"
+    />
+    <div class="nav-right">
+      <LanguageSwitcher
+        currentLang="en"
+        baseUrl="https://palmamiamibeach.com"
+      />
+      <a href="tel:13056975810" class="phone-number">+1 305.697.5810</a>
+      <a class="inquire" href="/">Inquire</a>
+    </div>
+  </div>
+</header>

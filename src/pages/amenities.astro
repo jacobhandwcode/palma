@@ -1,0 +1,240 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+
+<Layout
+  title="Amenities | Palma Miami Beach | Luxury Condos in Miami Beach"
+  description="At Palma, quality reigns supreme, with every amenity thoughtfully curated for your lifestyle. View our services and amenities, including the Palma Beach Club."
+>
+  <PageHero videoSrc="/videos/amenities-video.mp4" title="Amenities" />
+  <section class="text-box no-bg">
+    <p>
+      At <span>Palma</span> you can dive into the Mediterranean-style pool, surrounded
+      by chic cabanas, or entertain at the summer kitchen and bar. The gym, designed
+      with top-tier equipment, is sure to impress, while the private resident lounge
+      offers the perfect space to entertain your friends and family at night or by
+      day. Here, quality reigns supreme, with every amenity thoughtfully curated
+      for your lifestyle. <span>Palma</span> is where you savor the best of both
+      worlds—tranquil luxury in a boutique setting, with everything you need at your
+      fingertips.
+    </p>
+  </section>
+  <section
+    class="parralax-img"
+    style="background-image: url('/images/amenities/good-life.webp');"
+  >
+  </section>
+  <section class="img-txt left">
+    <div class="img-txt-content">
+      <div class="content-wrapper">
+        <h2>Building Features</h2>
+        <ul>
+          <li>Double-height lobby with floor-to-ceiling windows</li>
+          <li>Reception desk</li>
+          <li>
+            24-hour secure access to building, amenities, garage and private
+            residential areas
+          </li>
+          <li>
+            Advanced technology SMART-building with high-speed fiber-optic
+            internet access
+          </li>
+          <li>WIFI throughout all common areas</li>
+          <li>14-story landmark building designed by Built Form</li>
+          <li>Curated retail tenants on ground floor</li>
+          <li>Luxe Beach Club with reserved seating for residents only</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-txt-image">
+      <img src="/images/amenities/lobby.webp" alt="Building Features" />
+    </div>
+  </section>
+  <section class="img-txt right">
+    <div class="img-txt-content">
+      <div class="content-wrapper">
+        <h2>Building Amenities</h2>
+        <ul>
+          <li>Resort-style pool with private daybeds and luxe cabanas</li>
+          <li>Outdoor summer kitchen with bar and pool deck event area</li>
+          <li>
+            Resident lounge on pool level with indoor and outdoor seating for
+            private resident events
+          </li>
+          <li>
+            State-of-the-art fitness center fully-equipped with Technogym with
+            view of resort pool area
+          </li>
+          <li>Wellness hot tub and arctic cold-plunge pools</li>
+        </ul>
+      </div>
+    </div>
+    <div class="img-txt-image">
+      <img src="/images/home/pool.webp" alt="Building Amenities" />
+    </div>
+  </section>
+  <section class="dual-gallery">
+    <div class="gallery-container">
+      <button class="gallery-arrow gallery-prev" aria-label="Previous images">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M15 18L9 12L15 6"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
+      <div class="gallery-track">
+        <div class="gallery-item">
+          <img src="/images/home/pool.webp" alt="Pool Area" />
+        </div>
+        <div class="gallery-item">
+          <img src="/images/home/pool.webp" alt="Pool Area" />
+        </div>
+        <div class="gallery-item">
+          <img src="/images/home/pool.webp" alt="Pool Area" />
+        </div>
+        <div class="gallery-item">
+          <img src="/images/home/pool.webp" alt="Pool Area" />
+        </div>
+        <div class="gallery-item">
+          <img src="/images/home/pool.webp" alt="Pool Area" />
+        </div>
+        <div class="gallery-item">
+          <img src="/images/home/pool.webp" alt="Pool Area" />
+        </div>
+        <div class="gallery-item">
+          <img src="/images/home/pool.webp" alt="Pool Area" />
+        </div>
+      </div>
+
+      <button class="gallery-arrow gallery-next" aria-label="Next images">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path
+            d="M9 18L15 12L9 6"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </section>
+<section class="beach-club-section">
+  <div class="main-content">
+    <div class="content-text">
+      <h2>Palma Beach Club</h2>
+      <p>
+        Welcome to "luxury beach", where indulgence meets relaxation in the
+        heart of Miami Beach. Picture yourself lounging in our sumptuous beach
+        chairs, where every detail is tailored to your comfort and enjoyment.
+        Our attentive staff anticipates your every need, ensuring seamless
+        service with a smile. Craving Mediterranean flavors? Our on-demand
+        food service brings the taste of the Mediterranean straight to your
+        cabana. Finally a beach club that is curated to perfection.
+      </p>
+    </div>
+    <div class="main-image">
+      <img src="/images/amenities/beach-club.webp" alt="Beach Club Main" />
+    </div>
+  </div>
+
+  <div class="image-grid">
+    <div class="grid-item">
+      <img src="/images/amenities/trees.webp" alt="Beach Scene" />
+    </div>
+    <div class="grid-item large">
+      <img src="/images/amenities/woman.webp" alt="Woman Reading" />
+    </div>
+    <div class="grid-item">
+      <img src="/images/amenities/champagne.webp" alt="Champagne Service" />
+    </div>
+  </div>
+
+  <div class="bottom-text">
+    <h3>So Much More Than A Place To Live</h3>
+  </div>
+</section>
+</Layout>
+
+<script>
+  class HorizontalGallery {
+    constructor() {
+      this.track = document.querySelector('.gallery-track');
+      this.items = document.querySelectorAll('.gallery-item');
+      this.prevBtn = document.querySelector('.gallery-prev');
+      this.nextBtn = document.querySelector('.gallery-next');
+      this.progressFill = document.querySelector('.progress-fill');
+
+      this.currentIndex = 0;
+      this.itemsToShow = window.innerWidth <= 768 ? 1 : 2;
+      this.totalItems = this.items.length;
+      this.maxIndex = Math.max(0, this.totalItems - this.itemsToShow);
+
+      this.init();
+    }
+
+    init() {
+      this.updateProgress();
+      // Remove updateButtons() since arrows no longer disable
+
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+      window.addEventListener('resize', () => {
+        this.itemsToShow = window.innerWidth <= 768 ? 1 : 2;
+        this.maxIndex = Math.max(0, this.totalItems - this.itemsToShow);
+        this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
+        this.updatePosition();
+        this.updateProgress();
+      });
+    }
+
+    prevSlide() {
+      // Loop to the end when at the beginning
+      if (this.currentIndex === 0) {
+        this.currentIndex = this.maxIndex;
+      } else {
+        this.currentIndex--;
+      }
+      this.updatePosition();
+      this.updateProgress();
+    }
+
+    nextSlide() {
+      // Loop to the beginning when at the end
+      if (this.currentIndex >= this.maxIndex) {
+        this.currentIndex = 0;
+      } else {
+        this.currentIndex++;
+      }
+      this.updatePosition();
+      this.updateProgress();
+    }
+
+    updatePosition() {
+      const itemWidth = 100 / this.itemsToShow; // 50% for 2 items, 100% for 1 item
+      const translateX = -(this.currentIndex * itemWidth);
+      this.track.style.transform = `translateX(${translateX}%)`;
+    }
+
+    updateProgress() {
+      // Progress based on current position through all possible slides
+      const progress =
+        this.maxIndex > 0 ? (this.currentIndex / this.maxIndex) * 100 : 0;
+      this.progressFill.style.width = `${progress}%`;
+    }
+  }
+
+  // Initialize gallery when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new HorizontalGallery();
+  });
+</script>

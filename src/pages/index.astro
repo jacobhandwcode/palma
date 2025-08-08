@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+---
+
+<Layout
+  title="Palma Miami Beach | Luxury Miami Beach Residences for Sale"
+  description="Palma is an architectural icon in Miami Beach, Florida, offering exclusive, boutique residences designed for a privileged few. Inquire today to learn more."
+>
+  <Hero />
+  <section class="text-box">
+    <p>
+      <span>Palma</span> is an architectural icon in Miami Beach, offering exclusive,
+      boutique residences designed for a privileged few. The interiors, crafted by
+      award-winning Studio Ramirez, exude glamour and refinement. Each residence
+      features impeccable floorplans, serving as both a sanctuary and an ideal entertaining
+      space. All residences are fully furnished and finished with no rental restrictions.
+    </p>
+  </section>
+  <section class="two-imgs">
+    <div class="img-container">
+      <img src="/images/home/hero-text.webp" alt="Palma Miami Beach" />
+    </div>
+    <div class="img-container">
+      <img src="/images/home/golden-girl.webp" alt="Palma Miami Beach" />
+    </div>
+  </section>
+  <section class="text-box-no-bg">
+    <p>
+      A boutique Mediterranean-styled residence located near the famed Bal
+      Harbour, white sand beaches and just minutes from South Beach.
+    </p>
+  </section>
+  <section class="parralax-img" style="background-image: url('/images/home/sunset.webp');"></section>
+  <section class="funnel-cards">
+    <div
+      class="funnel-card"
+      style="background-image: url('/images/home/residences.webp');"
+    >
+      <a href="/" class="card-link">
+        <h3>Residences</h3>
+      </a>
+    </div>
+    <div
+      class="funnel-card"
+      style="background-image: url('/images/home/amenities.webp');"
+    >
+      <a href="/" class="card-link">
+        <h3>Amenities</h3>
+      </a>
+    </div>
+    <div
+      class="funnel-card"
+      style="background-image: url('/images/home/neighborhood.webp');"
+    >
+      <a href="/" class="card-link">
+        <h3>Neighborhood</h3>
+      </a>
+    </div>
+  </section>
+  
+  <!-- gallery -->
+  <section class="gallery">
+    <div class="gallery-container">
+      <div class="gallery-slides">
+        <div class="slide active">
+          <img src="/images/home/gym.webp" alt="Gym" />
+        </div>
+        <div class="slide">
+          <img src="/images/home/pool.webp" alt="Pool" />
+        </div>
+        <div class="slide">
+          <img src="/images/home/aqua-lounge.webp" alt="Lobby" />
+        </div>
+        <div class="slide">
+          <img src="/images/home/pool-terrace.webp" alt="Terrace" />
+        </div>
+        <div class="slide">
+          <img src="/images/home/living-space.webp" alt="Bedroom" />
+        </div>
+      </div>
+      
+      <button class="gallery-arrow gallery-prev" aria-label="Previous image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      
+      <button class="gallery-arrow gallery-next" aria-label="Next image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      
+      <div class="gallery-dots">
+        <button class="dot active" data-slide="0"></button>
+        <button class="dot" data-slide="1"></button>
+        <button class="dot" data-slide="2"></button>
+        <button class="dot" data-slide="3"></button>
+        <button class="dot" data-slide="4"></button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+class Gallery {
+  constructor() {
+    this.currentSlide = 0;
+    this.slides = document.querySelectorAll('.slide');
+    this.dots = document.querySelectorAll('.dot');
+    this.prevBtn = document.querySelector('.gallery-prev');
+    this.nextBtn = document.querySelector('.gallery-next');
+    this.isTransitioning = false;
+    
+    this.init();
+  }
+  
+  init() {
+    // Add event listeners
+    this.prevBtn.addEventListener('click', () => this.prevSlide());
+    this.nextBtn.addEventListener('click', () => this.nextSlide());
+    
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => this.goToSlide(index));
+    });
+    
+    // Start autoplay
+    this.startAutoplay();
+  }
+  
+  prevSlide() {
+    if (this.isTransitioning) return;
+    
+    const prevIndex = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
+    this.goToSlide(prevIndex);
+  }
+  
+  nextSlide() {
+    if (this.isTransitioning) return;
+    
+    const nextIndex = this.currentSlide === this.slides.length - 1 ? 0 : this.currentSlide + 1;
+    this.goToSlide(nextIndex);
+  }
+  
+  goToSlide(index) {
+    if (this.isTransitioning || index === this.currentSlide) return;
+    
+    this.isTransitioning = true;
+    
+    // Remove active class from current slide and dot
+    this.slides[this.currentSlide].classList.remove('active');
+    this.dots[this.currentSlide].classList.remove('active');
+    
+    // Add zoom-out effect to current slide
+    this.slides[this.currentSlide].classList.add('zoom-out');
+    
+    setTimeout(() => {
+      // Update current slide
+      this.currentSlide = index;
+      
+      // Add active class to new slide and dot
+      this.slides[this.currentSlide].classList.add('active', 'zoom-in');
+      this.dots[this.currentSlide].classList.add('active');
+      
+      setTimeout(() => {
+        // Clean up classes
+        this.slides.forEach(slide => {
+          slide.classList.remove('zoom-out', 'zoom-in');
+        });
+        this.isTransitioning = false;
+      }, 2000); // Match the CSS transition duration
+    }, 1000); // Half the transition time
+  }
+  
+  startAutoplay() {
+    setInterval(() => {
+      if (!this.isTransitioning) {
+        this.nextSlide();
+      }
+    }, 5000); // Change slide every 5 seconds
+  }
+}
+
+// Initialize gallery when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  new Gallery();
+});
+</script>
