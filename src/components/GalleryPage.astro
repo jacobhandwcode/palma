@@ -1,0 +1,69 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const { 
+  title = "Gallery",
+  subtitle = ""
+} = Astro.props;
+
+const galleryItems = [
+  { id: 1, src: "/images/gallery-page/crownshot.webp", alt: "Gallery Image 1", type: "large" },
+  
+  { id: 2, src: "/images/gallery-page/pool.webp", alt: "Gallery Image 2", type: "normal" },
+
+  { id: 3, src: "/images/gallery-page/bath.webp", alt: "Gallery Image 3", type: "normal" },
+
+  { id: 4, src: "/images/gallery-page/a1-living.webp", alt: "Gallery Image 4", type: "normal" },
+
+  { id: 5, src: "/images/gallery-page/kitchen.webp", alt: "Gallery Image 5", type: "normal" },
+  
+  { id: 6, src: "/images/gallery-page/lobby.webp", alt: "Gallery Image 6", type: "normal" },
+
+  { id: 7, src: "/images/gallery-page/sunset.webp", alt: "Gallery Image 7", type: "normal" },
+  
+
+  { id: 8, src: "/images/gallery-page/hero.webp", alt: "Gallery Image 8", type: "normal" },
+  { id: 9, src: "/images/gallery-page/fitness.webp", alt: "Gallery Image 9", type: "normal" },
+  
+  { id: 10, src: "/images/gallery-page/pool-trellis.webp", alt: "Gallery Image 10", type: "large" },
+
+  { id: 11, src: "/images/gallery-page/aqua-lounge.webp", alt: "Gallery Image 11", type: "large" },
+  
+  // Row 7: 2 images side by side
+  { id: 12, src: "/images/gallery-page/reception.webp", alt: "Gallery Image 12", type: "normal" },
+  { id: 13, src: "/images/gallery-page/a6-living.webp", alt: "Gallery Image 13", type: "normal" },
+  
+  // Row 8: 2 images side by side
+  { id: 14, src: "/images/gallery-page/b1-living.webp", alt: "Gallery Image 14", type: "normal" },
+  { id: 15, src: "/images/gallery-page/bedroom.webp", alt: "Gallery Image 15", type: "normal" },
+];
+---
+
+<section class="gallery-page-section">
+  <div class="gallery-page-container">
+    {title && (
+      <div class="gallery-page-header">
+        <h2 class="gallery-page-title">{title}</h2>
+        {subtitle && <p class="gallery-page-subtitle">{subtitle}</p>}
+      </div>
+    )}
+    
+    <div class="gallery-page-grid">
+      {galleryItems.map((item) => (
+        <div 
+          class={`gallery-page-item ${item.type !== 'normal' ? `gallery-page-item--${item.type}` : ''}`}
+          data-id={item.id}
+        >
+          <img 
+            src={item.src} 
+            alt={item.alt} 
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

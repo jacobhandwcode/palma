@@ -21,6 +21,14 @@ const {
 <section class="map-section">
   <div class="map-container">
     <div id="googleMap" class="google-map"></div>
+    <!-- Custom popup overlay -->
+    <div id="mapPopup" class="map-popup hidden">
+      <div class="map-popup__content">
+        <button id="mapPopupClose" class="map-popup__close">&times;</button>
+        <h3 id="mapPopupTitle" class="map-popup__title"></h3>
+        <p id="mapPopupAddress" class="map-popup__address"></p>
+      </div>
+    </div>
   </div>
 
   <div class="map-content">
@@ -44,6 +52,219 @@ const {
 <script>
   let map;
   let marker;
+  let activeInfoWindow = null;
+
+  const locations = [
+    {
+      name: 'Miami Design District',
+      address: '4000 NE 1st Ave, Miami, FL 33137',
+      lat: 25.8012,
+      lng: -80.1951,
+    },
+    {
+      name: 'South Beach',
+      address: '1420 Washington Ave, Miami Beach, FL 33139',
+      lat: 25.7907,
+      lng: -80.1347,
+    },
+    {
+      name: 'Lincoln Road',
+      address: '1021 Lincoln Rd, Miami Beach, FL 33139',
+      lat: 25.7907,
+      lng: -80.1347,
+    },
+    {
+      name: 'Sunset Harbour',
+      address: '1900 Bay Rd, Miami Beach, FL 33139',
+      lat: 25.7826,
+      lng: -80.1465,
+    },
+    {
+      name: 'The Bath Club',
+      address: '5937 Collins Ave, Miami Beach, FL 33140',
+      lat: 25.8283,
+      lng: -80.123,
+    },
+    {
+      name: 'Little River Art District',
+      address: '274 NE 67th St, Miami, FL 33138',
+      lat: 25.8377,
+      lng: -80.1887,
+    },
+    {
+      name: 'Miami Ironside',
+      address: '7580 NE 4th Ct, Miami, FL 33138',
+      lat: 25.8417,
+      lng: -80.1876,
+    },
+    {
+      name: 'Pelican Harbor Marina',
+      address: '1275 NE 79th St, Miami, FL 33138',
+      lat: 25.8551,
+      lng: -80.1734,
+    },
+    {
+      name: 'Sushi Erika',
+      address: '1700 John F Kennedy Causeway #100, North Bay Village, FL 33141',
+      lat: 25.8472,
+      lng: -80.1528,
+    },
+    {
+      name: 'Shuckers Waterfront Bar & Grill',
+      address: '1819 79th Street Causeway, North Bay Village, FL 33141',
+      lat: 25.8551,
+      lng: -80.1528,
+    },
+    {
+      name: 'Potralunga Restaurant',
+      address: '7601 E Treasure Dr Unit Cu-21, North Bay Village, FL 33141',
+      lat: 25.8472,
+      lng: -80.1417,
+    },
+    {
+      name: 'SilverLake Bistro',
+      address: '1211 71st St, Miami Beach, FL 33141',
+      lat: 25.8472,
+      lng: -80.1306,
+    },
+    {
+      name: 'Katana Japanese Restaurant',
+      address: '920 71st St, Miami Beach, FL 33141',
+      lat: 25.8472,
+      lng: -80.1306,
+    },
+    {
+      name: 'Gelato-go Bakery',
+      address: '725 71st St, Miami Beach, FL 33141',
+      lat: 25.8472,
+      lng: -80.1306,
+    },
+    {
+      name: 'Byron Theater',
+      address: '500 71st St, Miami Beach, FL 33141',
+      lat: 25.8472,
+      lng: -80.1306,
+    },
+    {
+      name: 'Prima Pasta',
+      address: '414 71st St, Miami Beach, FL 33141',
+      lat: 25.8472,
+      lng: -80.1306,
+    },
+    {
+      name: 'Tambourine Room by Tristan Brandt',
+      address: '6801 Collins Ave, Miami Beach, FL 33141',
+      lat: 25.8378,
+      lng: -80.1222,
+    },
+    {
+      name: 'Cachito Coffee & Bakery',
+      address: '251 71st St, Miami Beach, FL 33141',
+      lat: 25.8472,
+      lng: -80.1306,
+    },
+    {
+      name: 'Buenos Aires Bakery & Café',
+      address: '230 71st St, Miami Beach, FL 33141',
+      lat: 25.8472,
+      lng: -80.1306,
+    },
+    {
+      name: "George's Restaurant & Lounge",
+      address: '300 72nd St, Miami Beach, FL 33141',
+      lat: 25.8486,
+      lng: -80.1306,
+    },
+    {
+      name: 'Volleyball Courts',
+      address: '7251 Collins Ave, Miami Beach, FL 33141',
+      lat: 25.8444,
+      lng: -80.1222,
+    },
+    {
+      name: 'Four Seasons Hotel at The Surf Club',
+      address: '9011 Collins Ave, Surfside, FL 33154',
+      lat: 25.8772,
+      lng: -80.1194,
+    },
+    {
+      name: 'Indian Creek Country Club',
+      address: '55 Indian Creek Island Rd, Indian Creek, FL 33154',
+      lat: 25.875,
+      lng: -80.1278,
+    },
+    {
+      name: 'Makoto',
+      address: '9700 Collins Ave, Miami Beach, FL 33154',
+      lat: 25.8861,
+      lng: -80.1194,
+    },
+    {
+      name: 'The St. Regis Bal Harbour Resort',
+      address: '9703 Collins Avenue Bal Harbour, Miami Beach, FL 33154',
+      lat: 25.8861,
+      lng: -80.1194,
+    },
+    {
+      name: 'The Ritz-Carlton Bal Harbour',
+      address: '10295 Collins Ave, Bal Harbour, FL 33154',
+      lat: 25.895,
+      lng: -80.1194,
+    },
+    {
+      name: 'Bill Bird Marina',
+      address: '10800 Collins Ave, Miami Beach, FL 33154',
+      lat: 25.9028,
+      lng: -80.1194,
+    },
+    {
+      name: 'Aventura Mall',
+      address: '19501 Biscayne Blvd, Aventura, FL 33180',
+      lat: 25.9564,
+      lng: -80.1431,
+    },
+  ];
+
+  function createPinIcon() {
+    return {
+      url:
+        'data:image/svg+xml;charset=UTF-8,' +
+        encodeURIComponent(`
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24">
+          <circle cx="6" cy="6" r="5" fill="#444444"/>
+          <line x1="6" y1="11" x2="6" y2="23" stroke="#444444" stroke-width="1"/>
+        </svg>
+      `),
+      scaledSize: new google.maps.Size(12, 24),
+      anchor: new google.maps.Point(6, 23),
+      optimized: false,
+    };
+  }
+
+  function showCustomPopup(title, address, marker) {
+    const popup = document.getElementById('mapPopup');
+    const popupTitle = document.getElementById('mapPopupTitle');
+    const popupAddress = document.getElementById('mapPopupAddress');
+
+    popupTitle.textContent = title;
+    popupAddress.textContent = address;
+
+    // Position the popup relative to the map
+    const mapContainer = document.getElementById('googleMap');
+    const mapRect = mapContainer.getBoundingClientRect();
+
+    // Simple positioning - center popup in map area
+    popup.style.left = '50%';
+    popup.style.top = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+
+    popup.classList.remove('hidden');
+  }
+
+  function hideCustomPopup() {
+    const popup = document.getElementById('mapPopup');
+    popup.classList.add('hidden');
+  }
 
   function initMap() {
     const palmaLocation = { lat: 25.8736, lng: -80.1281 };
@@ -53,84 +274,187 @@ const {
       center: palmaLocation,
       styles: [
         {
-          featureType: 'water',
-          elementType: 'geometry',
-          stylers: [{ color: '#a2daf2' }],
+          featureType: 'all',
+          elementType: 'labels.text.fill',
+          stylers: [
+            {
+              saturation: 36,
+            },
+            {
+              color: '#333333',
+            },
+            {
+              lightness: 40,
+            },
+          ],
         },
         {
-          featureType: 'landscape.man_made',
+          featureType: 'all',
+          elementType: 'labels.text.stroke',
+          stylers: [
+            {
+              visibility: 'on',
+            },
+            {
+              color: '#ffffff',
+            },
+            {
+              lightness: 16,
+            },
+          ],
+        },
+        {
+          featureType: 'all',
+          elementType: 'labels.icon',
+          stylers: [
+            {
+              visibility: 'off',
+            },
+          ],
+        },
+        {
+          featureType: 'administrative',
+          elementType: 'geometry.fill',
+          stylers: [
+            {
+              color: '#ffffff',
+            },
+            {
+              lightness: 20,
+            },
+          ],
+        },
+        {
+          featureType: 'administrative',
+          elementType: 'geometry.stroke',
+          stylers: [
+            {
+              color: '#fefefe',
+            },
+            {
+              lightness: 17,
+            },
+            {
+              weight: 1.2,
+            },
+          ],
+        },
+        {
+          featureType: 'landscape',
           elementType: 'geometry',
-          stylers: [{ color: '#f7f1df' }],
+          stylers: [
+            {
+              lightness: 20,
+            },
+          ],
         },
         {
           featureType: 'landscape.natural',
-          elementType: 'geometry',
-          stylers: [{ color: '#d0e3b4' }],
-        },
-        {
-          featureType: 'landscape.natural.terrain',
-          elementType: 'geometry',
-          stylers: [{ visibility: 'off' }],
+          elementType: 'geometry.fill',
+          stylers: [
+            {
+              color: '#fff9e3',
+            },
+          ],
         },
         {
           featureType: 'poi',
-          elementType: 'labels',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.business',
-          elementType: 'all',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'poi.medical',
           elementType: 'geometry',
-          stylers: [{ color: '#fbd3da' }],
+          stylers: [
+            {
+              color: '#f5f5f5',
+            },
+            {
+              lightness: 21,
+            },
+          ],
         },
         {
           featureType: 'poi.park',
           elementType: 'geometry',
-          stylers: [{ color: '#bde6ab' }],
-        },
-        {
-          featureType: 'road',
-          elementType: 'geometry.stroke',
-          stylers: [{ visibility: 'off' }],
-        },
-        {
-          featureType: 'road',
-          elementType: 'labels',
-          stylers: [{ visibility: 'off' }],
+          stylers: [
+            {
+              color: '#cde7c9',
+            },
+            {
+              lightness: 21,
+            },
+          ],
         },
         {
           featureType: 'road.highway',
           elementType: 'geometry.fill',
-          stylers: [{ color: '#ffe15f' }],
+          stylers: [
+            {
+              lightness: 17,
+            },
+            {
+              color: '#ffffff',
+            },
+          ],
         },
         {
           featureType: 'road.highway',
           elementType: 'geometry.stroke',
-          stylers: [{ color: '#efd151' }],
+          stylers: [
+            {
+              color: '#ffffff',
+            },
+            {
+              lightness: 29,
+            },
+            {
+              weight: 0.2,
+            },
+          ],
         },
         {
           featureType: 'road.arterial',
-          elementType: 'geometry.fill',
-          stylers: [{ color: '#ffffff' }],
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#ffffff',
+            },
+            {
+              lightness: 18,
+            },
+          ],
         },
         {
           featureType: 'road.local',
-          elementType: 'geometry.fill',
-          stylers: [{ color: 'black' }],
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#ffffff',
+            },
+            {
+              lightness: 16,
+            },
+          ],
         },
         {
-          featureType: 'transit.station.airport',
-          elementType: 'geometry.fill',
-          stylers: [{ color: '#cfb2db' }],
+          featureType: 'transit',
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#f2f2f2',
+            },
+            {
+              lightness: 19,
+            },
+          ],
         },
         {
           featureType: 'water',
-          elementType: 'labels.text.fill',
-          stylers: [{ color: '#92998d' }],
+          elementType: 'geometry',
+          stylers: [
+            {
+              color: '#c5e9f7',
+            },
+            {
+              lightness: 17,
+            },
+          ],
         },
       ],
       disableDefaultUI: true,
@@ -140,6 +464,7 @@ const {
       },
     });
 
+    // Create PALMA marker (without icon for now)
     marker = new google.maps.Marker({
       position: palmaLocation,
       map: map,
@@ -153,6 +478,40 @@ const {
         scaledSize: new google.maps.Size(200, 30),
         anchor: new google.maps.Point(6, 15),
       },
+    });
+
+    // Create location markers
+    locations.forEach((location) => {
+      const locationMarker = new google.maps.Marker({
+        position: new google.maps.LatLng(location.lat, location.lng),
+        map: map,
+        title: location.name,
+        icon: createPinIcon(),
+        optimized: false,
+      });
+
+      // Add click listener for each marker
+      locationMarker.addListener('click', () => {
+        showCustomPopup(location.name, location.address, locationMarker);
+      });
+    });
+
+    // Close popup when clicking on map
+    map.addListener('click', () => {
+      hideCustomPopup();
+    });
+
+    // Close popup button
+    document.getElementById('mapPopupClose').addEventListener('click', () => {
+      hideCustomPopup();
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', (e) => {
+      const popup = document.getElementById('mapPopup');
+      if (!popup.contains(e.target) && !e.target.closest('.google-map')) {
+        hideCustomPopup();
+      }
     });
   }
 
@@ -173,3 +532,4 @@ const {
 
   window.initMap = initMap;
 </script>
+

@@ -31,13 +31,17 @@ import Hero from '../components/Hero.astro';
       Harbour, white sand beaches and just minutes from South Beach.
     </p>
   </section>
-  <section class="parralax-img" style="background-image: url('/images/home/sunset.webp');"></section>
+  <section
+    class="parralax-img"
+    style="background-image: url('/images/home/sunset.webp');"
+  >
+  </section>
   <section class="funnel-cards">
     <div
       class="funnel-card"
       style="background-image: url('/images/home/residences.webp');"
     >
-      <a href="/" class="card-link">
+      <a href="/residences" class="card-link">
         <h3>Residences</h3>
       </a>
     </div>
@@ -45,7 +49,7 @@ import Hero from '../components/Hero.astro';
       class="funnel-card"
       style="background-image: url('/images/home/amenities.webp');"
     >
-      <a href="/" class="card-link">
+      <a href="/amenities" class="card-link">
         <h3>Amenities</h3>
       </a>
     </div>
@@ -53,12 +57,12 @@ import Hero from '../components/Hero.astro';
       class="funnel-card"
       style="background-image: url('/images/home/neighborhood.webp');"
     >
-      <a href="/" class="card-link">
+      <a href="/neighborhood" class="card-link">
         <h3>Neighborhood</h3>
       </a>
     </div>
   </section>
-  
+
   <!-- gallery -->
   <section class="gallery">
     <div class="gallery-container">
@@ -79,19 +83,29 @@ import Hero from '../components/Hero.astro';
           <img src="/images/home/living-space.webp" alt="Bedroom" />
         </div>
       </div>
-      
+
       <button class="gallery-arrow gallery-prev" aria-label="Previous image">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M15 18L9 12L15 6"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
         </svg>
       </button>
-      
+
       <button class="gallery-arrow gallery-next" aria-label="Next image">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M9 18L15 12L9 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path
+            d="M9 18L15 12L9 6"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
         </svg>
       </button>
-      
+
       <div class="gallery-dots">
         <button class="dot active" data-slide="0"></button>
         <button class="dot" data-slide="1"></button>
@@ -104,86 +118,92 @@ import Hero from '../components/Hero.astro';
 </Layout>
 
 <script>
-class Gallery {
-  constructor() {
-    this.currentSlide = 0;
-    this.slides = document.querySelectorAll('.slide');
-    this.dots = document.querySelectorAll('.dot');
-    this.prevBtn = document.querySelector('.gallery-prev');
-    this.nextBtn = document.querySelector('.gallery-next');
-    this.isTransitioning = false;
-    
-    this.init();
-  }
-  
-  init() {
-    // Add event listeners
-    this.prevBtn.addEventListener('click', () => this.prevSlide());
-    this.nextBtn.addEventListener('click', () => this.nextSlide());
-    
-    this.dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => this.goToSlide(index));
-    });
-    
-    // Start autoplay
-    this.startAutoplay();
-  }
-  
-  prevSlide() {
-    if (this.isTransitioning) return;
-    
-    const prevIndex = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
-    this.goToSlide(prevIndex);
-  }
-  
-  nextSlide() {
-    if (this.isTransitioning) return;
-    
-    const nextIndex = this.currentSlide === this.slides.length - 1 ? 0 : this.currentSlide + 1;
-    this.goToSlide(nextIndex);
-  }
-  
-  goToSlide(index) {
-    if (this.isTransitioning || index === this.currentSlide) return;
-    
-    this.isTransitioning = true;
-    
-    // Remove active class from current slide and dot
-    this.slides[this.currentSlide].classList.remove('active');
-    this.dots[this.currentSlide].classList.remove('active');
-    
-    // Add zoom-out effect to current slide
-    this.slides[this.currentSlide].classList.add('zoom-out');
-    
-    setTimeout(() => {
-      // Update current slide
-      this.currentSlide = index;
-      
-      // Add active class to new slide and dot
-      this.slides[this.currentSlide].classList.add('active', 'zoom-in');
-      this.dots[this.currentSlide].classList.add('active');
-      
-      setTimeout(() => {
-        // Clean up classes
-        this.slides.forEach(slide => {
-          slide.classList.remove('zoom-out', 'zoom-in');
-        });
-        this.isTransitioning = false;
-      }, 2000); // Match the CSS transition duration
-    }, 1000); // Half the transition time
-  }
-  
-  startAutoplay() {
-    setInterval(() => {
-      if (!this.isTransitioning) {
-        this.nextSlide();
-      }
-    }, 5000); // Change slide every 5 seconds
-  }
-}
+  class Gallery {
+    constructor() {
+      this.currentSlide = 0;
+      this.slides = document.querySelectorAll('.slide');
+      this.dots = document.querySelectorAll('.dot');
+      this.prevBtn = document.querySelector('.gallery-prev');
+      this.nextBtn = document.querySelector('.gallery-next');
+      this.isTransitioning = false;
 
-// Initialize gallery when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  new Gallery();
-});
+      this.init();
+    }
+
+    init() {
+      // Add event listeners
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+      this.dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.goToSlide(index));
+      });
+
+      // Start autoplay
+      this.startAutoplay();
+    }
+
+    prevSlide() {
+      if (this.isTransitioning) return;
+
+      const prevIndex =
+        this.currentSlide === 0
+          ? this.slides.length - 1
+          : this.currentSlide - 1;
+      this.goToSlide(prevIndex);
+    }
+
+    nextSlide() {
+      if (this.isTransitioning) return;
+
+      const nextIndex =
+        this.currentSlide === this.slides.length - 1
+          ? 0
+          : this.currentSlide + 1;
+      this.goToSlide(nextIndex);
+    }
+
+    goToSlide(index) {
+      if (this.isTransitioning || index === this.currentSlide) return;
+
+      this.isTransitioning = true;
+
+      // Remove active class from current slide and dot
+      this.slides[this.currentSlide].classList.remove('active');
+      this.dots[this.currentSlide].classList.remove('active');
+
+      // Add zoom-out effect to current slide
+      this.slides[this.currentSlide].classList.add('zoom-out');
+
+      setTimeout(() => {
+        // Update current slide
+        this.currentSlide = index;
+
+        // Add active class to new slide and dot
+        this.slides[this.currentSlide].classList.add('active', 'zoom-in');
+        this.dots[this.currentSlide].classList.add('active');
+
+        setTimeout(() => {
+          // Clean up classes
+          this.slides.forEach((slide) => {
+            slide.classList.remove('zoom-out', 'zoom-in');
+          });
+          this.isTransitioning = false;
+        }, 2000); // Match the CSS transition duration
+      }, 1000); // Half the transition time
+    }
+
+    startAutoplay() {
+      setInterval(() => {
+        if (!this.isTransitioning) {
+          this.nextSlide();
+        }
+      }, 5000); // Change slide every 5 seconds
+    }
+  }
+
+  // Initialize gallery when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new Gallery();
+  });
 </script>

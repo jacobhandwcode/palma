@@ -1,0 +1,63 @@
+---
+interface Props {
+  title?: string;
+  backgroundColor?: string;
+}
+
+const { title = 'Team' } = Astro.props;
+
+const teamMembers = [
+  {
+    id: 1,
+    name: 'LEFFERTS',
+    role: 'DEVELOPER',
+    image: '/images/team/lefferts.webp',
+    alt: 'Lefferts - Developer',
+  },
+  {
+    id: 2,
+    name: 'BUILT FORM',
+    role: 'DESIGN ARCHITECT',
+    image: '/images/team/built-from.webp',
+    alt: 'Built Form - Design Architect',
+  },
+  {
+    id: 3,
+    name: 'STUDIO RAMIREZ',
+    role: 'INTERIOR DESIGN',
+    image: '/images/team/ramirez.webp',
+    alt: 'Studio Ramirez - Interior Design',
+  },
+  {
+    id: 4,
+    name: 'CERVERA',
+    role: 'SALES & MARKETING',
+    image: '/images/team/cervera.webp',
+    alt: 'Cervera - Sales & Marketing',
+  },
+];
+---
+
+<section class="team-section">
+  <div class="team-container">
+    <div class="team-header">
+      <h2 class="team-title">{title}</h2>
+    </div>
+
+    <div class="team-grid">
+      {
+        teamMembers.map((member) => (
+          <div class="team-member" data-id={member.id}>
+            <div class="member-content">
+              <h3 class="member-name">{member.name}</h3>
+              <p class="member-role">{member.role}</p>
+            </div>
+            <div class="member-image">
+              <img src={member.image} alt={member.alt} loading="lazy" />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

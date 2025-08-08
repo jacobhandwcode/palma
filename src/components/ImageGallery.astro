@@ -1,0 +1,201 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const { title = 'Only Minutes From it all', subtitle = '' } = Astro.props;
+
+const galleryItems = [
+  {
+    id: 1,
+    src: '/images/gallery/water-gallery.webp',
+    alt: 'Gallery Image 1',
+    type: 'normal',
+  },
+  {
+    id: 2,
+    src: '/images/gallery/party-gallery.webp',
+    alt: 'Gallery Image 2',
+    type: 'normal',
+  },
+  {
+    id: 3,
+    src: '/images/gallery/surfing-gallery.webp',
+    alt: 'Gallery Image 3',
+    type: 'normal',
+  },
+  {
+    id: 4,
+    src: '/images/gallery/sunset-gallery.webp',
+    alt: 'Gallery Image 4',
+    type: 'normal',
+  },
+  {
+    id: 5,
+    src: '/images/gallery/neighborhood-gallery.webp',
+    alt: 'Gallery Image 5',
+    type: 'normal',
+  },
+  {
+    id: 6,
+    src: '/images/gallery/relaxing-gallery.webp',
+    alt: 'Gallery Image 6',
+    type: 'big',
+  },
+  {
+    id: 7,
+    src: '/images/gallery/shop-gallery.webp',
+    alt: 'Gallery Image 7',
+    type: 'normal',
+  },
+  {
+    id: 8,
+    src: '/images/gallery/jetski-gallery.webp',
+    alt: 'Gallery Image 8',
+    type: 'normal',
+  },
+  {
+    id: 9,
+    src: '/images/gallery/fun-gallery.webp',
+    alt: 'Gallery Image 9',
+    type: 'normal',
+  },
+  {
+    id: 10,
+    src: '/images/gallery/drinks-gallery.webp',
+    alt: 'Gallery Image 10',
+    type: 'normal',
+  },
+  {
+    id: 11,
+    src: '/images/gallery/building-gallery.webp',
+    alt: 'Gallery Image 11',
+    type: 'normal',
+  },
+  {
+    id: 12,
+    src: '/images/gallery/woman-gallery.webp',
+    alt: 'Gallery Image 12',
+    type: 'normal',
+  },
+  {
+    id: 13,
+    src: '/images/gallery/table-gallery.webp',
+    alt: 'Gallery Image 12',
+    type: 'normal',
+  },
+  {
+    id: 14,
+    src: '/images/gallery/good-life-gallery.webp',
+    alt: 'Gallery Image 13',
+    type: 'full-width',
+  },
+  {
+    id: 15,
+    src: '/images/gallery/coffee-gallery.webp',
+    alt: 'Gallery Image 14',
+    type: 'normal',
+  },
+  {
+    id: 16,
+    src: '/images/gallery/woman-2-gallery.webp',
+    alt: 'Gallery Image 15',
+    type: 'tall',
+  },
+  {
+    id: 17,
+    src: '/images/gallery/tennis-gallery.webp',
+    alt: 'Gallery Image 16',
+    type: 'normal',
+  },
+  {
+    id: 18,
+    src: '/images/gallery/tree-gallery.webp',
+    alt: 'Gallery Image 17',
+    type: 'normal',
+  },
+  {
+    id: 19,
+    src: '/images/gallery/walking-gallery.webp',
+    alt: 'Gallery Image 18',
+    type: 'normal',
+  },
+  {
+    id: 20,
+    src: '/images/gallery/golf-gallery.webp',
+    alt: 'Gallery Image 19',
+    type: 'normal',
+  },
+  {
+    id: 21,
+    src: '/images/gallery/cheers-gallery.webp',
+    alt: 'Gallery Image 20',
+    type: 'normal',
+  },
+  {
+    id: 22,
+    src: '/images/gallery/bicycle-gallery.webp',
+    alt: 'Gallery Image 21',
+    type: 'normal',
+  },
+  {
+    id: 23,
+    src: '/images/gallery/beach-gallery.webp',
+    alt: 'Gallery Image 22',
+    type: 'normal',
+  },
+  {
+    id: 24,
+    src: '/images/gallery/picture-gallery.webp',
+    alt: 'Gallery Image 23',
+    type: 'big',
+  },
+  {
+    id: 26,
+    src: '/images/gallery/leaves-gallery.webp',
+    alt: 'Gallery Image 25',
+    type: 'normal',
+  },
+  {
+    id: 27,
+    src: '/images/gallery/sushi-gallery.webp',
+    alt: 'Gallery Image 26',
+    type: 'normal',
+  },
+];
+---
+
+<section class="gallery-section">
+  <div class="gallery-container">
+    {
+      title && (
+        <div class="gallery-header">
+          <h2 class="gallery-title">{title}</h2>
+          <div class="gallery-subtitle">
+            <p>
+              <span>Palma</span> features all the allure of Miami Beach.
+              Situated just steps away from its pristine beaches and with views
+              of both ocean and neighboring islands in the bay,
+              <span>Palma</span> residents indulge in a sun-kissed island
+              lifestyle with an international playground in its backyard.
+            </p>
+          </div>
+        </div>
+      )
+    }
+
+    <div class="gallery-grid">
+      {
+        galleryItems.map((item) => (
+          <div
+            class={`gallery-item ${item.type !== 'normal' ? `gallery-item--${item.type}` : ''}`}
+            data-id={item.id}
+          >
+            <img src={item.src} alt={item.alt} loading="lazy" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
