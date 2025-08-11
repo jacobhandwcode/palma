@@ -12,54 +12,100 @@
   <form class="contact-form">
     <div class="form-row">
       <div class="form-group">
-        <input type="text" id="firstName" name="firstName" required />
-        <label for="firstName">FIRST NAME*</label>
+        <input
+          placeholder="First Name"
+          type="text"
+          id="firstName"
+          name="firstName"
+          required
+        />
+        <label for="firstName">FIRST NAME *</label>
       </div>
       <div class="form-group">
-        <input type="text" id="lastName" name="lastName" required />
-        <label for="lastName">LAST NAME*</label>
+        <input
+          placeholder="Last Name"
+          type="text"
+          id="lastName"
+          name="lastName"
+          required
+        />
+        <label for="lastName">LAST NAME *</label>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
-        <input type="email" id="email" name="email" required />
-        <label for="email">EMAIL*</label>
+        <input
+          placeholder="Email"
+          type="email"
+          id="email"
+          name="email"
+          required
+        />
+        <label for="email">EMAIL *</label>
       </div>
       <div class="form-group phone-group">
         <div class="phone-input">
-          <div class="country-code">
-            <img
-              src="/images/icons/us-flag.svg"
-              alt="US Flag"
-              class="flag-icon"
-            />
-            <span>+1</span>
-          </div>
-          <input type="tel" id="phone" name="phone" />
+          <select id="countryCode" name="countryCode" class="country-select">
+            <option value="+1" data-country="US">🇺🇸 United States +1</option>
+            <option value="+44" data-country="GB">🇬🇧 United Kingdom +44</option>
+            <option value="+33" data-country="FR">🇫🇷 France +33</option>
+            <option value="+49" data-country="DE">🇩🇪 Germany +49</option>
+            <option value="+39" data-country="IT">🇮🇹 Italy +39</option>
+            <option value="+34" data-country="ES">🇪🇸 Spain +34</option>
+            <option value="+1" data-country="CA">🇨🇦 Canada +1</option>
+            <option value="+52" data-country="MX">🇲🇽 Mexico +52</option>
+            <option value="+55" data-country="BR">🇧🇷 Brazil +55</option>
+            <option value="+54" data-country="AR">🇦🇷 Argentina +54</option>
+            <option value="+86" data-country="CN">🇨🇳 China +86</option>
+            <option value="+81" data-country="JP">🇯🇵 Japan +81</option>
+            <option value="+82" data-country="KR">🇰🇷 South Korea +82</option>
+            <option value="+91" data-country="IN">🇮🇳 India +91</option>
+            <option value="+61" data-country="AU">🇦🇺 Australia +61</option>
+            <option value="+7" data-country="RU">🇷🇺 Russia +7</option>
+            <option value="+27" data-country="ZA">🇿🇦 South Africa +27</option>
+            <option value="+234" data-country="NG">🇳🇬 Nigeria +234</option>
+            <option value="+20" data-country="EG">🇪🇬 Egypt +20</option>
+            <option value="+971" data-country="AE">🇦🇪 UAE +971</option>
+          </select>
+          <input placeholder="phone" type="tel" id="phone" name="phone" />
         </div>
         <label for="phone">PHONE</label>
       </div>
       <div class="form-group">
         <select id="hearAbout" name="hearAbout">
           <option value="">HOW DID YOU HEAR ABOUT US?</option>
-          <option value="google">Google</option>
-          <option value="social-media">Social Media</option>
-          <option value="referral">Referral</option>
-          <option value="advertisement">Advertisement</option>
-          <option value="other">Other</option>
+          <option value="area-driveby">AREA DRIVEBY</option>
+          <option value="gale-south-beach-loyalty-guest"
+            >GALE SOUTH BEACH LOYALTY GUEST</option
+          >
+          <option value="broker">BROKER</option>
+          <option value="event">EVENT</option>
+          <option value="google-organic">GOOGLE ORGANIC</option>
+          <option value="direct">DIRECT</option>
+          <option value="google-keywords">GOOGLE KEYWORDS</option>
+          <option value="real-estate-site">REAL ESTATE SITE</option>
+          <option value="social-media">SOCIAL MEDIA</option>
+          <option value="internet-ad">INTERNET AD</option>
+          <option value="internet-search">INTERNET SEARCH</option>
+          <option value="magazine">MAGAZINE</option>
+          <option value="newspaper">NEWSPAPER</option>
+          <option value="referral">REFERRAL</option>
         </select>
       </div>
     </div>
 
     <div class="form-group">
-      <textarea id="comments" name="comments" rows="4"></textarea>
+      <textarea placeholder="Comments" id="comments" name="comments" rows="4"
+      ></textarea>
       <label for="comments">COMMENTS</label>
     </div>
 
     <div class="form-row radio-row">
       <div class="radio-group">
-        <span class="radio-label">ARE YOU A REALTOR?</span>
+        <span class="radio-label"
+          >ARE YOU A REALTOR? <span class="required">*</span></span
+        >
         <div class="radio-options">
           <label class="radio-option">
             <input type="radio" name="realtor" value="yes" />
@@ -75,7 +121,9 @@
       </div>
 
       <div class="radio-group">
-        <span class="radio-label">ARE YOU A BUYER OR A BROKER?</span>
+        <span class="radio-label"
+          >ARE YOU A BUYER OR A BROKER? <span class="required">*</span></span
+        >
         <div class="radio-options">
           <label class="radio-option">
             <input type="radio" name="buyerBroker" value="buyer" />
@@ -95,7 +143,8 @@
       <p class="terms-text">
         PLEASE ACCEPT OUR TERMS AND READ OUR <a href="/privacy-policy"
           >PRIVACY POLICY</a
-        >. <span class="required">*</span>
+        >.
+        <span class="required">*</span>
       </p>
       <label class="checkbox-option">
         <input type="checkbox" name="terms" required />
@@ -108,6 +157,7 @@
 
     <button type="submit" class="submit-btn">SUBMIT</button>
   </form>
+
   <div class="footer-info">
     <div class="contact-info">
       <h4>INQUIRE</h4>
@@ -123,12 +173,12 @@
 
     <div class="company-logos">
       <img
-        src="/images/logos/lefferts-logo.svg"
+        src="/images/icons/lefferts-logo.svg"
         alt="Lefferts"
         class="lefferts-logo"
       />
       <img
-        src="/images/logos/cervera-logo.svg"
+        src="/images/icons/cervera-logo.svg"
         alt="Cervera Real Estate"
         class="cervera-logo"
       />
@@ -136,7 +186,7 @@
 
     <div class="footer-bottom">
       <p class="copyright">
-        ALL CONTENTS OF THIS WEBSITE © 2024. ALL RIGHTS RESERVED. ALL
+        ALL CONTENTS OF THIS WEBSITE © 2025. ALL RIGHTS RESERVED. ALL
         RENDERINGS ARE ARTISTIC AND THINGS SHOWN MAY BE CHANGED WITHOUT NOTICE.
       </p>
 

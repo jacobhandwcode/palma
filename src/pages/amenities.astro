@@ -75,7 +75,7 @@ import PageHero from '../components/PageHero.astro';
     </div>
   </section>
   <section class="dual-gallery">
-    <div class="gallery-container">
+    <div class="gallery-container-dual">
       <button class="gallery-arrow gallery-prev" aria-label="Previous images">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path
@@ -127,41 +127,41 @@ import PageHero from '../components/PageHero.astro';
       <div class="progress-fill"></div>
     </div>
   </section>
-<section class="beach-club-section">
-  <div class="main-content">
-    <div class="content-text">
-      <h2>Palma Beach Club</h2>
-      <p>
-        Welcome to "luxury beach", where indulgence meets relaxation in the
-        heart of Miami Beach. Picture yourself lounging in our sumptuous beach
-        chairs, where every detail is tailored to your comfort and enjoyment.
-        Our attentive staff anticipates your every need, ensuring seamless
-        service with a smile. Craving Mediterranean flavors? Our on-demand
-        food service brings the taste of the Mediterranean straight to your
-        cabana. Finally a beach club that is curated to perfection.
-      </p>
+  <section class="beach-club-section">
+    <div class="main-content">
+      <div class="content-text">
+        <h2>Palma Beach Club</h2>
+        <p>
+          Welcome to "luxury beach", where indulgence meets relaxation in the
+          heart of Miami Beach. Picture yourself lounging in our sumptuous beach
+          chairs, where every detail is tailored to your comfort and enjoyment.
+          Our attentive staff anticipates your every need, ensuring seamless
+          service with a smile. Craving Mediterranean flavors? Our on-demand
+          food service brings the taste of the Mediterranean straight to your
+          cabana. Finally a beach club that is curated to perfection.
+        </p>
+      </div>
+      <div class="main-image">
+        <img src="/images/amenities/beach-club.webp" alt="Beach Club Main" />
+      </div>
     </div>
-    <div class="main-image">
-      <img src="/images/amenities/beach-club.webp" alt="Beach Club Main" />
-    </div>
-  </div>
 
-  <div class="image-grid">
-    <div class="grid-item">
-      <img src="/images/amenities/trees.webp" alt="Beach Scene" />
+    <div class="image-grid">
+      <div class="grid-item">
+        <img src="/images/amenities/trees.webp" alt="Beach Scene" />
+      </div>
+      <div class="grid-item large">
+        <img src="/images/amenities/woman.webp" alt="Woman Reading" />
+      </div>
+      <div class="grid-item">
+        <img src="/images/amenities/champagne.webp" alt="Champagne Service" />
+      </div>
     </div>
-    <div class="grid-item large">
-      <img src="/images/amenities/woman.webp" alt="Woman Reading" />
-    </div>
-    <div class="grid-item">
-      <img src="/images/amenities/champagne.webp" alt="Champagne Service" />
-    </div>
-  </div>
 
-  <div class="bottom-text">
-    <h3>So Much More Than A Place To Live</h3>
-  </div>
-</section>
+    <div class="bottom-text">
+      <h3>So Much More Than A Place To Live</h3>
+    </div>
+  </section>
 </Layout>
 
 <script>
@@ -174,7 +174,7 @@ import PageHero from '../components/PageHero.astro';
       this.progressFill = document.querySelector('.progress-fill');
 
       this.currentIndex = 0;
-      this.itemsToShow = window.innerWidth <= 768 ? 1 : 2;
+      this.itemsToShow = window.innerWidth <= 875 ? 1 : 2; // Changed breakpoint to 875px
       this.totalItems = this.items.length;
       this.maxIndex = Math.max(0, this.totalItems - this.itemsToShow);
 
@@ -183,13 +183,12 @@ import PageHero from '../components/PageHero.astro';
 
     init() {
       this.updateProgress();
-      // Remove updateButtons() since arrows no longer disable
 
       this.prevBtn.addEventListener('click', () => this.prevSlide());
       this.nextBtn.addEventListener('click', () => this.nextSlide());
 
       window.addEventListener('resize', () => {
-        this.itemsToShow = window.innerWidth <= 768 ? 1 : 2;
+        this.itemsToShow = window.innerWidth <= 875 ? 1 : 2; // Changed breakpoint to 875px
         this.maxIndex = Math.max(0, this.totalItems - this.itemsToShow);
         this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
         this.updatePosition();
