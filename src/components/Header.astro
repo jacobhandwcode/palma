@@ -4,7 +4,7 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 
 <header>
   <div class="header-wrapper">
-    <div class="hamburger">
+    <div class="hamburger" id="hamburger">
       <span></span>
       <span></span>
       <span></span>
@@ -22,7 +22,79 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
         baseUrl="https://palmamiamibeach.com"
       />
       <a href="tel:13056975810" class="phone-number">+1 305.697.5810</a>
-      <a class="inquire" href="/">Inquire</a>
+      <a class="inquire" href="#contact">Inquire</a>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenu">
+    <div class="mobile-menu-content">
+      <div class="menu-left">
+        <nav class="mobile-nav">
+          <a href="/" class="mobile-nav-item">HOME</a>
+          <a href="/amenities" class="mobile-nav-item">AMENITIES</a>
+          <a href="/residences" class="mobile-nav-item">RESIDENCES</a>
+          <a href="/neighborhood" class="mobile-nav-item">NEIGHBORHOOD</a>
+          <a href="/team" class="mobile-nav-item">TEAM</a>
+          <a href="/gallery" class="mobile-nav-item">GALLERY</a>
+          <a href="/press" class="mobile-nav-item">PRESS</a>
+        </nav>
+        <div class="mobile-menu-footer">
+          <a
+            href="https://www.instagram.com/palmamiamibeach/"
+            target="_blank"
+            class="social-link"
+          >
+            <img src="/images/icons/instagram.svg" />
+          </a>
+        </div>
+      </div>
+      <div class="menu-right">
+        <div class="menu-image">
+          <img src="/images/nav.webp" alt="Palma Building" />
+        </div>
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  // Mobile menu toggle functionality
+  document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+
+        // Prevent body scroll when menu is open
+        if (mobileMenu.classList.contains('active')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Close menu when clicking on nav items
+      const navItems = document.querySelectorAll('.mobile-nav-item');
+      navItems.forEach((item) => {
+        item.addEventListener('click', function () {
+          hamburger.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+          hamburger.classList.remove('active');
+          mobileMenu.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+  });
+</script>

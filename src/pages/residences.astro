@@ -5,8 +5,8 @@ import FloorPlans from '../components/FloorPlans.astro';
 ---
 
 <Layout
-  title="Amenities | Palma Miami Beach | Luxury Condos in Miami Beach"
-  description="At Palma, quality reigns supreme, with every amenity thoughtfully curated for your lifestyle. View our services and amenities, including the Palma Beach Club."
+  title="Residences | Palma Miami Beach | Luxury Miami Beach Condos"
+  description="The fully furnished and finished residences at Palma Miami Beach feature impeccable floorplans, serving as both a sanctuary and an ideal entertaining space."
 >
   <PageHero videoSrc="/videos/residences-video.mp4" title="Residences" />
   <section class="text-box no-bg">
@@ -31,7 +31,7 @@ import FloorPlans from '../components/FloorPlans.astro';
       <img src="/images/residences/love-life.png" alt="Love Life" />
     </div>
   </section>
-  <section class="img-txt right">
+  <section class="img-txt left has-gallery">
     <div class="img-txt-content">
       <div class="content-wrapper">
         <h2>Residential Features</h2>
@@ -58,14 +58,59 @@ import FloorPlans from '../components/FloorPlans.astro';
         </ul>
       </div>
     </div>
-    <div class="img-txt-image">
-      <img
-        src="/images/amenities/residential.webp"
-        alt="Residential Features"
-      />
+    <div class="img-txt-gallery">
+      <div class="gallery-container-img-txt">
+        <div class="gallery-slides">
+          <div class="slide active">
+            <img
+              src="/images/residences/b1-living.webp"
+              alt="Residential Feature 1"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="/images/residences/a1-living.webp"
+              alt="Residential Feature 2"
+            />
+          </div>
+          <div class="slide">
+            <img
+              src="/images/residences/a6-living.webp"
+              alt="Residential Feature 3"
+            />
+          </div>
+        </div>
+        <button class="gallery-arrow gallery-prev" aria-label="Previous image">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <button class="gallery-arrow gallery-next" aria-label="Next image">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 18L15 12L9 6"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <div class="gallery-dots">
+          <button class="dot active" data-slide="0"></button>
+          <button class="dot" data-slide="1"></button>
+          <button class="dot" data-slide="2"></button>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="img-txt left">
+  <section class="img-txt right">
     <div class="img-txt-content">
       <div class="content-wrapper">
         <h2>Kitchen</h2>
@@ -88,7 +133,7 @@ import FloorPlans from '../components/FloorPlans.astro';
       <img src="/images/amenities/kitchen.webp" alt="Kitchen" />
     </div>
   </section>
-  <section class="img-txt right">
+  <section class="img-txt left">
     <div class="img-txt-content">
       <div class="content-wrapper">
         <h2>Primary Bathroom</h2>
@@ -127,7 +172,7 @@ import FloorPlans from '../components/FloorPlans.astro';
       <img src="/images/residences/view.webp" alt="Miami Beach Views" />
     </div>
     <div class="zoom-content">
-      <button class="experience-btn">Experience The Views</button>
+      <a href="https://sftp-bucket-inflightll.s3.amazonaws.com/customer/MENIN%20HOSPITALITY/PALMA/DELIVERABLES/360/DAY/04-05-24/WITH%20MENU/V1/index.html" target="_blank" class="experience-btn">Experience The Views</a>
     </div>
   </section>
   <FloorPlans />
@@ -136,11 +181,26 @@ import FloorPlans from '../components/FloorPlans.astro';
 <script>
   class HorizontalGallery {
     constructor() {
+      // Check if required elements exist before initializing
       this.track = document.querySelector('.gallery-track');
       this.items = document.querySelectorAll('.gallery-item');
       this.prevBtn = document.querySelector('.gallery-prev');
       this.nextBtn = document.querySelector('.gallery-next');
       this.progressFill = document.querySelector('.progress-fill');
+
+      // Only initialize if all required elements exist
+      if (
+        !this.track ||
+        !this.items.length ||
+        !this.prevBtn ||
+        !this.nextBtn ||
+        !this.progressFill
+      ) {
+        console.log(
+          'HorizontalGallery: Required elements not found, skipping initialization'
+        );
+        return;
+      }
 
       this.currentIndex = 0;
       this.itemsToShow = window.innerWidth <= 768 ? 1 : 2;
@@ -151,9 +211,9 @@ import FloorPlans from '../components/FloorPlans.astro';
     }
 
     init() {
-      this.updateProgress();
-      // Remove updateButtons() since arrows no longer disable
+      if (!this.track) return; // Safety check
 
+      this.updateProgress();
       this.prevBtn.addEventListener('click', () => this.prevSlide());
       this.nextBtn.addEventListener('click', () => this.nextSlide());
 
@@ -167,7 +227,8 @@ import FloorPlans from '../components/FloorPlans.astro';
     }
 
     prevSlide() {
-      // Loop to the end when at the beginning
+      if (!this.track) return;
+
       if (this.currentIndex === 0) {
         this.currentIndex = this.maxIndex;
       } else {
@@ -178,7 +239,8 @@ import FloorPlans from '../components/FloorPlans.astro';
     }
 
     nextSlide() {
-      // Loop to the beginning when at the end
+      if (!this.track) return;
+
       if (this.currentIndex >= this.maxIndex) {
         this.currentIndex = 0;
       } else {
@@ -189,13 +251,16 @@ import FloorPlans from '../components/FloorPlans.astro';
     }
 
     updatePosition() {
-      const itemWidth = 100 / this.itemsToShow; // 50% for 2 items, 100% for 1 item
+      if (!this.track) return;
+
+      const itemWidth = 100 / this.itemsToShow;
       const translateX = -(this.currentIndex * itemWidth);
       this.track.style.transform = `translateX(${translateX}%)`;
     }
 
     updateProgress() {
-      // Progress based on current position through all possible slides
+      if (!this.progressFill) return;
+
       const progress =
         this.maxIndex > 0 ? (this.currentIndex / this.maxIndex) * 100 : 0;
       this.progressFill.style.width = `${progress}%`;
@@ -205,16 +270,33 @@ import FloorPlans from '../components/FloorPlans.astro';
   class ZoomScrollEffect {
     constructor() {
       this.section = document.getElementById('zoomSection');
+
+      // Only initialize if section exists
+      if (!this.section) {
+        console.log(
+          'ZoomScrollEffect: Section not found, skipping initialization'
+        );
+        return;
+      }
+
       this.image = this.section.querySelector('.zoom-background img');
+
+      // Only initialize if image exists
+      if (!this.image) {
+        console.log(
+          'ZoomScrollEffect: Image not found, skipping initialization'
+        );
+        return;
+      }
+
       this.isInViewport = false;
-      this.maxZoom = 1.3; // Maximum zoom level
-      this.minZoom = 1; // Minimum zoom level
+      this.maxZoom = 1.3;
+      this.minZoom = 1;
 
       this.init();
     }
 
     init() {
-      // Use Intersection Observer to detect when section is in viewport
       this.observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -228,25 +310,19 @@ import FloorPlans from '../components/FloorPlans.astro';
       );
 
       this.observer.observe(this.section);
-
-      // Add scroll listener
       window.addEventListener('scroll', () => this.handleScroll());
     }
 
     handleScroll() {
-      if (!this.isInViewport) return;
+      if (!this.isInViewport || !this.image) return;
 
       const rect = this.section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const sectionHeight = rect.height;
 
-      // Calculate scroll progress through the section
-      // When section top is at window bottom: progress = 0
-      // When section bottom is at window top: progress = 1
       let progress = 0;
 
       if (rect.top <= windowHeight && rect.bottom >= 0) {
-        // Section is in viewport
         const visibleHeight =
           Math.min(windowHeight, rect.bottom) - Math.max(0, rect.top);
         const totalScrollableDistance = windowHeight + sectionHeight;
@@ -258,15 +334,139 @@ import FloorPlans from '../components/FloorPlans.astro';
         );
       }
 
-      // Apply zoom based on progress
       const zoomLevel = this.minZoom + progress * (this.maxZoom - this.minZoom);
       this.image.style.transform = `scale(${zoomLevel})`;
     }
   }
 
-  // Initialize gallery when DOM is loaded
+  class ImgTxtGallery {
+    constructor(containerSelector = '.img-txt.has-gallery') {
+      this.container = document.querySelector(containerSelector);
+
+      // Only initialize if container exists
+      if (!this.container) {
+        console.log(
+          'ImgTxtGallery: Container not found, skipping initialization'
+        );
+        return;
+      }
+
+      this.currentSlide = 0;
+      this.slides = this.container.querySelectorAll('.slide');
+      this.dots = this.container.querySelectorAll('.dot');
+      this.prevBtn = this.container.querySelector('.gallery-prev');
+      this.nextBtn = this.container.querySelector('.gallery-next');
+      this.isTransitioning = false;
+
+      // Only initialize if all required elements exist
+      if (
+        !this.slides.length ||
+        !this.dots.length ||
+        !this.prevBtn ||
+        !this.nextBtn
+      ) {
+        console.log(
+          'ImgTxtGallery: Required elements not found, skipping initialization'
+        );
+        return;
+      }
+
+      console.log(
+        'ImgTxtGallery: Initializing with',
+        this.slides.length,
+        'slides'
+      );
+      this.init();
+    }
+
+    init() {
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+      this.dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.goToSlide(index));
+      });
+
+      this.startAutoplay();
+      console.log('ImgTxtGallery: Initialized successfully');
+    }
+
+    prevSlide() {
+      if (this.isTransitioning) return;
+      console.log('ImgTxtGallery: Previous slide');
+      const prevIndex =
+        this.currentSlide === 0
+          ? this.slides.length - 1
+          : this.currentSlide - 1;
+      this.goToSlide(prevIndex);
+    }
+
+    nextSlide() {
+      if (this.isTransitioning) return;
+      console.log('ImgTxtGallery: Next slide');
+      const nextIndex =
+        this.currentSlide === this.slides.length - 1
+          ? 0
+          : this.currentSlide + 1;
+      this.goToSlide(nextIndex);
+    }
+
+    goToSlide(index) {
+      if (this.isTransitioning || index === this.currentSlide) return;
+
+      console.log('ImgTxtGallery: Going to slide', index);
+      this.isTransitioning = true;
+
+      this.slides[this.currentSlide].classList.remove('active');
+      this.dots[this.currentSlide].classList.remove('active');
+      this.slides[this.currentSlide].classList.add('zoom-out');
+
+      setTimeout(() => {
+        this.currentSlide = index;
+        this.slides[this.currentSlide].classList.add('active', 'zoom-in');
+        this.dots[this.currentSlide].classList.add('active');
+
+        setTimeout(() => {
+          this.slides.forEach((slide) => {
+            slide.classList.remove('zoom-out', 'zoom-in');
+          });
+          this.isTransitioning = false;
+          console.log('ImgTxtGallery: Transition complete');
+        }, 2000);
+      }, 1000);
+    }
+
+    startAutoplay() {
+      this.autoplayInterval = setInterval(() => {
+        if (!this.isTransitioning) {
+          this.nextSlide();
+        }
+      }, 5000);
+      console.log('ImgTxtGallery: Autoplay started');
+    }
+  }
+
+  // Initialize classes when DOM is loaded
   document.addEventListener('DOMContentLoaded', () => {
-    new HorizontalGallery();
-    new ZoomScrollEffect();
+    console.log('DOM loaded, initializing classes...');
+
+    // Only initialize classes if their elements exist
+    try {
+      new HorizontalGallery();
+    } catch (error) {
+      console.log('HorizontalGallery initialization failed:', error);
+    }
+
+    try {
+      new ZoomScrollEffect();
+    } catch (error) {
+      console.log('ZoomScrollEffect initialization failed:', error);
+    }
+
+    try {
+      new ImgTxtGallery();
+    } catch (error) {
+      console.log('ImgTxtGallery initialization failed:', error);
+    }
   });
 </script>

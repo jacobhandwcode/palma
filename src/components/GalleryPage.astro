@@ -1,69 +1,292 @@
 ---
 interface Props {
   title?: string;
-  subtitle?: string;
 }
 
-const { 
-  title = "Gallery",
-  subtitle = ""
-} = Astro.props;
+const { title = 'Gallery' } = Astro.props;
 
 const galleryItems = [
-  { id: 1, src: "/images/gallery-page/crownshot.webp", alt: "Gallery Image 1", type: "large" },
-  
-  { id: 2, src: "/images/gallery-page/pool.webp", alt: "Gallery Image 2", type: "normal" },
+  {
+    id: 1,
+    src: '/images/gallery-page/crownshot.webp',
+    alt: 'Gallery Image 1',
+    type: 'large',
+  },
 
-  { id: 3, src: "/images/gallery-page/bath.webp", alt: "Gallery Image 3", type: "normal" },
+  {
+    id: 2,
+    src: '/images/gallery-page/pool.webp',
+    alt: 'Gallery Image 2',
+    type: 'custom',
+    rowFraction: 6,
+  },
+  {
+    id: 3,
+    src: '/images/gallery-page/bath.webp',
+    alt: 'Gallery Image 3',
+    type: 'custom',
+    rowFraction: 4,
+  },
 
-  { id: 4, src: "/images/gallery-page/a1-living.webp", alt: "Gallery Image 4", type: "normal" },
+  {
+    id: 4,
+    src: '/images/gallery-page/a1-living.webp',
+    alt: 'Gallery Image 4',
+    type: 'normal',
+  },
+  {
+    id: 5,
+    src: '/images/gallery-page/kitchen.webp',
+    alt: 'Gallery Image 5',
+    type: 'normal',
+  },
 
-  { id: 5, src: "/images/gallery-page/kitchen.webp", alt: "Gallery Image 5", type: "normal" },
-  
-  { id: 6, src: "/images/gallery-page/lobby.webp", alt: "Gallery Image 6", type: "normal" },
+  {
+    id: 6,
+    src: '/images/gallery-page/lobby.webp',
+    alt: 'Gallery Image 6',
+    type: 'custom',
+    rowFraction: 4,
+  },
+  {
+    id: 7,
+    src: '/images/gallery-page/sunset.webp',
+    alt: 'Gallery Image 7',
+    type: 'custom',
+    rowFraction: 6,
+  },
 
-  { id: 7, src: "/images/gallery-page/sunset.webp", alt: "Gallery Image 7", type: "normal" },
-  
+  {
+    id: 8,
+    src: '/images/gallery-page/hero.webp',
+    alt: 'Gallery Image 8',
+    type: 'custom',
+    rowFraction: 2.5,
+  },
+  {
+    id: 9,
+    src: '/images/gallery-page/fitness.webp',
+    alt: 'Gallery Image 9',
+    type: 'custom',
+    rowFraction: 7.5,
+  },
 
-  { id: 8, src: "/images/gallery-page/hero.webp", alt: "Gallery Image 8", type: "normal" },
-  { id: 9, src: "/images/gallery-page/fitness.webp", alt: "Gallery Image 9", type: "normal" },
-  
-  { id: 10, src: "/images/gallery-page/pool-trellis.webp", alt: "Gallery Image 10", type: "large" },
-
-  { id: 11, src: "/images/gallery-page/aqua-lounge.webp", alt: "Gallery Image 11", type: "large" },
-  
-  // Row 7: 2 images side by side
-  { id: 12, src: "/images/gallery-page/reception.webp", alt: "Gallery Image 12", type: "normal" },
-  { id: 13, src: "/images/gallery-page/a6-living.webp", alt: "Gallery Image 13", type: "normal" },
-  
-  // Row 8: 2 images side by side
-  { id: 14, src: "/images/gallery-page/b1-living.webp", alt: "Gallery Image 14", type: "normal" },
-  { id: 15, src: "/images/gallery-page/bedroom.webp", alt: "Gallery Image 15", type: "normal" },
+  {
+    id: 10,
+    src: '/images/gallery-page/pool-trellis.webp',
+    alt: 'Gallery Image 10',
+    type: 'large',
+  },
+  {
+    id: 11,
+    src: '/images/gallery-page/aqua-lounge.webp',
+    alt: 'Gallery Image 11',
+    type: 'custom',
+    rowFraction: 6,
+  },
+  {
+    id: 12,
+    src: '/images/gallery-page/reception.webp',
+    alt: 'Gallery Image 12',
+    type: 'custom',
+    rowFraction: 4,
+  },
+  {
+    id: 13,
+    src: '/images/gallery-page/a6-living.webp',
+    alt: 'Gallery Image 13',
+    type: 'custom',
+    rowFraction: 4,
+  },
+  {
+    id: 14,
+    src: '/images/gallery-page/b1-living.webp',
+    alt: 'Gallery Image 14',
+    type: 'custom',
+    rowFraction: 3.5,
+  },
+  {
+    id: 15,
+    src: '/images/gallery-page/bedroom.webp',
+    alt: 'Gallery Image 15',
+    type: 'large',
+  },
 ];
+
+const processedRows = [];
+let currentRow = [];
+let isInCustomRow = false;
+
+galleryItems.forEach((item, index) => {
+  if (item.type === 'large') {
+    if (currentRow.length > 0) {
+      processedRows.push(currentRow);
+      currentRow = [];
+    }
+    processedRows.push([item]);
+    isInCustomRow = false;
+  } else if (item.type === 'custom') {
+    if (!isInCustomRow) {
+      if (currentRow.length > 0) {
+        processedRows.push(currentRow);
+        currentRow = [];
+      }
+      currentRow.push(item);
+      isInCustomRow = true;
+    } else {
+      // Complete custom row
+      currentRow.push(item);
+      processedRows.push(currentRow);
+      currentRow = [];
+      isInCustomRow = false;
+    }
+  } else {
+    if (isInCustomRow) {
+      processedRows.push(currentRow);
+      currentRow = [];
+      isInCustomRow = false;
+    }
+
+    currentRow.push(item);
+
+    if (currentRow.length === 2) {
+      processedRows.push(currentRow);
+      currentRow = [];
+    }
+  }
+});
+
+if (currentRow.length > 0) {
+  processedRows.push(currentRow);
+}
 ---
 
 <section class="gallery-page-section">
   <div class="gallery-page-container">
-    {title && (
-      <div class="gallery-page-header">
-        <h2 class="gallery-page-title">{title}</h2>
-        {subtitle && <p class="gallery-page-subtitle">{subtitle}</p>}
-      </div>
-    )}
-    
-    <div class="gallery-page-grid">
-      {galleryItems.map((item) => (
-        <div 
-          class={`gallery-page-item ${item.type !== 'normal' ? `gallery-page-item--${item.type}` : ''}`}
-          data-id={item.id}
-        >
-          <img 
-            src={item.src} 
-            alt={item.alt} 
-            loading="lazy"
-          />
+    {
+      title && (
+        <div class="gallery-page-header">
+          <h2 class="gallery-page-title">{title}</h2>
+          <p class="gallery-page-subtitle">
+            <span>Palma</span> features all the allure of Miami Beach being
+            situated just steps away from its pristine beaches and with views of
+            both ocean and islands in the bay. <span>Palma</span> owners can
+            indulge in a sun-kissed island lifestyle in this bespoke and
+            Mediterranean oasis while having quick access to an international
+            playground – South Beach.
+          </p>
+          <p class="gallery-notice">
+            ARTIST CONCEPTUAL RENDERINGS. DEVELOPER MAY CHANGE WITHOUT NOTICE.
+          </p>
         </div>
-      ))}
+      )
+    }
+
+    <div class="gallery-page-grid">
+      {
+        processedRows.map((row, rowIndex) => (
+          <div
+            class={`gallery-row ${row.length === 1 && row[0].type === 'large' ? 'gallery-row--large' : ''} ${row.length === 2 && row[0].type === 'custom' ? 'gallery-row--custom' : ''}`}
+            style={
+              row.length === 2 && row[0].type === 'custom'
+                ? `--col1-fraction: ${row[0].rowFraction}fr; --col2-fraction: ${row[1].rowFraction}fr;`
+                : ''
+            }
+          >
+            {row.map((item) => (
+              <div
+                class={`gallery-page-item gallery-page-item--${item.type}`}
+                data-id={item.id}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  class="gallery-page-image"
+                />
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Gallery Modal Slider -->
+  <div class="gallery-page-slider" id="gallerySlider">
+    <div class="gallery-page-slider__overlay"></div>
+    <div class="gallery-page-slider__container">
+      <button
+        class="gallery-page-slider__close"
+        id="galleryClose"
+        aria-label="Close gallery"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 6L6 18M6 6L18 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
+      <button
+        class="gallery-page-slider__arrow gallery-page-slider__arrow--prev"
+        id="galleryPrev"
+        aria-label="Previous image"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 18L9 12L15 6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
+      <div class="gallery-page-slider__content">
+        <img
+          class="gallery-page-slider__image"
+          id="galleryImage"
+          src=""
+          alt=""
+        />
+      </div>
+
+      <button
+        class="gallery-page-slider__arrow gallery-page-slider__arrow--next"
+        id="galleryNext"
+        aria-label="Next image"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M9 18L15 12L9 6"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </section>

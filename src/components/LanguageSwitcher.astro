@@ -24,7 +24,9 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
   <div class="language-dropdown">
     {
       otherLanguages.map((lang) => (
-        <a href={lang.url} class="language-option">{lang.label}</a>
+        <a href={lang.url} class="language-option">
+          {lang.label}
+        </a>
       ))
     }
   </div>
@@ -45,6 +47,14 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     user-select: none;
     font-weight: 500;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-width: 60px;
+    box-sizing: border-box;
+    width: 60px;
+    text-align: center;
   }
 
   .language-dropdown {
@@ -67,7 +77,9 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
   }
 
   .language-option {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: white;
     text-decoration: none;
     padding: 8px 12px;
@@ -75,6 +87,8 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     letter-spacing: 0.5px;
     transition: background-color 0.2s ease;
     text-align: center;
+    min-width: 60px;
+    box-sizing: border-box;
   }
 
   .language-option:hover {
@@ -82,10 +96,9 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
   }
 
   .language-option:last-child {
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 8px 8px;
   }
 
-  /* Accessibility improvements */
   .language-switcher:focus-within .language-dropdown {
     opacity: 1;
     visibility: visible;
