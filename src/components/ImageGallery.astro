@@ -1,201 +1,391 @@
----
-interface Props {
-  title?: string;
-  subtitle?: string;
-}
-
-const { title = 'Only Minutes From it all', subtitle = '' } = Astro.props;
-
-const galleryItems = [
-  {
-    id: 1,
-    src: '/images/gallery/water-gallery.webp',
-    alt: 'Gallery Image 1',
-    type: 'normal',
-  },
-  {
-    id: 2,
-    src: '/images/gallery/party-gallery.webp',
-    alt: 'Gallery Image 2',
-    type: 'normal',
-  },
-  {
-    id: 3,
-    src: '/images/gallery/surfing-gallery.webp',
-    alt: 'Gallery Image 3',
-    type: 'normal',
-  },
-  {
-    id: 4,
-    src: '/images/gallery/sunset-gallery.webp',
-    alt: 'Gallery Image 4',
-    type: 'normal',
-  },
-  {
-    id: 5,
-    src: '/images/gallery/neighborhood-gallery.webp',
-    alt: 'Gallery Image 5',
-    type: 'normal',
-  },
-  {
-    id: 6,
-    src: '/images/gallery/relaxing-gallery.webp',
-    alt: 'Gallery Image 6',
-    type: 'big',
-  },
-  {
-    id: 7,
-    src: '/images/gallery/shop-gallery.webp',
-    alt: 'Gallery Image 7',
-    type: 'normal',
-  },
-  {
-    id: 8,
-    src: '/images/gallery/jetski-gallery.webp',
-    alt: 'Gallery Image 8',
-    type: 'normal',
-  },
-  {
-    id: 9,
-    src: '/images/gallery/fun-gallery.webp',
-    alt: 'Gallery Image 9',
-    type: 'normal',
-  },
-  {
-    id: 10,
-    src: '/images/gallery/drinks-gallery.webp',
-    alt: 'Gallery Image 10',
-    type: 'normal',
-  },
-  {
-    id: 11,
-    src: '/images/gallery/building-gallery.webp',
-    alt: 'Gallery Image 11',
-    type: 'normal',
-  },
-  {
-    id: 12,
-    src: '/images/gallery/woman-gallery.webp',
-    alt: 'Gallery Image 12',
-    type: 'normal',
-  },
-  {
-    id: 13,
-    src: '/images/gallery/table-gallery.webp',
-    alt: 'Gallery Image 12',
-    type: 'normal',
-  },
-  {
-    id: 14,
-    src: '/images/gallery/good-life-gallery.webp',
-    alt: 'Gallery Image 13',
-    type: 'full-width',
-  },
-  {
-    id: 15,
-    src: '/images/gallery/coffee-gallery.webp',
-    alt: 'Gallery Image 14',
-    type: 'normal',
-  },
-  {
-    id: 16,
-    src: '/images/gallery/woman-2-gallery.webp',
-    alt: 'Gallery Image 15',
-    type: 'tall',
-  },
-  {
-    id: 17,
-    src: '/images/gallery/tennis-gallery.webp',
-    alt: 'Gallery Image 16',
-    type: 'normal',
-  },
-  {
-    id: 18,
-    src: '/images/gallery/tree-gallery.webp',
-    alt: 'Gallery Image 17',
-    type: 'normal',
-  },
-  {
-    id: 19,
-    src: '/images/gallery/walking-gallery.webp',
-    alt: 'Gallery Image 18',
-    type: 'normal',
-  },
-  {
-    id: 20,
-    src: '/images/gallery/golf-gallery.webp',
-    alt: 'Gallery Image 19',
-    type: 'normal',
-  },
-  {
-    id: 21,
-    src: '/images/gallery/cheers-gallery.webp',
-    alt: 'Gallery Image 20',
-    type: 'normal',
-  },
-  {
-    id: 22,
-    src: '/images/gallery/bicycle-gallery.webp',
-    alt: 'Gallery Image 21',
-    type: 'normal',
-  },
-  {
-    id: 23,
-    src: '/images/gallery/beach-gallery.webp',
-    alt: 'Gallery Image 22',
-    type: 'normal',
-  },
-  {
-    id: 24,
-    src: '/images/gallery/picture-gallery.webp',
-    alt: 'Gallery Image 23',
-    type: 'big',
-  },
-  {
-    id: 26,
-    src: '/images/gallery/leaves-gallery.webp',
-    alt: 'Gallery Image 25',
-    type: 'normal',
-  },
-  {
-    id: 27,
-    src: '/images/gallery/sushi-gallery.webp',
-    alt: 'Gallery Image 26',
-    type: 'normal',
-  },
-];
----
-
 <section class="gallery-section">
   <div class="gallery-container-image">
-    {
-      title && (
-        <div class="gallery-header">
-          <h2 class="gallery-title">{title}</h2>
-          <div class="gallery-subtitle">
-            <p>
-              <span>Palma</span> features all the allure of Miami Beach.
-              Situated just steps away from its pristine beaches and with views
-              of both ocean and neighboring islands in the bay,
-              <span>Palma</span> residents indulge in a sun-kissed island
-              lifestyle with an international playground in its backyard.
-            </p>
-          </div>
-        </div>
-      )
-    }
+    <div class="gallery-header">
+      <h2 class="gallery-title">Only Minutes From it all</h2>
+      <div class="gallery-subtitle">
+        <p>
+          <span>Palma</span> features all the allure of Miami Beach. Situated just
+          steps away from its pristine beaches and with views of both ocean and neighboring
+          islands in the bay,
+          <span>Palma</span> residents indulge in a sun-kissed island lifestyle with
+          an international playground in its backyard.
+        </p>
+      </div>
+    </div>
 
-    <div class="gallery-grid">
-      {
-        galleryItems.map((item) => (
-          <div
-            class={`gallery-item ${item.type !== 'normal' ? `gallery-item--${item.type}` : ''}`}
-            data-id={item.id}
-          >
-            <img src={item.src} alt={item.alt} loading="lazy" />
-          </div>
-        ))
-      }
+    <!-- Desktop Order -->
+    <div class="gallery-grid desktop-order">
+      <div class="gallery-item" data-id="1">
+        <img
+          src="/images/gallery/water-gallery.webp"
+          alt="Gallery Image 1"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="2">
+        <img
+          src="/images/gallery/party-gallery.webp"
+          alt="Gallery Image 2"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="3">
+        <img
+          src="/images/gallery/surfing-gallery.webp"
+          alt="Gallery Image 3"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="4">
+        <img
+          src="/images/gallery/sunset-gallery.webp"
+          alt="Gallery Image 4"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="5">
+        <img
+          src="/images/gallery/neighborhood-gallery.webp"
+          alt="Gallery Image 5"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item gallery-item--big" data-id="6">
+        <img
+          src="/images/gallery/relaxing-gallery.webp"
+          alt="Gallery Image 6"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="7">
+        <img
+          src="/images/gallery/shop-gallery.webp"
+          alt="Gallery Image 7"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="8">
+        <img
+          src="/images/gallery/jetski-gallery.webp"
+          alt="Gallery Image 8"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="9">
+        <img
+          src="/images/gallery/fun-gallery.webp"
+          alt="Gallery Image 9"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="10">
+        <img
+          src="/images/gallery/drinks-gallery.webp"
+          alt="Gallery Image 10"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="11">
+        <img
+          src="/images/gallery/building-gallery.webp"
+          alt="Gallery Image 11"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="12">
+        <img
+          src="/images/gallery/woman-gallery.webp"
+          alt="Gallery Image 12"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="13">
+        <img
+          src="/images/gallery/table-gallery.webp"
+          alt="Gallery Image 13"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item gallery-item--full-width" data-id="14">
+        <img
+          src="/images/gallery/good-life-gallery.webp"
+          alt="Gallery Image 14"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="15">
+        <img
+          src="/images/gallery/coffee-gallery.webp"
+          alt="Gallery Image 15"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item gallery-item--tall" data-id="16">
+        <img
+          src="/images/gallery/woman-2-gallery.webp"
+          alt="Gallery Image 16"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="17">
+        <img
+          src="/images/gallery/tennis-gallery.webp"
+          alt="Gallery Image 17"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="18">
+        <img
+          src="/images/gallery/tree-gallery.webp"
+          alt="Gallery Image 18"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="19">
+        <img
+          src="/images/gallery/walking-gallery.webp"
+          alt="Gallery Image 19"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="20">
+        <img
+          src="/images/gallery/golf-gallery.webp"
+          alt="Gallery Image 20"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="21">
+        <img
+          src="/images/gallery/cheers-gallery.webp"
+          alt="Gallery Image 21"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="22">
+        <img
+          src="/images/gallery/bicycle-gallery.webp"
+          alt="Gallery Image 22"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="23">
+        <img
+          src="/images/gallery/beach-gallery.webp"
+          alt="Gallery Image 23"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item gallery-item--big" data-id="24">
+        <img
+          src="/images/gallery/picture-gallery.webp"
+          alt="Gallery Image 24"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="25">
+        <img
+          src="/images/gallery/leaves-gallery.webp"
+          alt="Gallery Image 25"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="26">
+        <img
+          src="/images/gallery/sushi-gallery.webp"
+          alt="Gallery Image 26"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <!-- Mobile Order (768px and below) -->
+    <div class="gallery-grid mobile-order">
+      <div class="gallery-item" data-id="1">
+        <img
+          src="/images/gallery/water-gallery.webp"
+          alt="Gallery Image 1"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="2">
+        <img
+          src="/images/gallery/party-gallery.webp"
+          alt="Gallery Image 2"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="3">
+        <img
+          src="/images/gallery/surfing-gallery.webp"
+          alt="Gallery Image 3"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="4">
+        <img
+          src="/images/gallery/sunset-gallery.webp"
+          alt="Gallery Image 4"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="5">
+        <img
+          src="/images/gallery/neighborhood-gallery.webp"
+          alt="Gallery Image 5"
+          loading="lazy"
+        />
+      </div>
+      <!-- 7 in front of 6 -->
+      <div class="gallery-item" data-id="7">
+        <img
+          src="/images/gallery/shop-gallery.webp"
+          alt="Gallery Image 7"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item gallery-item--big" data-id="6">
+        <img
+          src="/images/gallery/relaxing-gallery.webp"
+          alt="Gallery Image 6"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="8">
+        <img
+          src="/images/gallery/jetski-gallery.webp"
+          alt="Gallery Image 8"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="9">
+        <img
+          src="/images/gallery/fun-gallery.webp"
+          alt="Gallery Image 9"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="10">
+        <img
+          src="/images/gallery/drinks-gallery.webp"
+          alt="Gallery Image 10"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="11">
+        <img
+          src="/images/gallery/building-gallery.webp"
+          alt="Gallery Image 11"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="12">
+        <img
+          src="/images/gallery/woman-gallery.webp"
+          alt="Gallery Image 12"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="13">
+        <img
+          src="/images/gallery/table-gallery.webp"
+          alt="Gallery Image 13"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item gallery-item--full-width" data-id="14">
+        <img
+          src="/images/gallery/good-life-gallery.webp"
+          alt="Gallery Image 14"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="15">
+        <img
+          src="/images/gallery/coffee-gallery.webp"
+          alt="Gallery Image 15"
+          loading="lazy"
+        />
+      </div>
+      <!-- 19 in front of 16, 17, and 18 -->
+      <div class="gallery-item" data-id="19">
+        <img
+          src="/images/gallery/walking-gallery.webp"
+          alt="Gallery Image 19"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item gallery-item--tall" data-id="16">
+        <img
+          src="/images/gallery/woman-2-gallery.webp"
+          alt="Gallery Image 16"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="17">
+        <img
+          src="/images/gallery/tennis-gallery.webp"
+          alt="Gallery Image 17"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="18">
+        <img
+          src="/images/gallery/tree-gallery.webp"
+          alt="Gallery Image 18"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="20">
+        <img
+          src="/images/gallery/golf-gallery.webp"
+          alt="Gallery Image 20"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="21">
+        <img
+          src="/images/gallery/cheers-gallery.webp"
+          alt="Gallery Image 21"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="22">
+        <img
+          src="/images/gallery/bicycle-gallery.webp"
+          alt="Gallery Image 22"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="23">
+        <img
+          src="/images/gallery/beach-gallery.webp"
+          alt="Gallery Image 23"
+          loading="lazy"
+        />
+      </div>
+      <!-- 25 and 26 in front of 24 -->
+      <div class="gallery-item" data-id="25">
+        <img
+          src="/images/gallery/leaves-gallery.webp"
+          alt="Gallery Image 25"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item" data-id="26">
+        <img
+          src="/images/gallery/sushi-gallery.webp"
+          alt="Gallery Image 26"
+          loading="lazy"
+        />
+      </div>
+      <div class="gallery-item gallery-item--big" data-id="24">
+        <img
+          src="/images/gallery/picture-gallery.webp"
+          alt="Gallery Image 24"
+          loading="lazy"
+        />
+      </div>
     </div>
   </div>
 </section>
