@@ -20,7 +20,7 @@ const t = useTranslations(currentLang);
   </h3>
   <img
     src="/images/icons/palma-logo.svg"
-    alt='Palma Miami Beach'
+    alt="Palma Miami Beach"
     class="footer-logo"
   />
 
@@ -217,107 +217,122 @@ const t = useTranslations(currentLang);
 
 <!-- Widget Tracker Code -->
 <script>
-(function(w,i,d,g,e,t){w["WidgetTrackerObject"]=g;(w[g]=w[g]||function()
-{(w[g].q=w[g].q||[]).push(arguments);}),(w[g].ds=1*new Date());(e="script"),
-(t=d.createElement(e)),(e=d.getElementsByTagName(e)[0]);t.async=1;t.src=i;
-e.parentNode.insertBefore(t,e);})
-(window,"https://widgetbe.com/agent",document,"widgetTracker");
-window.widgetTracker("create", "WT-JKXYEMIJ");
-window.widgetTracker("send", "pageview");
+  (function (w, i, d, g, e, t) {
+    w['WidgetTrackerObject'] = g;
+    (w[g] =
+      w[g] ||
+      function () {
+        (w[g].q = w[g].q || []).push(arguments);
+      }),
+      (w[g].ds = 1 * new Date());
+    (e = 'script'),
+      (t = d.createElement(e)),
+      (e = d.getElementsByTagName(e)[0]);
+    t.async = 1;
+    t.src = i;
+    e.parentNode.insertBefore(t, e);
+  })(window, 'https://widgetbe.com/agent', document, 'widgetTracker');
+  window.widgetTracker('create', 'WT-JKXYEMIJ');
+  window.widgetTracker('send', 'pageview');
 </script>
 
 <!-- Form Submission Script -->
 <script>
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  e.stopPropagation();
-  
-  const submitBtn = this.querySelector('.submit-btn');
-  const originalText = submitBtn.textContent;
-  submitBtn.textContent = 'Sending...';
-  submitBtn.disabled = true;
-  submitBtn.style.opacity = '0.7';
-  
-  const formData = new FormData(this);
-  const data = Object.fromEntries(formData);
-  
-  // Validate required fields
-  if (!data.firstName || !data.lastName || !data.email) {
-    alert('Please fill in all required fields.');
-    submitBtn.textContent = originalText;
-    submitBtn.disabled = false;
-    submitBtn.style.opacity = '1';
-    return;
-  }
-  
-  if (!data.terms) {
-    alert('Please accept the terms and privacy policy.');
-    submitBtn.textContent = originalText;
-    submitBtn.disabled = false;
-    submitBtn.style.opacity = '1';
-    return;
-  }
-  
-  try {
-    const response = await fetch('/form-handler.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    });
-    
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      const textResponse = await response.text();
-      console.error('Non-JSON response:', textResponse);
-      throw new Error('Server returned non-JSON response: ' + textResponse.substring(0, 100));
-    }
-    
-    const result = await response.json();
-    
-    if (response.ok && result.success) {
-      const footer = document.getElementById('contact');
-      footer.innerHTML = `
-        <div style="text-align: center; padding: 40px; background-color: #f0f9ff; border: 2px solid #0066cc; border-radius: 8px; margin: 20px 0;">
-          <h3 style="color: #0066cc; margin: 0 0 15px 0; font-size: 24px;">Thank You!</h3>
-          <p style="color: #333; margin: 0; font-size: 16px; font-weight: 600;">${result.message}</p>
-          <p style="color: #666; margin: 15px 0 0 0; font-size: 14px;">We will contact you within 24 hours.</p>
+  document
+    .getElementById('contactForm')
+    .addEventListener('submit', async function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const submitBtn = this.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      // Validate required fields
+      if (!data.firstName || !data.lastName || !data.email) {
+        alert('Please fill in all required fields.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        return;
+      }
+
+      if (!data.terms) {
+        alert('Please accept the terms and privacy policy.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        return;
+      }
+
+      try {
+        const response = await fetch('/form-handler.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const contentType = response.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          const textResponse = await response.text();
+          console.error('Non-JSON response:', textResponse);
+          throw new Error(
+            'Server returned non-JSON response: ' +
+              textResponse.substring(0, 100)
+          );
+        }
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          const footer = document.getElementById('contact');
+          footer.innerHTML = `
+        <div class="success-message-container">
+          <h3 class="success-title">Thank You!</h3>
+          <p class="success-message">${result.message}</p>
+          <p class="success-note">We will contact you within 24 hours.</p>
         </div>
       `;
-      
-      // Track successful submission with Widget Tracker
-      if (window.widgetTracker) {
-        window.widgetTracker('send', 'event', 'form', 'submit', 'contact');
+
+          // Track successful submission with Widget Tracker
+          if (window.widgetTracker) {
+            window.widgetTracker('send', 'event', 'form', 'submit', 'contact');
+          }
+        } else {
+          const errorMessage = result.error || 'Unknown error occurred';
+          alert('Error: ' + errorMessage);
+
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+
+        let errorMessage = 'There was an error submitting your inquiry. ';
+
+        if (error.name === 'TypeError' && error.message.includes('fetch')) {
+          errorMessage += 'Please check your internet connection.';
+        } else if (error.message.includes('JSON')) {
+          errorMessage += 'Server response format error.';
+        } else if (error.message.includes('non-JSON')) {
+          errorMessage += 'Server configuration issue.';
+        } else {
+          errorMessage += 'Please try again later or contact us directly.';
+        }
+
+        alert(errorMessage);
+
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
       }
-    } else {
-      const errorMessage = result.error || 'Unknown error occurred';
-      alert('Error: ' + errorMessage);
-      
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-      submitBtn.style.opacity = '1';
-    }
-  } catch (error) {
-    console.error('Form submission error:', error);
-    
-    let errorMessage = 'There was an error submitting your inquiry. ';
-    
-    if (error.name === 'TypeError' && error.message.includes('fetch')) {
-      errorMessage += 'Please check your internet connection.';
-    } else if (error.message.includes('JSON')) {
-      errorMessage += 'Server response format error.';
-    } else if (error.message.includes('non-JSON')) {
-      errorMessage += 'Server configuration issue.';
-    } else {
-      errorMessage += 'Please try again later or contact us directly.';
-    }
-    
-    alert(errorMessage);
-    
-    submitBtn.textContent = originalText;
-    submitBtn.disabled = false;
-    submitBtn.style.opacity = '1';
-  }
-});
+    });
 </script>
