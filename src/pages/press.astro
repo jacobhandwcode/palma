@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import pressData from '../data/press.json';
+
+const { press, metadata } = pressData;
+---
+
+<Layout title={metadata.title} description={metadata.description}>
+  <section class="press-section">
+    <div class="press-container">
+      <div class="press-header">
+        <h1 class="press-title">{metadata.sectionTitle}</h1>
+        <p class="press-subtitle">
+          {metadata.sectionSubtitle}
+        </p>
+      </div>
+
+      <div class="press-grid">
+        {
+          press
+            ?.slice()
+            .reverse()
+            .map((article) => (
+              <article class="press-card" key={article.id}>
+                <div class="press-image">
+                  <img
+                    src={article.image.src}
+                    alt={article.image.alt}
+                    loading="lazy"
+                  />
+                </div>
+                <div class="press-content">
+                  <div class="press-meta">
+                    <span class="press-source">{article.source}</span>
+                    <span class="press-date">{article.date}</span>
+                  </div>
+                  <h3 class="press-headline">{article.headline}</h3>
+                  <p class="press-excerpt">{article.excerpt}</p>
+                  <a
+                    href={article.link}
+                    class="press-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Read Full Article
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M7 17L17 7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M7 7H17V17"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

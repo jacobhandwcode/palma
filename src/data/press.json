@@ -1,0 +1,49 @@
+{
+  "press": [
+    {
+      "id": "1",
+      "source": "Florida YIMBY",
+      "date": "March 5 2025",
+      "headline": "North Beach’s Development Boom Gains Momentum With New Residential and Mixed-Use Projects",
+      "excerpt": "North Beach, a historically low-rise and quiet section of Miami Beach, is undergoing a wave of redevelopment as developers capitalize on new zoning incentives and increasing demand for housing.",
+      "image": {
+        "src": "/images/press/press1.jpg",
+        "alt": "Architectural Digest Feature"
+      },
+      "link": "https://floridayimby.com/2025/03/north-beachs-development-boom-gains-momentum-with-new-residential-and-mixed-use-projects.html",
+      "featured": false
+    },
+    {
+      "id": "2",
+      "source": "CoStar",
+      "date": "March 11 2025",
+      "headline": "Developer opens first of four planned condominiums in Miami Beach",
+      "excerpt": "Lefferts, a real estate development firm led by Mendy Chudaitov, has opened 72 Park in Miami Beach’s North Beach neighborhood, becoming the first of four condo projects planned for the area by the Miami Beach- and New York-based developer.",
+      "image": {
+        "src": "/images/press/press3.jpg",
+        "alt": "Miami Herald Feature"
+      },
+      "link": "https://www.costar.com/article/2048456857/developer-opens-first-of-four-planned-condominiums-in-miami-beach",
+      "featured": false
+    },
+    {
+      "id": "3",
+      "source": "Axios Miami",
+      "date": "March 26 2025",
+      "headline": "Mapped: New projects could redefine Miami Beach's north end",
+      "excerpt": "North Beach is undergoing a major development boom as planned luxury projects promise to redefine Miami Beach's north end. Why it matters: New development can bring the kind of investment city leaders have long wanted for North Beach, but luxury redevelopment won't help Miami's affordability crisis and could shutter local shops.",
+      "image": {
+        "src": "/images/press/press2.webp",
+        "alt": "Wall Street Journal Feature"
+      },
+      "link": "https://www.axios.com/local/miami/2025/03/26/miami-beach-new-development-projects",
+      "featured": false
+    }
+  ],
+  "metadata": {
+    "title": "Press | Palma Miami Beach | Luxury Miami Beach Condos",
+    "description": "Latest press coverage and news about Palma Miami Beach, featuring luxury boutique residences in Miami Beach.",
+    "sectionTitle": "Press",
+    "sectionSubtitle": "Discover the latest news and press coverage about Palma Miami Beach, an architectural icon offering exclusive boutique residences in the heart of Miami Beach."
+  }
+}

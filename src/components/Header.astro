@@ -1,5 +1,6 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
+const currentPath = Astro.url.pathname;
 ---
 
 <header>
@@ -9,13 +10,14 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
       <span></span>
       <span></span>
     </div>
-    <img
-      src="/images/icons/palma-logo.svg"
-      alt="Palma Miami Beach Logo"
-      class="logo"
-      height="70px"
-      width="100%"
-    />
+    <a href="/" class="logo">
+      <img
+        src="/images/icons/palma-logo.svg"
+        alt="Palma Miami Beach Logo"
+        height="70px"
+        width="100%"
+      />
+    </a>
     <div class="nav-right">
       <LanguageSwitcher
         currentLang="en"
@@ -28,16 +30,61 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 
   <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobileMenu">
+    <!-- Background reveal block -->
+    <div class="menu-reveal-block"></div>
+
     <div class="mobile-menu-content">
       <div class="menu-left">
         <nav class="mobile-nav">
-          <a href="/" class="mobile-nav-item">HOME</a>
-          <a href="/amenities" class="mobile-nav-item">AMENITIES</a>
-          <a href="/residences" class="mobile-nav-item">RESIDENCES</a>
-          <a href="/neighborhood" class="mobile-nav-item">NEIGHBORHOOD</a>
-          <a href="/team" class="mobile-nav-item">TEAM</a>
-          <a href="/gallery" class="mobile-nav-item">GALLERY</a>
-          <a href="/press" class="mobile-nav-item">PRESS</a>
+          <a
+            href="/"
+            class={`mobile-nav-item ${currentPath === '/' ? 'active' : ''}`}
+            data-hover-image="/images/nav-home.webp"
+          >
+            HOME
+          </a>
+          <a
+            href="/amenities"
+            class={`mobile-nav-item ${currentPath === '/amenities' ? 'active' : ''}`}
+            data-hover-image="/images/home/amenities.webp"
+          >
+            AMENITIES
+          </a>
+          <a
+            href="/residences"
+            class={`mobile-nav-item ${currentPath === '/residences' ? 'active' : ''}`}
+            data-hover-image="/images/residences/b1-living.webp"
+          >
+            RESIDENCES
+          </a>
+          <a
+            href="/neighborhood"
+            class={`mobile-nav-item ${currentPath === '/neighborhood' ? 'active' : ''}`}
+            data-hover-image="/images/home/neighborhood.webp"
+          >
+            NEIGHBORHOOD
+          </a>
+          <a
+            href="/team"
+            class={`mobile-nav-item ${currentPath === '/team' ? 'active' : ''}`}
+            data-hover-image="/images/nav-team.webp"
+          >
+            TEAM
+          </a>
+          <a
+            href="/gallery"
+            class={`mobile-nav-item ${currentPath === '/gallery' ? 'active' : ''}`}
+            data-hover-image="/images/nav-gallery.webp"
+          >
+            GALLERY
+          </a>
+          <a
+            href="/press"
+            class={`mobile-nav-item ${currentPath === '/press' ? 'active' : ''}`}
+            data-hover-image="/images/home/golden-girl.webp"
+          >
+            PRESS
+          </a>
         </nav>
         <div class="mobile-menu-footer">
           <a
@@ -51,7 +98,7 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
       </div>
       <div class="menu-right">
         <div class="menu-image">
-          <img src="/images/nav.webp" alt="Palma Building" />
+          <img src="/images/nav.webp" alt="Palma Building" id="menuImage" />
         </div>
       </div>
     </div>
@@ -59,10 +106,60 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 </header>
 
 <script>
-  // Mobile menu toggle functionality
+  // Mobile menu toggle functionality with dynamic images and smooth transitions
   document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
+    const menuImage = document.getElementById('menuImage');
+    const navItems = document.querySelectorAll('.mobile-nav-item');
+    const baseImageSrc = '/images/nav.webp';
+
+    let isTransitioning = false; // Prevent multiple transitions
+
+    // Function to smoothly transition between images
+    function changeImageWithTransition(newImageSrc) {
+      if (!menuImage || isTransitioning) {
+        return;
+      }
+
+      // Check if we're trying to load the same image
+      const currentSrc = menuImage.src.split('/').pop();
+      const newSrc = newImageSrc.split('/').pop();
+      if (currentSrc === newSrc) {
+        return;
+      }
+
+      isTransitioning = true;
+
+      // Create a new image element to preload the new image
+      const newImg = new Image();
+
+      newImg.onload = function () {
+        // Add fade-out class to current image
+        menuImage.classList.add('fade-out');
+
+        // After fade-out completes, change src and fade back in
+        setTimeout(() => {
+          menuImage.src = newImageSrc;
+          menuImage.classList.remove('fade-out');
+
+          // Reset transition flag after fade-in completes
+          setTimeout(() => {
+            isTransitioning = false;
+          }, 400); // Match CSS transition duration
+        }, 400); // Match CSS transition duration
+      };
+
+      newImg.onerror = function () {
+        // If image fails to load, just change immediately
+        console.warn('Failed to load image:', newImageSrc);
+        menuImage.src = newImageSrc;
+        isTransitioning = false;
+      };
+
+      // Start preloading the image
+      newImg.src = newImageSrc;
+    }
 
     if (hamburger && mobileMenu) {
       hamburger.addEventListener('click', function () {
@@ -72,14 +169,33 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
         // Prevent body scroll when menu is open
         if (mobileMenu.classList.contains('active')) {
           document.body.style.overflow = 'hidden';
+          // Reset to base image when menu opens
+          if (menuImage && menuImage.src !== baseImageSrc) {
+            changeImageWithTransition(baseImageSrc);
+          }
         } else {
           document.body.style.overflow = '';
         }
       });
 
-      // Close menu when clicking on nav items
-      const navItems = document.querySelectorAll('.mobile-nav-item');
+      // Add hover functionality for dynamic images with smooth transitions
       navItems.forEach((item) => {
+        // Change image on hover with smooth transition
+        item.addEventListener('mouseenter', function () {
+          const hoverImage = this.getAttribute('data-hover-image');
+          console.log('Hovering on:', this.textContent, 'Image:', hoverImage); // Debug log
+          if (hoverImage) {
+            changeImageWithTransition(hoverImage);
+          }
+        });
+
+        // Reset to base image on mouse leave with smooth transition
+        item.addEventListener('mouseleave', function () {
+          console.log('Mouse left:', this.textContent); // Debug log
+          changeImageWithTransition(baseImageSrc);
+        });
+
+        // Close menu when clicking on nav items
         item.addEventListener('click', function () {
           hamburger.classList.remove('active');
           mobileMenu.classList.remove('active');
