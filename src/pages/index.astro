@@ -8,7 +8,7 @@ const t = useTranslations(lang);
 ---
 
 <Layout title={t('site.title')} description={t('site.description')} lang={lang}>
-  <Hero />
+  <Hero lang={lang} />
   <section class="text-box">
     <p>
       <span>{t('home.hero.title')}</span>
@@ -17,10 +17,10 @@ const t = useTranslations(lang);
   </section>
   <section class="two-imgs">
     <div class="img-container">
-      <img src="/images/home/hero-text.webp" alt={t('home.hero.title')} />
+      <img src="/images/home/hero-text.webp" alt={t('two-img.one')} />
     </div>
     <div class="img-container">
-      <img src="/images/home/golden-girl.webp" alt={t('home.hero.title')} />
+      <img src="/images/home/golden-girl.webp" alt={t('two-img.two')} />
     </div>
   </section>
   <section class="text-box-no-bg">
@@ -71,7 +71,7 @@ const t = useTranslations(lang);
           <img src="/images/home/pool.webp" alt={t('gallery.pool')} />
         </div>
         <div class="slide">
-          <img src="/images/home/aqua-lounge.webp" alt={t('gallery.lobby')} />
+          <img src="/images/home/aqua-lounge.webp" alt={t('gallery.aqua-lounge')} />
         </div>
         <div class="slide">
           <img src="/images/home/pool-terrace.webp" alt={t('gallery.terrace')} />

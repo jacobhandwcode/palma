@@ -1,13 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GalleryPage from '../components/GalleryPage.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Gallery | Palma Miami Beach | New Miami Beach Residences"
-  description="Palma Miami Beach residences exude Mediterranean charm with airy layouts, high ceilings & handpicked finishes that evoke timeless beauty. View our gallery."
+  title={t('galleryPage.meta.title')}
+  description={t('galleryPage.meta.description')}
+  lang={lang}
 >
   <GalleryPage
-    title="Gallery"
+    title={t('galleryPage.title')}
+    lang={lang}
   />
 </Layout>

@@ -13,7 +13,6 @@ export function useTranslations(lang: keyof UiType) {
 }
 
 export function getLocalizedUrl(lang: string, path: string = '') {
-  // Remove leading slash from path
   const cleanPath = path.replace(/^\//, '');
 
   if (lang === defaultLang) {
@@ -23,7 +22,6 @@ export function getLocalizedUrl(lang: string, path: string = '') {
   return cleanPath ? `/${lang}/${cleanPath}` : `/${lang}/`;
 }
 
-// astro.config.mjs (update this file)
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({

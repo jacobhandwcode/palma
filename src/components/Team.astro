@@ -1,39 +1,46 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
 interface Props {
   title?: string;
   backgroundColor?: string;
+  lang?: 'en' | 'es' | 'pt';
 }
 
-const { title = 'Team' } = Astro.props;
+const { lang } = Astro.props;
+const currentLang = lang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const { title = t('team.title') } = Astro.props;
 
 const teamMembers = [
   {
     id: 1,
-    name: 'LEFFERTS',
-    role: 'DEVELOPER',
+    name: t('team.members.lefferts.name'),
+    role: t('team.members.lefferts.role'),
     image: '/images/team/lefferts.webp',
-    alt: 'Lefferts - Developer',
+    alt: t('team.members.lefferts.alt'),
   },
   {
     id: 2,
-    name: 'BUILT FORM',
-    role: 'DESIGN ARCHITECT',
+    name: t('team.members.builtForm.name'),
+    role: t('team.members.builtForm.role'),
     image: '/images/team/built-from.webp',
-    alt: 'Built Form - Design Architect',
+    alt: t('team.members.builtForm.alt'),
   },
   {
     id: 3,
-    name: 'STUDIO RAMIREZ',
-    role: 'INTERIOR DESIGN',
+    name: t('team.members.studioRamirez.name'),
+    role: t('team.members.studioRamirez.role'),
     image: '/images/team/ramirez.webp',
-    alt: 'Studio Ramirez - Interior Design',
+    alt: t('team.members.studioRamirez.alt'),
   },
   {
     id: 4,
-    name: 'CERVERA',
-    role: 'SALES & MARKETING',
+    name: t('team.members.cervera.name'),
+    role: t('team.members.cervera.role'),
     image: '/images/team/cervera.webp',
-    alt: 'Cervera - Sales & Marketing',
+    alt: t('team.members.cervera.alt'),
   },
 ];
 ---

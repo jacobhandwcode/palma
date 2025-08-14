@@ -3,32 +3,36 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import Map from '../components/Map.astro';
 import ImageGallery from '../components/ImageGallery.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
 ---
 
 <Layout
-  title="Neighborhood | Palma Miami Beach | Luxury Condos for Sale"
-  description="Palma Miami Beach offers a boutique Mediterranean-styled residence located near the famed Bal Harbour, white sand beaches, and just minutes from South Beach."
+  title={t('neighborhood.meta.title')}
+  description={t('neighborhood.meta.description')}
+  lang={lang}
 >
-  <PageHero videoSrc="/videos/neighborhood-video.mp4" title="Neighborhood" />
+  <PageHero
+    videoSrc="/videos/neighborhood-video.mp4"
+    title={t('neighborhood.title')}
+    lang={lang}
+  />
   <section class="text-box no-bg">
     <p>
-      In the heart of Miami Beach lies a neighborhood where life unfolds with
-      elegance and excitement. Fine dining and vibrant entertainment fill the
-      streets, while the Aquatic Center and Miami Beach Tennis Center cater to
-      your active side. The nearby Normandy Shores Golf Club offers lush greens
-      for a serene escape, and beach volleyball courts provide a sandy
-      playground for spirited matches.
+      {t('neighborhood.intro.paragraph1')}
     </p>
     <p>
-      As twilight falls, jazz concerts fill the air, creating moments of pure
-      magic. For adventure seekers, jet ski and kayak rentals promise thrilling
-      water escapades. The famed Miami Beach Boardwalk invites you on a scenic
-      journey from your doorstep to the lively South Pointe Park.
+      {t('neighborhood.intro.paragraph2')}
     </p>
   </section>
   <section class="full-width-img">
-    <img src="/images/neighborhood/palma-view.webp" />
+    <img
+      src="/images/neighborhood/palma-view.webp"
+      alt={t('neighborhood.image.alt')}
+    />
   </section>
-  <Map />
-  <ImageGallery />
+  <Map lang={lang} />
+  <ImageGallery lang={lang} />
 </Layout>

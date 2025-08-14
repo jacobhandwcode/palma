@@ -9,8 +9,8 @@ interface Props {
 const { currentLang = 'en' } = Astro.props;
 const t = useTranslations(currentLang);
 
-// Get current path for language switcher and active nav states
-const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^\//, '') || '';
+const currentPath =
+  Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^\//, '') || '';
 ---
 
 <header>
@@ -29,18 +29,13 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
       />
     </a>
     <div class="nav-right">
-      <LanguageSwitcher
-        currentLang={currentLang}
-        currentPath={currentPath}
-      />
+      <LanguageSwitcher currentLang={currentLang} currentPath={currentPath} />
       <a href="tel:13059464264" class="phone-number">+1 305.946.4264</a>
-      <a class="inquire" href="#contact">{t('nav.contact')}</a>
+      <a class="inquire" href="#contact">{t('nav.inquire')}</a>
     </div>
   </div>
 
-  <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay" id="mobileMenu">
-    <!-- Background reveal block -->
     <div class="menu-reveal-block"></div>
 
     <div class="mobile-menu-content">
@@ -51,7 +46,7 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
             class={`mobile-nav-item ${currentPath === '' ? 'active' : ''}`}
             data-hover-image="/images/nav-home.webp"
           >
-            HOME
+            {t('nav.home').toUpperCase()}
           </a>
           <a
             href={getLocalizedUrl(currentLang, 'amenities')}
@@ -79,21 +74,21 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
             class={`mobile-nav-item ${currentPath === 'team' ? 'active' : ''}`}
             data-hover-image="/images/nav-team.webp"
           >
-            TEAM
+            {t('nav.team').toUpperCase()}
           </a>
           <a
             href={getLocalizedUrl(currentLang, 'gallery')}
             class={`mobile-nav-item ${currentPath === 'gallery' ? 'active' : ''}`}
             data-hover-image="/images/nav-gallery.webp"
           >
-            GALLERY
+            {t('nav.gallery').toUpperCase()}
           </a>
           <a
             href={getLocalizedUrl(currentLang, 'press')}
             class={`mobile-nav-item ${currentPath === 'press' ? 'active' : ''}`}
             data-hover-image="/images/home/golden-girl.webp"
           >
-            PRESS
+            {t('nav.press').toUpperCase()}
           </a>
         </nav>
         <div class="mobile-menu-footer">
@@ -116,7 +111,6 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
 </header>
 
 <script>
-  // Mobile menu toggle functionality with dynamic images and smooth transitions
   document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -124,15 +118,13 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
     const navItems = document.querySelectorAll('.mobile-nav-item');
     const baseImageSrc = '/images/nav.webp';
 
-    let isTransitioning = false; // Prevent multiple transitions
+    let isTransitioning = false;
 
-    // Function to smoothly transition between images
     function changeImageWithTransition(newImageSrc) {
       if (!menuImage || isTransitioning) {
         return;
       }
 
-      // Check if we're trying to load the same image
       const currentSrc = menuImage.src.split('/').pop();
       const newSrc = newImageSrc.split('/').pop();
       if (currentSrc === newSrc) {
@@ -141,33 +133,27 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
 
       isTransitioning = true;
 
-      // Create a new image element to preload the new image
       const newImg = new Image();
 
       newImg.onload = function () {
-        // Add fade-out class to current image
         menuImage.classList.add('fade-out');
 
-        // After fade-out completes, change src and fade back in
         setTimeout(() => {
           menuImage.src = newImageSrc;
           menuImage.classList.remove('fade-out');
 
-          // Reset transition flag after fade-in completes
           setTimeout(() => {
             isTransitioning = false;
-          }, 400); // Match CSS transition duration
-        }, 400); // Match CSS transition duration
+          }, 400);
+        }, 400);
       };
 
       newImg.onerror = function () {
-        // If image fails to load, just change immediately
         console.warn('Failed to load image:', newImageSrc);
         menuImage.src = newImageSrc;
         isTransitioning = false;
       };
 
-      // Start preloading the image
       newImg.src = newImageSrc;
     }
 
@@ -176,10 +162,8 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
         hamburger.classList.toggle('active');
         mobileMenu.classList.toggle('active');
 
-        // Prevent body scroll when menu is open
         if (mobileMenu.classList.contains('active')) {
           document.body.style.overflow = 'hidden';
-          // Reset to base image when menu opens
           if (menuImage && menuImage.src !== baseImageSrc) {
             changeImageWithTransition(baseImageSrc);
           }
@@ -188,24 +172,20 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
         }
       });
 
-      // Add hover functionality for dynamic images with smooth transitions
       navItems.forEach((item) => {
-        // Change image on hover with smooth transition
         item.addEventListener('mouseenter', function () {
           const hoverImage = this.getAttribute('data-hover-image');
-          console.log('Hovering on:', this.textContent, 'Image:', hoverImage); // Debug log
+          console.log('Hovering on:', this.textContent, 'Image:', hoverImage);
           if (hoverImage) {
             changeImageWithTransition(hoverImage);
           }
         });
 
-        // Reset to base image on mouse leave with smooth transition
         item.addEventListener('mouseleave', function () {
-          console.log('Mouse left:', this.textContent); // Debug log
+          console.log('Mouse left:', this.textContent);
           changeImageWithTransition(baseImageSrc);
         });
 
-        // Close menu when clicking on nav items
         item.addEventListener('click', function () {
           hamburger.classList.remove('active');
           mobileMenu.classList.remove('active');
@@ -213,7 +193,6 @@ const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^
         });
       });
 
-      // Close menu on escape key
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
           hamburger.classList.remove('active');

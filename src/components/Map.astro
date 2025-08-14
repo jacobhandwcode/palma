@@ -1,19 +1,26 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
 interface Props {
   title?: string;
   subtitle?: string;
   categories?: string[];
+  lang?: 'en' | 'es' | 'pt';
 }
 
+const { lang } = Astro.props;
+const currentLang = lang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
 const {
-  title = 'In the Heart of Miami Beach',
-  subtitle = '',
+  title = t('map.title'),
+  subtitle = t('map.subtitle'),
   categories = [
-    'HOSPITALITY',
-    'NEIGHBORHOOD',
-    'RESTAURANTS',
-    'SHOPS',
-    'WITHIN TEN MINUTES',
+    t('map.categories.hospitality'),
+    t('map.categories.neighborhood'),
+    t('map.categories.restaurants'),
+    t('map.categories.shops'),
+    t('map.categories.withinTenMinutes'),
   ],
 } = Astro.props;
 ---
@@ -266,7 +273,7 @@ const {
   }
 
   function initMap() {
-    const palmaLocation = { lat: 25.855980, lng: -80.124161 };
+    const palmaLocation = { lat: 25.85598, lng: -80.124161 };
 
     map = new google.maps.Map(document.getElementById('googleMap'), {
       zoom: 13,

@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Map from '../../components/Map.astro';
+import ImageGallery from '../../components/ImageGallery.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'pt' } }
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t('neighborhood.meta.title')}
+  description={t('neighborhood.meta.description')}
+  lang={lang}
+>
+  <PageHero videoSrc="/videos/neighborhood-video.mp4" title={t('neighborhood.title')} lang={lang} />
+  <section class="text-box no-bg">
+    <p>
+      {t('neighborhood.intro.paragraph1')}
+    </p>
+    <p>
+      {t('neighborhood.intro.paragraph2')}
+    </p>
+  </section>
+  <section class="full-width-img">
+    <img src="/images/neighborhood/palma-view.webp" alt={t('neighborhood.image.alt')} />
+  </section>
+  <Map lang={lang} />
+  <ImageGallery lang={lang} />
+</Layout>

@@ -1,21 +1,28 @@
 ---
-// FloorPlans.astro
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es' | 'pt';
+}
+
+const { lang } = Astro.props;
+const currentLang = lang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
 ---
 
 <section class="floor-plans-container">
   <div class="floor-plans-content">
     <!-- Left Column -->
     <div class="left-column">
-      <h1 class="title">FLOOR PLANS</h1>
+      <h1 class="title">{t('floorPlans.title')}</h1>
       <p class="subtitle">
-        Please select the residence from the floor plate to view detailed floor
-        plan.
+        {t('floorPlans.subtitle')}
       </p>
 
       <div class="floor-options">
         <div class="floor-option">
           <button class="floor-button" data-floor="penthouse">
-            PENTHOUSE
+            {t('floorPlans.penthouse')}
             <svg
               class="chevron"
               width="12"
@@ -38,7 +45,7 @@
 
         <div class="floor-option">
           <button class="floor-button active" data-floor="levels-4-12">
-            LEVELS 4-12
+            {t('floorPlans.levels4to12')}
             <svg
               class="chevron"
               width="12"
@@ -61,7 +68,7 @@
 
         <div class="floor-option">
           <button class="floor-button" data-floor="level-3">
-            LEVEL 3
+            {t('floorPlans.level3')}
             <svg
               class="chevron"
               width="12"
@@ -87,35 +94,39 @@
     <!-- Right Column -->
     <div class="right-column">
       <div class="residence-info" id="residence-info" style="display: block;">
-        <h2 class="residence-title" id="residence-title">RESIDENCE 01</h2>
+        <h2 class="residence-title" id="residence-title">
+          {t('floorPlans.residence')} 01
+        </h2>
         <div class="residence-details">
-          <p class="levels" id="residence-levels">LEVELS 4-12</p>
+          <p class="levels" id="residence-levels">
+            {t('floorPlans.levels4to12')}
+          </p>
           <p class="bedrooms" id="residence-bedrooms">
-            2 Bedrooms / 1 Bathroom
+            {t('floorPlans.bedrooms.2bed1bath')}
           </p>
         </div>
 
         <div class="residence-specs">
           <div class="spec-row">
-            <span class="spec-label">Interior:</span>
+            <span class="spec-label">{t('floorPlans.specs.interior')}:</span>
             <span class="spec-value" id="interior-spec"
               >620 SQ.FT. | 58 SQ.M.</span
             >
           </div>
           <div class="spec-row">
-            <span class="spec-label">Exterior:</span>
+            <span class="spec-label">{t('floorPlans.specs.exterior')}:</span>
             <span class="spec-value" id="exterior-spec"
               >149 SQ.FT. | 14 SQ.M.</span
             >
           </div>
           <div class="spec-row">
-            <span class="spec-label">Total:</span>
+            <span class="spec-label">{t('floorPlans.specs.total')}:</span>
             <span class="spec-value" id="total-spec">769 SQ.FT. | 71 SQ.M.</span
             >
           </div>
         </div>
 
-        <button class="download-button"> DOWNLOAD FLOOR PLAN → </button>
+        <button class="download-button">{t('floorPlans.download')} →</button>
       </div>
 
       <div
@@ -126,15 +137,15 @@
         <img
           id="floor-plan-img"
           src="/images/floorplans/4-12_01.png"
-          alt="Floor Plan"
+          alt={t('floorPlans.floorPlanAlt')}
         />
       </div>
     </div>
   </div>
+  <h3 class="welcome-home">{t('floorPlans.welcome')}</h3>
 </section>
 
 <style lang="scss">
-
   .floor-plan-image {
     flex: 1;
     display: flex;
@@ -316,6 +327,39 @@
 </style>
 
 <script>
+  // Translation support for JavaScript
+  const translations = {
+    en: {
+      residence: 'RESIDENCE',
+      floorPlanNotAvailable: 'Floor plan image not available for',
+      selectResidence: 'Please select a residence to download its floor plan.',
+    },
+    es: {
+      residence: 'RESIDENCIA',
+      floorPlanNotAvailable: 'Imagen del plano de planta no disponible para',
+      selectResidence:
+        'Por favor seleccione una residencia para descargar su plano de planta.',
+    },
+    pt: {
+      residence: 'RESIDÊNCIA',
+      floorPlanNotAvailable: 'Imagem da planta baixa não disponível para',
+      selectResidence:
+        'Por favor selecione uma residência para baixar sua planta baixa.',
+    },
+  };
+
+  // Get current language from URL
+  function getCurrentLanguage() {
+    const path = window.location.pathname;
+    if (path.startsWith('/es/')) return 'es';
+    if (path.startsWith('/pt/')) return 'pt';
+    return 'en';
+  }
+
+  const currentLang = getCurrentLanguage();
+  const t = translations[currentLang];
+
+  // SVG Data for each floor type (keep your existing svgData object here)
   const svgData = {
     penthouse: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208.21 173.75">
 <g id="Base">
@@ -649,7 +693,7 @@
       pdfUrl: '/pdfs/ph_07.pdf',
     },
     '4-12_01': {
-      title: 'Residence 01',
+      title: t.residence + ' 01',
       levels: 'LEVELS 4-12',
       bedrooms: '2 Bedrooms / 1 Bathroom',
       interior: '620 SQ.FT. | 58 SQ.M.',
@@ -658,7 +702,7 @@
       pdfUrl: '/pdfs/4-12_01.pdf',
     },
     '4-12_02': {
-      title: 'Residence 02',
+      title: t.residence + ' 02',
       levels: 'LEVELS 4-12',
       bedrooms: '2 Bedrooms / 2 Bathrooms',
       interior: '889 SQ.FT. | 83 SQ.M.',
@@ -667,7 +711,7 @@
       pdfUrl: '/pdfs/4-12_02.pdf',
     },
     '4-12_03': {
-      title: 'Residence 03',
+      title: t.residence + ' 03',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '410 SQ.FT. | 38 SQ.M.',
@@ -676,7 +720,7 @@
       pdfUrl: '/pdfs/4-12_03.pdf',
     },
     '4-12_04': {
-      title: 'Residence 04',
+      title: t.residence + ' 04',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '413 SQ.FT. | 39 SQ.M.',
@@ -685,7 +729,7 @@
       pdfUrl: '/pdfs/4-12_04.pdf',
     },
     '4-12_05': {
-      title: 'Residence 05',
+      title: t.residence + ' 05',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '405 SQ.FT. | 38 SQ.M.',
@@ -694,7 +738,7 @@
       pdfUrl: '/pdfs/4-12_05.pdf',
     },
     '4-12_06': {
-      title: 'Residence 06',
+      title: t.residence + ' 06',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '423 SQ.FT. | 39 SQ.M.',
@@ -703,7 +747,7 @@
       pdfUrl: '/pdfs/4-12_06.pdf',
     },
     '4-12_07': {
-      title: 'Residence 07',
+      title: t.residence + ' 07',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '442 SQ.FT. | 41 SQ.M..',
@@ -712,7 +756,7 @@
       pdfUrl: '/pdfs/4-12_07.pdf',
     },
     '4-12_08': {
-      title: 'Residence 08',
+      title: t.residence + ' 08',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '408 SQ.FT. | 38 SQ.M.',
@@ -721,7 +765,7 @@
       pdfUrl: '/pdfs/4-12_08.pdf',
     },
     '4-12_09': {
-      title: 'Residence 09',
+      title: t.residence + ' 09',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '440 SQ.FT. | 41 SQ.M.',
@@ -730,7 +774,7 @@
       pdfUrl: '/pdfs/4-12_09.pdf',
     },
     '4-12_10': {
-      title: 'Residence 10',
+      title: t.residence + ' 10',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '426 SQ.FT. | 40 SQ.M.',
@@ -739,7 +783,7 @@
       pdfUrl: '/pdfs/4-12_10.pdf',
     },
     '4-12_11': {
-      title: 'Residence 11',
+      title: t.residence + ' 11',
       levels: 'LEVELS 4-12',
       bedrooms: '2 Bedrooms / 2 Bathrooms',
       interior: '843 SQ.FT. | 78 SQ.M.',
@@ -748,7 +792,7 @@
       pdfUrl: '/pdfs/4-12_11.pdf',
     },
     '4-12_12': {
-      title: 'Residence 12',
+      title: t.residence + ' 12',
       levels: 'LEVELS 4-12',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '558 SQ.FT. | 52 SQ.M.',
@@ -757,7 +801,7 @@
       pdfUrl: '/pdfs/4-12_12.pdf',
     },
     '3_301': {
-      title: 'Residence 301',
+      title: t.residence + ' 301',
       levels: 'LEVEL 3',
       bedrooms: 'Studio / 1 Bathroom',
       interior: '416 SQ.FT. | 39 SQ.M.',
@@ -766,7 +810,7 @@
       pdfUrl: '/pdfs/3_301.pdf',
     },
     '3_302': {
-      title: 'Residence 302',
+      title: t.residence + ' 302',
       levels: 'LEVEL 3',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '573 SQ.FT. | 53 SQ.M.',
@@ -775,7 +819,7 @@
       pdfUrl: '/pdfs/3_302.pdf',
     },
     '3_303': {
-      title: 'Residence 303',
+      title: t.residence + ' 303',
       levels: 'LEVEL 3',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '575 SQ.FT. | 53 SQ.M.',
@@ -784,7 +828,7 @@
       pdfUrl: '/pdfs/3_303.pdf',
     },
     '3_304': {
-      title: 'Residence 304',
+      title: t.residence + ' 304',
       levels: 'LEVEL 3',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '421 SQ.FT. | 39 SQ.M.',
@@ -793,7 +837,7 @@
       pdfUrl: '/pdfs/3_304.pdf',
     },
     '3_305': {
-      title: 'Residence 305',
+      title: t.residence + ' 305',
       levels: 'LEVEL 3',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '555 SQ.FT. | 52 SQ.M.',
@@ -802,7 +846,7 @@
       pdfUrl: '/pdfs/3_305.pdf',
     },
     '3_306': {
-      title: 'Residence 306',
+      title: t.residence + ' 306',
       levels: 'LEVEL 3',
       bedrooms: 'Not Available',
       interior: 'N/A',
@@ -811,7 +855,7 @@
       pdfUrl: null,
     },
     '3_307': {
-      title: 'Residence 307',
+      title: t.residence + ' 307',
       levels: 'LEVEL 3',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '561 SQ.FT. | 52 SQ.M.',
@@ -820,7 +864,7 @@
       pdfUrl: '/pdfs/3_307.pdf',
     },
     '3_308': {
-      title: 'Residence 308',
+      title: t.residence + ' 308',
       levels: 'LEVEL 3',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '561 SQ.FT. | 52 SQ.M.',
@@ -829,7 +873,7 @@
       pdfUrl: '/pdfs/3_308.pdf',
     },
     '3_309': {
-      title: 'Residence 309',
+      title: t.residence + ' 309',
       levels: 'LEVEL 3',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '553 SQ.FT. | 51 SQ.M.',
@@ -838,7 +882,7 @@
       pdfUrl: '/pdfs/3_309.pdf',
     },
     '3_310': {
-      title: 'Residence 310',
+      title: t.residence + ' 310',
       levels: 'LEVEL 3',
       bedrooms: 'Studio / 1 Bathroom',
       interior: '459 SQ.FT. | 43 SQ.M.',
@@ -847,7 +891,7 @@
       pdfUrl: '/pdfs/3_310.pdf',
     },
     '3_311': {
-      title: 'Residence 311',
+      title: t.residence + ' 311',
       levels: 'LEVEL 3',
       bedrooms: '1 Bedroom / 1 Bathroom',
       interior: '556 SQ.FT. | 52 SQ.M.',
@@ -1012,12 +1056,12 @@
 
       const floorPlanImg = document.getElementById('floor-plan-img');
 
-      // Handle image load error
+      // Handle image load error with translated message
       floorPlanImg.onerror = function () {
         // Replace with placeholder text, but keep the container structure
         floorPlanContainer.innerHTML = `
           <div style="display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.9rem; min-height: 400px;">
-            Floor plan image not available for ${data.title}
+            ${t.floorPlanNotAvailable} ${data.title}
           </div>
         `;
       };
@@ -1025,7 +1069,7 @@
       floorPlanDisplay.style.display = 'block';
     }
 
-    // Download button functionality
+    // Download button functionality with translated alert
     document
       .querySelector('.download-button')
       .addEventListener('click', function () {
@@ -1052,7 +1096,7 @@
             document.body.removeChild(link);
           }
         } else {
-          alert('Please select a residence to download its floor plan.');
+          alert(t.selectResidence);
         }
       });
 

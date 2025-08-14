@@ -1,21 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es' | 'pt';
+}
+
+const { lang } = Astro.props;
+const currentLang = lang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
 <section class="hero">
   <div class="hero-video">
     <video autoplay muted loop playsinline>
       <source src="/videos/home-video.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
+      {t('hero.video.fallback')}
     </video>
   </div>
 
   <div class="hero-content">
     <div class="hero-text">
       <h1 class="hero-title">
-        A Mediterranean Experience that begins in Miami Beach.
+        {t('hero.title')}
       </h1>
-      <p class="hero-subtitle">A Lefferts Development</p>
+      <p class="hero-subtitle">{t('hero.subtitle')}</p>
     </div>
 
     <div class="scroll-indicator">
-      <img src="/images/icons/arrow.svg" />
+      <img src="/images/icons/arrow.svg" alt={t('hero.scroll')} />
     </div>
   </div>
 </section>

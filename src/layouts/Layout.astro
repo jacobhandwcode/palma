@@ -43,7 +43,7 @@ const currentLang = lang || getLangFromUrl(Astro.url);
 // @ts-ignore
 const t = useTranslations(currentLang);
 
-const siteUrl = Astro.site?.toString() || 'https://palmamiamibeach.com';
+const siteUrl = Astro.site?.toString() || 'https://palma.dreamhosters.com';
 const fullUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).toString();
 const fullOgImage = new URL(ogImage, siteUrl).toString();
 const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}`;
@@ -103,9 +103,9 @@ import { ClientRouter } from "astro:transitions";
     <meta name="twitter:image:alt" content={description || title} />
     <meta name="twitter:site" content="@yourhandle" />
     <meta name="twitter:creator" content="@yourhandle" />
-    <ClientRouter />
+    <!-- <ClientRouter /> -->
     
-    <script type="application/ld+json">
+    <!-- <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -118,7 +118,7 @@ import { ClientRouter } from "astro:transitions";
           "query-input": "required name=search_term_string"
         }
       }
-    </script>
+    </script> -->
   </head>
   <body>
     <Header currentLang={currentLang} />
@@ -163,7 +163,7 @@ import { ClientRouter } from "astro:transitions";
         </div>
 
         <div class="popup-actions">
-          <a href="tel:+17863041955" class="call-button">
+          <a href="tel:+13059464264" class="call-button">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path
                 d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
@@ -183,7 +183,7 @@ import { ClientRouter } from "astro:transitions";
     </div>
     <div class="popup-overlay" id="popupOverlay"></div>
 
-    <Footer />
+    <Footer currentLang={currentLang} />
 
     <!-- Mobile floating phone button -->
     <button

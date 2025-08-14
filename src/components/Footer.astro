@@ -1,139 +1,149 @@
+---
+import {
+  getLangFromUrl,
+  useTranslations,
+  getLocalizedUrl,
+} from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es' | 'pt';
+}
+
+const { lang } = Astro.props;
+const currentLang = lang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
 <footer id="contact">
   <h3>
-    Mediterranean Charm | Miami Beach Luxe-Life | Easy Access to the Beach &
-    World
+    {t('footer.tagline')}
   </h3>
   <img
     src="/images/icons/palma-logo.svg"
-    alt="Palma Miami Beach Logo"
+    alt='Palma Miami Beach'
     class="footer-logo"
   />
 
-  <form class="contact-form">
+  <form class="contact-form" id="contactForm">
     <div class="form-row">
       <div class="form-group">
         <input
-          placeholder="First Name"
+          placeholder={t('form.firstName.placeholder')}
           type="text"
           id="firstName"
           name="firstName"
           required
         />
-        <label for="firstName">FIRST NAME *</label>
+        <label for="firstName">{t('form.firstName.label')}*</label>
       </div>
       <div class="form-group">
         <input
-          placeholder="Last Name"
+          placeholder={t('form.lastName.placeholder')}
           type="text"
           id="lastName"
           name="lastName"
           required
         />
-        <label for="lastName">LAST NAME *</label>
+        <label for="lastName">{t('form.lastName.label')}*</label>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group">
         <input
-          placeholder="Email"
+          placeholder={t('form.email.placeholder')}
           type="email"
           id="email"
           name="email"
           required
         />
-        <label for="email">EMAIL *</label>
+        <label for="email">{t('form.email.label')}*</label>
       </div>
-      <div class="form-group phone-group">
-        <div class="phone-input">
-          <select id="countryCode" name="countryCode" class="country-select">
-            <option value="+1" data-country="US">🇺🇸 United States +1</option>
-            <option value="+44" data-country="GB">🇬🇧 United Kingdom +44</option>
-            <option value="+33" data-country="FR">🇫🇷 France +33</option>
-            <option value="+49" data-country="DE">🇩🇪 Germany +49</option>
-            <option value="+39" data-country="IT">🇮🇹 Italy +39</option>
-            <option value="+34" data-country="ES">🇪🇸 Spain +34</option>
-            <option value="+1" data-country="CA">🇨🇦 Canada +1</option>
-            <option value="+52" data-country="MX">🇲🇽 Mexico +52</option>
-            <option value="+55" data-country="BR">🇧🇷 Brazil +55</option>
-            <option value="+54" data-country="AR">🇦🇷 Argentina +54</option>
-            <option value="+86" data-country="CN">🇨🇳 China +86</option>
-            <option value="+81" data-country="JP">🇯🇵 Japan +81</option>
-            <option value="+82" data-country="KR">🇰🇷 South Korea +82</option>
-            <option value="+91" data-country="IN">🇮🇳 India +91</option>
-            <option value="+61" data-country="AU">🇦🇺 Australia +61</option>
-            <option value="+7" data-country="RU">🇷🇺 Russia +7</option>
-            <option value="+27" data-country="ZA">🇿🇦 South Africa +27</option>
-            <option value="+234" data-country="NG">🇳🇬 Nigeria +234</option>
-            <option value="+20" data-country="EG">🇪🇬 Egypt +20</option>
-            <option value="+971" data-country="AE">🇦🇪 UAE +971</option>
-          </select>
-          <input placeholder="phone" type="tel" id="phone" name="phone" />
-        </div>
-        <label for="phone">PHONE</label>
+      <div class="form-group">
+        <input
+          placeholder={t('form.phone.placeholder')}
+          type="tel"
+          id="phone"
+          name="phone"
+        />
+        <label for="phone">{t('form.phone.label')}</label>
       </div>
       <div class="form-group">
         <select id="hearAbout" name="hearAbout">
-          <option value="">HOW DID YOU HEAR ABOUT US?</option>
-          <option value="area-driveby">AREA DRIVEBY</option>
+          <option value="">{t('form.hearAbout.label')}</option>
+          <option value="area-driveby">{t('form.hearAbout.driveby')}</option>
           <option value="gale-south-beach-loyalty-guest"
-            >GALE SOUTH BEACH LOYALTY GUEST</option
+            >{t('form.hearAbout.gale')}</option
           >
-          <option value="broker">BROKER</option>
-          <option value="event">EVENT</option>
-          <option value="google-organic">GOOGLE ORGANIC</option>
-          <option value="direct">DIRECT</option>
-          <option value="google-keywords">GOOGLE KEYWORDS</option>
-          <option value="real-estate-site">REAL ESTATE SITE</option>
-          <option value="social-media">SOCIAL MEDIA</option>
-          <option value="internet-ad">INTERNET AD</option>
-          <option value="internet-search">INTERNET SEARCH</option>
-          <option value="magazine">MAGAZINE</option>
-          <option value="newspaper">NEWSPAPER</option>
-          <option value="referral">REFERRAL</option>
+          <option value="broker">{t('form.hearAbout.broker')}</option>
+          <option value="event">{t('form.hearAbout.event')}</option>
+          <option value="google-organic"
+            >{t('form.hearAbout.googleOrganic')}</option
+          >
+          <option value="direct">{t('form.hearAbout.direct')}</option>
+          <option value="google-keywords"
+            >{t('form.hearAbout.googleKeywords')}</option
+          >
+          <option value="real-estate-site"
+            >{t('form.hearAbout.realEstate')}</option
+          >
+          <option value="social-media">{t('form.hearAbout.socialMedia')}</option
+          >
+          <option value="internet-ad">{t('form.hearAbout.internetAd')}</option>
+          <option value="internet-search"
+            >{t('form.hearAbout.internetSearch')}</option
+          >
+          <option value="magazine">{t('form.hearAbout.magazine')}</option>
+          <option value="newspaper">{t('form.hearAbout.newspaper')}</option>
+          <option value="referral">{t('form.hearAbout.referral')}</option>
         </select>
       </div>
     </div>
 
     <div class="form-group">
-      <textarea placeholder="Comments" id="comments" name="comments" rows="4"
-      ></textarea>
-      <label for="comments">COMMENTS</label>
+      <textarea
+        placeholder={t('form.comments.placeholder')}
+        id="comments"
+        name="comments"
+        rows="4"></textarea>
+      <label for="comments">{t('form.comments.label')}</label>
     </div>
 
     <div class="form-row radio-row">
       <div class="radio-group">
-        <span class="radio-label"
-          >ARE YOU A REALTOR? <span class="required">*</span></span
-        >
+        <span class="radio-label">
+          {t('form.realtor.question')}
+          <span class="required">*</span>
+        </span>
         <div class="radio-options">
           <label class="radio-option">
             <input type="radio" name="realtor" value="yes" />
             <span class="radio-custom"></span>
-            YES
+            {t('form.yes')}
           </label>
           <label class="radio-option">
             <input type="radio" name="realtor" value="no" checked />
             <span class="radio-custom"></span>
-            NO
+            {t('form.no')}
           </label>
         </div>
       </div>
 
       <div class="radio-group">
-        <span class="radio-label"
-          >ARE YOU A BUYER OR A BROKER? <span class="required">*</span></span
-        >
+        <span class="radio-label">
+          {t('form.buyerBroker.question')}
+          <span class="required">*</span>
+        </span>
         <div class="radio-options">
           <label class="radio-option">
             <input type="radio" name="buyerBroker" value="buyer" />
             <span class="radio-custom"></span>
-            YES
+            {t('form.buyer')}
           </label>
           <label class="radio-option">
             <input type="radio" name="buyerBroker" value="broker" checked />
             <span class="radio-custom"></span>
-            NO
+            {t('form.broker')}
           </label>
         </div>
       </div>
@@ -141,34 +151,33 @@
 
     <div class="terms-section">
       <p class="terms-text">
-        PLEASE ACCEPT OUR TERMS AND READ OUR <a href="/privacy-policy"
-          >PRIVACY POLICY</a
+        {t('form.terms.intro')}
+        <a href={getLocalizedUrl(currentLang, 'privacy-policy')}
+          >{t('form.terms.privacyPolicy')}</a
         >.
         <span class="required">*</span>
       </p>
       <label class="checkbox-option">
         <input type="checkbox" name="terms" required />
         <span class="checkbox-custom"></span>
-        I AGREE TO BE CONTACTED BY PALMAMIAMIBEACH VIA CALL, EMAIL, AND TEXT. TO
-        OPT OUT, YOU CAN REPLY 'STOP' AT ANY TIME OR CLICK THE UNSUBSCRIBE LINK IN
-        THE EMAILS. MESSAGE AND DATA RATES MAY APPLY.
+        {t('form.terms.agreement')}
       </label>
     </div>
 
-    <button type="submit" class="submit-btn">SUBMIT</button>
+    <button type="submit" class="submit-btn">{t('form.submit')}</button>
   </form>
 
   <div class="footer-info">
     <div class="contact-info">
-      <h4>INQUIRE</h4>
+      <h4>{t('footer.inquire')}</h4>
       <p>Info@PalmaMiamiBeach.com</p>
-      <p>Telephone +1 305.882.9942</p>
+      <p>{t('footer.telephone')} +1 305.946.4264</p>
 
-      <h4>PROJECT ADDRESS</h4>
+      <h4>{t('footer.projectAddress')}</h4>
       <p>600 71st Street, Miami Beach, FL 33141</p>
 
-      <h4>SALES GALLERY:</h4>
-      <p class="italic">580 72ND ST., RETAIL D, MIAMI BEACH, FL 33141</p>
+      <h4>{t('footer.salesGallery')}</h4>
+      <p class="italic">580 72nd Street, Retail D, Miami Beach, FL 33141</p>
     </div>
 
     <div class="company-logos">
@@ -186,17 +195,129 @@
 
     <div class="footer-bottom">
       <p class="copyright">
-        ALL CONTENTS OF THIS WEBSITE © 2025. ALL RIGHTS RESERVED. ALL
-        RENDERINGS ARE ARTISTIC AND THINGS SHOWN MAY BE CHANGED WITHOUT NOTICE.
+        {t('footer.copyright')}
       </p>
 
       <div class="footer-links">
-        <a href="/privacy-policy">PRIVACY POLICY</a>
+        <a href={getLocalizedUrl(currentLang, 'privacy-policy')}
+          >{t('footer.links.privacy')}</a
+        >
         <span>|</span>
-        <a href="/notices-terms">NOTICES & TERMS</a>
+        <a href={getLocalizedUrl(currentLang, 'notices-terms')}
+          >{t('footer.links.notices')}</a
+        >
         <span>|</span>
-        <a href="/disclaimers">DISCLAIMERS</a>
+        <a href={getLocalizedUrl(currentLang, 'disclaimers')}
+          >{t('footer.links.disclaimers')}</a
+        >
       </div>
     </div>
   </div>
 </footer>
+
+<!-- Widget Tracker Code -->
+<script>
+(function(w,i,d,g,e,t){w["WidgetTrackerObject"]=g;(w[g]=w[g]||function()
+{(w[g].q=w[g].q||[]).push(arguments);}),(w[g].ds=1*new Date());(e="script"),
+(t=d.createElement(e)),(e=d.getElementsByTagName(e)[0]);t.async=1;t.src=i;
+e.parentNode.insertBefore(t,e);})
+(window,"https://widgetbe.com/agent",document,"widgetTracker");
+window.widgetTracker("create", "WT-JKXYEMIJ");
+window.widgetTracker("send", "pageview");
+</script>
+
+<!-- Form Submission Script -->
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  
+  const submitBtn = this.querySelector('.submit-btn');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Sending...';
+  submitBtn.disabled = true;
+  submitBtn.style.opacity = '0.7';
+  
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+  
+  // Validate required fields
+  if (!data.firstName || !data.lastName || !data.email) {
+    alert('Please fill in all required fields.');
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = '1';
+    return;
+  }
+  
+  if (!data.terms) {
+    alert('Please accept the terms and privacy policy.');
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = '1';
+    return;
+  }
+  
+  try {
+    const response = await fetch('/form-handler.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+    
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      const textResponse = await response.text();
+      console.error('Non-JSON response:', textResponse);
+      throw new Error('Server returned non-JSON response: ' + textResponse.substring(0, 100));
+    }
+    
+    const result = await response.json();
+    
+    if (response.ok && result.success) {
+      const footer = document.getElementById('contact');
+      footer.innerHTML = `
+        <div style="text-align: center; padding: 40px; background-color: #f0f9ff; border: 2px solid #0066cc; border-radius: 8px; margin: 20px 0;">
+          <h3 style="color: #0066cc; margin: 0 0 15px 0; font-size: 24px;">Thank You!</h3>
+          <p style="color: #333; margin: 0; font-size: 16px; font-weight: 600;">${result.message}</p>
+          <p style="color: #666; margin: 15px 0 0 0; font-size: 14px;">We will contact you within 24 hours.</p>
+        </div>
+      `;
+      
+      // Track successful submission with Widget Tracker
+      if (window.widgetTracker) {
+        window.widgetTracker('send', 'event', 'form', 'submit', 'contact');
+      }
+    } else {
+      const errorMessage = result.error || 'Unknown error occurred';
+      alert('Error: ' + errorMessage);
+      
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+    }
+  } catch (error) {
+    console.error('Form submission error:', error);
+    
+    let errorMessage = 'There was an error submitting your inquiry. ';
+    
+    if (error.name === 'TypeError' && error.message.includes('fetch')) {
+      errorMessage += 'Please check your internet connection.';
+    } else if (error.message.includes('JSON')) {
+      errorMessage += 'Server response format error.';
+    } else if (error.message.includes('non-JSON')) {
+      errorMessage += 'Server configuration issue.';
+    } else {
+      errorMessage += 'Please try again later or contact us directly.';
+    }
+    
+    alert(errorMessage);
+    
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = '1';
+  }
+});
+</script>

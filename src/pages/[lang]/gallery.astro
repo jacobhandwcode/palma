@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import GalleryPage from '../../components/GalleryPage.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'pt' } }
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t('galleryPage.meta.title')}
+  description={t('galleryPage.meta.description')}
+  lang={lang}
+>
+  <GalleryPage
+    title={t('galleryPage.title')}
+    lang={lang}
+  />
+</Layout>
