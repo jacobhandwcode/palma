@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import '../styles/main.scss';
 
 export interface Props {
@@ -18,6 +19,7 @@ export interface Props {
   modifiedTime?: string;
   noindex?: boolean;
   nofollow?: boolean;
+  lang?: string;
 }
 
 const {
@@ -33,16 +35,26 @@ const {
   modifiedTime = '',
   noindex = false,
   nofollow = false,
+  lang,
 } = Astro.props;
+
+// Get current language and translations
+const currentLang = lang || getLangFromUrl(Astro.url);
+// @ts-ignore
+const t = useTranslations(currentLang);
 
 const siteUrl = Astro.site?.toString() || 'https://palmamiamibeach.com';
 const fullUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).toString();
 const fullOgImage = new URL(ogImage, siteUrl).toString();
 const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}`;
+
+// Set proper locale for meta tags
+const ogLocale = currentLang === 'es' ? 'es_ES' : currentLang === 'pt' ? 'pt_BR' : 'en_US';
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -70,8 +82,8 @@ const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' 
     <meta property="og:image:width" content="1059" />
     <meta property="og:image:height" content="602" />
     <meta property="og:image:alt" content={description || title} />
-    <meta property="og:site_name" content="Your Site Name" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={t('site.name')} />
+    <meta property="og:locale" content={ogLocale} />
     {
       publishedTime && (
         <meta property="article:published_time" content={publishedTime} />
@@ -91,30 +103,31 @@ const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' 
     <meta name="twitter:image:alt" content={description || title} />
     <meta name="twitter:site" content="@yourhandle" />
     <meta name="twitter:creator" content="@yourhandle" />
-    <!-- <ClientRouter /> -->
+    <ClientRouter />
+    
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Palma Miami Beach",
-        "url": "{siteUrl}",
-        "description": "{description}",
+        "url": siteUrl,
+        "description": description,
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "{siteUrl}/search?q={search_term_string}",
+          "target": `${siteUrl}/search?q={search_term_string}`,
           "query-input": "required name=search_term_string"
         }
       }
     </script>
   </head>
   <body>
-    <Header />
+    <Header currentLang={currentLang} />
     <main>
       <slot />
     </main>
 
     <!-- Desktop floating phone button -->
-    <button class="phone-button" aria-label="Call us">
+    <button class="phone-button" aria-label={t('contact.call.button')}>
       <svg
         width="24"
         height="24"
@@ -145,8 +158,8 @@ const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' 
         </button>
 
         <div class="popup-header">
-          <h3>Do you have questions?</h3>
-          <p>Call or text today, we are here to help!</p>
+          <h3>{t('contact.questions')}</h3>
+          <p>{t('contact.call')}</p>
         </div>
 
         <div class="popup-actions">
@@ -159,27 +172,12 @@ const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' 
                 stroke-linecap="round"
                 stroke-linejoin="round"></path>
             </svg>
-            786-304-1955
-          </a>
-
-          <a href="sms:+17863041955" class="text-button">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
-            Send Text
+            {t('contact.phone')}
           </a>
         </div>
 
         <div class="popup-footer">
-          <p>
-            I agree to be contacted by PalmaMiamiBeach via text, call & email.
-            To opt-out, reply 'stop' or click unsubscribe.
-          </p>
+          <p>{t('contact.disclaimer')}</p>
         </div>
       </div>
     </div>
@@ -187,11 +185,11 @@ const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' 
 
     <Footer />
 
-    <!-- Mobile floating phone button (when bottom bar is closed) -->
+    <!-- Mobile floating phone button -->
     <button
       class="mobile-phone-button"
       id="mobilePhoneButton"
-      aria-label="Call us"
+      aria-label={t('contact.call.button')}
     >
       <svg
         width="20"
@@ -228,7 +226,7 @@ const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' 
       <a
         href="tel:+17863041955"
         class="mobile-call-button"
-        aria-label="Call 786-304-1955"
+        aria-label={`${t('contact.call.button')} ${t('contact.phone')}`}
       >
         <svg
           width="20"
@@ -244,29 +242,7 @@ const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' 
             stroke-linecap="round"
             stroke-linejoin="round"></path>
         </svg>
-        <span>Call</span>
-      </a>
-
-      <a
-        href="sms:+17863041955"
-        class="mobile-text-button"
-        aria-label="Text 786-304-1955"
-      >
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-            stroke="white"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-        </svg>
-        <span>Text</span>
+        <span>{t('contact.call.button')}</span>
       </a>
     </div>
 

@@ -1,6 +1,16 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
-const currentPath = Astro.url.pathname;
+import { useTranslations, getLocalizedUrl } from '../i18n/utils';
+
+interface Props {
+  currentLang?: 'en' | 'es' | 'pt';
+}
+
+const { currentLang = 'en' } = Astro.props;
+const t = useTranslations(currentLang);
+
+// Get current path for language switcher and active nav states
+const currentPath = Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^\//, '') || '';
 ---
 
 <header>
@@ -10,7 +20,7 @@ const currentPath = Astro.url.pathname;
       <span></span>
       <span></span>
     </div>
-    <a href="/" class="logo">
+    <a href={getLocalizedUrl(currentLang, '')} class="logo">
       <img
         src="/images/icons/palma-logo.svg"
         alt="Palma Miami Beach Logo"
@@ -20,11 +30,11 @@ const currentPath = Astro.url.pathname;
     </a>
     <div class="nav-right">
       <LanguageSwitcher
-        currentLang="en"
-        baseUrl="https://palmamiamibeach.com"
+        currentLang={currentLang}
+        currentPath={currentPath}
       />
-      <a href="tel:13056975810" class="phone-number">+1 305.697.5810</a>
-      <a class="inquire" href="#contact">Inquire</a>
+      <a href="tel:13059464264" class="phone-number">+1 305.946.4264</a>
+      <a class="inquire" href="#contact">{t('nav.contact')}</a>
     </div>
   </div>
 
@@ -37,50 +47,50 @@ const currentPath = Astro.url.pathname;
       <div class="menu-left">
         <nav class="mobile-nav">
           <a
-            href="/"
-            class={`mobile-nav-item ${currentPath === '/' ? 'active' : ''}`}
+            href={getLocalizedUrl(currentLang, '')}
+            class={`mobile-nav-item ${currentPath === '' ? 'active' : ''}`}
             data-hover-image="/images/nav-home.webp"
           >
             HOME
           </a>
           <a
-            href="/amenities"
-            class={`mobile-nav-item ${currentPath === '/amenities' ? 'active' : ''}`}
+            href={getLocalizedUrl(currentLang, 'amenities')}
+            class={`mobile-nav-item ${currentPath === 'amenities' ? 'active' : ''}`}
             data-hover-image="/images/home/amenities.webp"
           >
-            AMENITIES
+            {t('nav.amenities').toUpperCase()}
           </a>
           <a
-            href="/residences"
-            class={`mobile-nav-item ${currentPath === '/residences' ? 'active' : ''}`}
+            href={getLocalizedUrl(currentLang, 'residences')}
+            class={`mobile-nav-item ${currentPath === 'residences' ? 'active' : ''}`}
             data-hover-image="/images/residences/b1-living.webp"
           >
-            RESIDENCES
+            {t('nav.residences').toUpperCase()}
           </a>
           <a
-            href="/neighborhood"
-            class={`mobile-nav-item ${currentPath === '/neighborhood' ? 'active' : ''}`}
+            href={getLocalizedUrl(currentLang, 'neighborhood')}
+            class={`mobile-nav-item ${currentPath === 'neighborhood' ? 'active' : ''}`}
             data-hover-image="/images/home/neighborhood.webp"
           >
-            NEIGHBORHOOD
+            {t('nav.neighborhood').toUpperCase()}
           </a>
           <a
-            href="/team"
-            class={`mobile-nav-item ${currentPath === '/team' ? 'active' : ''}`}
+            href={getLocalizedUrl(currentLang, 'team')}
+            class={`mobile-nav-item ${currentPath === 'team' ? 'active' : ''}`}
             data-hover-image="/images/nav-team.webp"
           >
             TEAM
           </a>
           <a
-            href="/gallery"
-            class={`mobile-nav-item ${currentPath === '/gallery' ? 'active' : ''}`}
+            href={getLocalizedUrl(currentLang, 'gallery')}
+            class={`mobile-nav-item ${currentPath === 'gallery' ? 'active' : ''}`}
             data-hover-image="/images/nav-gallery.webp"
           >
             GALLERY
           </a>
           <a
-            href="/press"
-            class={`mobile-nav-item ${currentPath === '/press' ? 'active' : ''}`}
+            href={getLocalizedUrl(currentLang, 'press')}
+            class={`mobile-nav-item ${currentPath === 'press' ? 'active' : ''}`}
             data-hover-image="/images/home/golden-girl.webp"
           >
             PRESS

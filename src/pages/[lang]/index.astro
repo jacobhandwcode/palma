@@ -1,9 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import { useTranslations } from '../i18n/utils';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-const lang = 'en';
+export function getStaticPaths() {
+  return [
+    { params: { lang: 'es' } },
+    { params: { lang: 'pt' } }
+  ];
+}
+
+const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
@@ -38,7 +45,10 @@ const t = useTranslations(lang);
       class="funnel-card"
       style="background-image: url('/images/home/residences.webp');"
     >
-      <a href="/residences" class="card-link">
+      <a
+        href={lang === 'en' ? '/residences' : `/${lang}/residences`}
+        class="card-link"
+      >
         <h3>{t('home.residences')}</h3>
       </a>
     </div>
@@ -46,7 +56,10 @@ const t = useTranslations(lang);
       class="funnel-card"
       style="background-image: url('/images/home/amenities.webp');"
     >
-      <a href="/amenities" class="card-link">
+      <a
+        href={lang === 'en' ? '/amenities' : `/${lang}/amenities`}
+        class="card-link"
+      >
         <h3>{t('home.amenities')}</h3>
       </a>
     </div>
@@ -54,13 +67,15 @@ const t = useTranslations(lang);
       class="funnel-card"
       style="background-image: url('/images/home/neighborhood.webp');"
     >
-      <a href="/neighborhood" class="card-link">
+      <a
+        href={lang === 'en' ? '/neighborhood' : `/${lang}/neighborhood`}
+        class="card-link"
+      >
         <h3>{t('home.neighborhood')}</h3>
       </a>
     </div>
   </section>
 
-  <!-- gallery -->
   <section class="gallery">
     <div class="gallery-container-home">
       <div class="gallery-slides">
@@ -74,10 +89,16 @@ const t = useTranslations(lang);
           <img src="/images/home/aqua-lounge.webp" alt={t('gallery.lobby')} />
         </div>
         <div class="slide">
-          <img src="/images/home/pool-terrace.webp" alt={t('gallery.terrace')} />
+          <img
+            src="/images/home/pool-terrace.webp"
+            alt={t('gallery.terrace')}
+          />
         </div>
         <div class="slide">
-          <img src="/images/home/living-space.webp" alt={t('gallery.bedroom')} />
+          <img
+            src="/images/home/living-space.webp"
+            alt={t('gallery.bedroom')}
+          />
         </div>
       </div>
 
@@ -140,26 +161,37 @@ const t = useTranslations(lang);
 
     prevSlide() {
       if (this.isTransitioning) return;
-      const prevIndex = this.currentSlide === 0 ? this.slides.length - 1 : this.currentSlide - 1;
+
+      const prevIndex =
+        this.currentSlide === 0
+          ? this.slides.length - 1
+          : this.currentSlide - 1;
       this.goToSlide(prevIndex);
     }
 
     nextSlide() {
       if (this.isTransitioning) return;
-      const nextIndex = this.currentSlide === this.slides.length - 1 ? 0 : this.currentSlide + 1;
+
+      const nextIndex =
+        this.currentSlide === this.slides.length - 1
+          ? 0
+          : this.currentSlide + 1;
       this.goToSlide(nextIndex);
     }
 
     goToSlide(index) {
       if (this.isTransitioning || index === this.currentSlide) return;
+
       this.isTransitioning = true;
 
       this.slides[this.currentSlide].classList.remove('active');
       this.dots[this.currentSlide].classList.remove('active');
+
       this.slides[this.currentSlide].classList.add('zoom-out');
 
       setTimeout(() => {
         this.currentSlide = index;
+
         this.slides[this.currentSlide].classList.add('active', 'zoom-in');
         this.dots[this.currentSlide].classList.add('active');
 

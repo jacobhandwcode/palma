@@ -1,16 +1,17 @@
 ---
-// LanguageSwitcher.astro
+import { getLocalizedUrl } from '../i18n/utils';
+
 interface Props {
   currentLang?: 'en' | 'es' | 'pt';
-  baseUrl?: string;
+  currentPath?: string;
 }
 
-const { currentLang = 'en', baseUrl = '' } = Astro.props;
+const { currentLang = 'en', currentPath = '' } = Astro.props;
 
 const languages = [
-  { code: 'en', label: 'EN', url: baseUrl || '/' },
-  { code: 'es', label: 'ES', url: `${baseUrl}/es/` },
-  { code: 'pt', label: 'PT', url: `${baseUrl}/pt/` },
+  { code: 'en', label: 'EN', url: getLocalizedUrl('en', currentPath) },
+  { code: 'es', label: 'ES', url: getLocalizedUrl('es', currentPath) },
+  { code: 'pt', label: 'PT', url: getLocalizedUrl('pt', currentPath) },
 ];
 
 const currentLanguage = languages.find((lang) => lang.code === currentLang);
@@ -89,10 +90,11 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     text-align: center;
     min-width: 60px;
     box-sizing: border-box;
+    background: #a8a19529;
   }
 
   .language-option:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.3);
   }
 
   .language-option:last-child {
