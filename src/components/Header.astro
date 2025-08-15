@@ -9,17 +9,20 @@ interface Props {
 const { currentLang = 'en' } = Astro.props;
 const t = useTranslations(currentLang);
 
-import { getRelativeLocaleUrl } from 'astro:i18n';
+function extractCurrentPath(pathname: string, lang: string) {
+  let path = pathname.replace(/^\/+/, '');
 
-const relativePath = Astro.url.pathname.replace(
-  import.meta.env.BASE_URL || '/',
-  ''
-);
-const currentPath =
-  relativePath
-    .replace(`/${currentLang}`, '')
-    .replace(/^\//, '')
-    .replace(/\/$/, '') || '';
+  if (path.startsWith(`${lang}/`)) {
+    path = path.replace(`${lang}/`, '');
+  }
+
+  path = path.replace(/\/+$/, '');
+  const segments = path.split('/');
+
+  return segments[0] || '';
+}
+
+const currentPath = extractCurrentPath(Astro.url.pathname, currentLang);
 
 const backgroundPages = [
   'team',
