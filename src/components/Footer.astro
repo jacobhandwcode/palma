@@ -150,6 +150,11 @@ const t = useTranslations(currentLang);
       </div>
     </div>
 
+    <!-- Cloudflare Turnstile Integration -->
+    <div class="form-group full-width" style="display: none;">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAABr_qHsmHh66T10c"></div>
+    </div>
+
     <div class="terms-section">
       <p class="terms-text">
         {t('form.terms.intro')}
@@ -223,6 +228,9 @@ const t = useTranslations(currentLang);
 
 <Disclaimers lang={currentLang} />
 
+<!-- Load Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 <script>
   (function (w, i, d, g, e, t) {
     w['WidgetTrackerObject'] = g;
@@ -259,6 +267,7 @@ const t = useTranslations(currentLang);
       const formData = new FormData(this);
       const data = Object.fromEntries(formData);
 
+      // Check required fields
       if (!data.firstName || !data.lastName || !data.email) {
         alert('Please fill in all required fields.');
         submitBtn.textContent = originalText;
@@ -274,6 +283,19 @@ const t = useTranslations(currentLang);
         submitBtn.style.opacity = '1';
         return;
       }
+
+      // Check Turnstile verification
+      const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]')?.value;
+      if (!turnstileResponse) {
+        alert('Please complete the security verification.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = '1';
+        return;
+      }
+
+      // Add Turnstile response to data
+      data['cf-turnstile-response'] = turnstileResponse;
 
       try {
         const response = await fetch('/form-handler.php', {
@@ -302,7 +324,6 @@ const t = useTranslations(currentLang);
         <div class="success-message-container">
           <h3 class="success-title">Thank You!</h3>
           <p class="success-message">${result.message}</p>
-          <p class="success-note">We will contact you within 24 hours.</p>
         </div>
       `;
 
@@ -340,3 +361,21 @@ const t = useTranslations(currentLang);
       }
     });
 </script>
+
+<style>
+  /* Add styles for Turnstile container */
+  .cf-turnstile {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  /* Ensure the Turnstile widget is properly styled */
+  .cf-turnstile iframe {
+    border-radius: 8px;
+  }
+</style>
