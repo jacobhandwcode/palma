@@ -42,7 +42,7 @@ const currentLang = lang || getLangFromUrl(Astro.url);
 // @ts-ignore
 const t = useTranslations(currentLang);
 
-const siteUrl = Astro.site?.toString() || 'https://palma.dreamhosters.com';
+const siteUrl = Astro.site?.toString() || 'https://palmamiamibeach.com';
 const fullUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).toString();
 const fullOgImage = new URL(ogImage, siteUrl).toString();
 const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}`;

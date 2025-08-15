@@ -235,13 +235,13 @@ $html_message = create_followupboss_email(
     $firstName, $lastName, $email, $phone, $comments, 
     $hearAbout, $realtor, $buyerBroker, 
     $_SERVER['REMOTE_ADDR'] ?? 'unknown',
-    $_SERVER['HTTP_REFERER'] ?? 'https://palma.dreamhosters.com'
+    $_SERVER['HTTP_REFERER'] ?? 'https://palmamiamibeach.com'
 );
 
 $to = 'palma.miami.beach@followupboss.me';
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-$headers .= "From: no-reply@palma.dreamhosters.com" . "\r\n";
+$headers .= "From: no-reply@palmamiamibeach.com" . "\r\n";
 
 $mailSent = mail($to, $subject, $html_message, $headers);
 
