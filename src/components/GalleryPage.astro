@@ -134,7 +134,6 @@ galleryItems.forEach((item, index) => {
       currentRow.push(item);
       isInCustomRow = true;
     } else {
-      // Complete custom row
       currentRow.push(item);
       processedRows.push(currentRow);
       currentRow = [];
@@ -212,7 +211,6 @@ if (currentRow.length > 0) {
     </div>
   </div>
 
-  <!-- Gallery Modal Slider -->
   <div class="gallery-page-slider" id="gallerySlider">
     <div class="gallery-page-slider__overlay"></div>
     <div class="gallery-page-slider__container">

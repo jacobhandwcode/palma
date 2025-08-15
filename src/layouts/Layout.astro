@@ -26,7 +26,7 @@ const {
   title,
   description = '',
   keywords = '',
-  ogImage = '/images/og.png',
+  ogImage = '/images/home/hero-text.webp',
   ogType = 'website',
   twitterCard = 'summary_large_image',
   canonicalUrl,
@@ -38,7 +38,6 @@ const {
   lang,
 } = Astro.props;
 
-// Get current language and translations
 const currentLang = lang || getLangFromUrl(Astro.url);
 // @ts-ignore
 const t = useTranslations(currentLang);
@@ -48,9 +47,18 @@ const fullUrl = canonicalUrl || new URL(Astro.url.pathname, siteUrl).toString();
 const fullOgImage = new URL(ogImage, siteUrl).toString();
 const robotsContent = `${noindex ? 'noindex' : 'index'},${nofollow ? 'nofollow' : 'follow'}`;
 
-// Set proper locale for meta tags
-const ogLocale = currentLang === 'es' ? 'es_ES' : currentLang === 'pt' ? 'pt_BR' : 'en_US';
-import { ClientRouter } from "astro:transitions";
+const ogLocale =
+  currentLang === 'es' ? 'es_ES' : currentLang === 'pt' ? 'pt_BR' : 'en_US';
+import { ClientRouter } from 'astro:transitions';
+const schemaData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Palma Miami Beach',
+  url: siteUrl,
+  description: description,
+  address: '600 71st Street, Miami Beach, FL 33141',
+  telephone: '+13059464264',
+};
 ---
 
 <!doctype html>
@@ -101,24 +109,8 @@ import { ClientRouter } from "astro:transitions";
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullOgImage} />
     <meta name="twitter:image:alt" content={description || title} />
-    <meta name="twitter:site" content="@yourhandle" />
-    <meta name="twitter:creator" content="@yourhandle" />
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
     <!-- <ClientRouter /> -->
-    
-    <!-- <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Palma Miami Beach",
-        "url": siteUrl,
-        "description": description,
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": `${siteUrl}/search?q={search_term_string}`,
-          "query-input": "required name=search_term_string"
-        }
-      }
-    </script> -->
   </head>
   <body>
     <Header currentLang={currentLang} />
@@ -126,7 +118,6 @@ import { ClientRouter } from "astro:transitions";
       <slot />
     </main>
 
-    <!-- Desktop floating phone button -->
     <button class="phone-button" aria-label={t('contact.call.button')}>
       <svg
         width="24"
@@ -144,7 +135,6 @@ import { ClientRouter } from "astro:transitions";
       </svg>
     </button>
 
-    <!-- Desktop popup -->
     <div class="phone-popup" id="phonePopup">
       <div class="popup-content">
         <button class="popup-close" id="closePopup" aria-label="Close">
@@ -185,7 +175,6 @@ import { ClientRouter } from "astro:transitions";
 
     <Footer currentLang={currentLang} />
 
-    <!-- Mobile floating phone button -->
     <button
       class="mobile-phone-button"
       id="mobilePhoneButton"
@@ -207,7 +196,6 @@ import { ClientRouter } from "astro:transitions";
       </svg>
     </button>
 
-    <!-- Mobile bottom bar buttons -->
     <div class="mobile-bottom-bar" id="mobileBottomBar">
       <button
         class="mobile-close-button"

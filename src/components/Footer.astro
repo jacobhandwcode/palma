@@ -208,9 +208,9 @@ const t = useTranslations(currentLang);
           >{t('footer.links.notices')}</a
         >
         <span>|</span>
-        <button 
-          type="button" 
-          class="disclaimers-link" 
+        <button
+          type="button"
+          class="disclaimers-link"
           data-disclaimers
           aria-label={t('disclaimers.title')}
         >
@@ -221,10 +221,8 @@ const t = useTranslations(currentLang);
   </div>
 </footer>
 
-<!-- Include the Disclaimers modal component -->
 <Disclaimers lang={currentLang} />
 
-<!-- Widget Tracker Code -->
 <script>
   (function (w, i, d, g, e, t) {
     w['WidgetTrackerObject'] = g;
@@ -245,7 +243,6 @@ const t = useTranslations(currentLang);
   window.widgetTracker('send', 'pageview');
 </script>
 
-<!-- Form Submission Script -->
 <script>
   document
     .getElementById('contactForm')
@@ -262,7 +259,6 @@ const t = useTranslations(currentLang);
       const formData = new FormData(this);
       const data = Object.fromEntries(formData);
 
-      // Validate required fields
       if (!data.firstName || !data.lastName || !data.email) {
         alert('Please fill in all required fields.');
         submitBtn.textContent = originalText;
@@ -310,7 +306,6 @@ const t = useTranslations(currentLang);
         </div>
       `;
 
-          // Track successful submission with Widget Tracker
           if (window.widgetTracker) {
             window.widgetTracker('send', 'event', 'form', 'submit', 'contact');
           }
