@@ -56,8 +56,6 @@ const schemaData = {
   name: 'Palma Miami Beach',
   url: siteUrl,
   description: description,
-  address: '600 71st Street, Miami Beach, FL 33141',
-  telephone: '+13059464264',
 };
 ---
 
@@ -110,7 +108,7 @@ const schemaData = {
     <meta name="twitter:image" content={fullOgImage} />
     <meta name="twitter:image:alt" content={description || title} />
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
-    <!-- <ClientRouter /> -->
+    <script src="../scripts/main.js"></script>
   </head>
   <body>
     <Header currentLang={currentLang} />
@@ -233,9 +231,5 @@ const schemaData = {
         <span>{t('contact.call.button')}</span>
       </a>
     </div>
-
-    <script>
-      import '../scripts/main.js';
-    </script>
   </body>
 </html>
