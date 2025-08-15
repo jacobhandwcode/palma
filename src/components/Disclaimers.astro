@@ -1,0 +1,134 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang?: 'en' | 'es' | 'pt';
+}
+
+const { lang } = Astro.props;
+const currentLang = lang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
+<div class="disclaimers-modal-overlay" id="disclaimersOverlay">
+  <div class="disclaimers-modal" id="disclaimersModal">
+    <div class="disclaimers-content">
+      <button
+        class="disclaimers-close"
+        id="disclaimersClose"
+        aria-label={t('disclaimers.close')}
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 6L6 18M6 6L18 18"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
+      <div class="disclaimers-header">
+        <h2 class="disclaimers-title">{t('disclaimers.title')}</h2>
+      </div>
+
+      <div class="disclaimers-body">
+        <div class="disclaimer-section">
+          <p class="disclaimer-text">
+            {t('disclaimers.oralRepresentations')}
+          </p>
+        </div>
+
+        <div class="disclaimer-section">
+          <p class="disclaimer-text">
+            {t('disclaimers.developer')}
+          </p>
+        </div>
+
+        <div class="disclaimer-section">
+          <p class="disclaimer-text">
+            {t('disclaimers.notAnOffer')}
+          </p>
+        </div>
+
+        <div class="disclaimer-section">
+          <p class="disclaimer-text">
+            {t('disclaimers.materials')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const disclaimersOverlay = document.getElementById('disclaimersOverlay');
+    const disclaimersModal = document.getElementById('disclaimersModal');
+    const disclaimersClose = document.getElementById('disclaimersClose');
+
+    // Function to open disclaimers
+    function openDisclaimers() {
+      document.body.classList.add('modal-open');
+      disclaimersOverlay.classList.add('active');
+      setTimeout(() => {
+        disclaimersModal.classList.add('active');
+      }, 50);
+    }
+
+    // Function to close disclaimers
+    function closeDisclaimers() {
+      disclaimersModal.classList.remove('active');
+      setTimeout(() => {
+        disclaimersOverlay.classList.remove('active');
+        document.body.classList.remove('modal-open');
+      }, 300);
+    }
+
+    // Close button event
+    disclaimersClose.addEventListener('click', closeDisclaimers);
+
+    // Close on overlay click
+    disclaimersOverlay.addEventListener('click', function (e) {
+      if (e.target === disclaimersOverlay) {
+        closeDisclaimers();
+      }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function (e) {
+      if (
+        e.key === 'Escape' &&
+        disclaimersOverlay.classList.contains('active')
+      ) {
+        closeDisclaimers();
+      }
+    });
+
+    // Find all disclaimers links and add click handlers
+    const disclaimersLinks = document.querySelectorAll(
+      'a[href*="disclaimers"]'
+    );
+    disclaimersLinks.forEach((link) => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        openDisclaimers();
+      });
+    });
+
+    // Also handle any element with data-disclaimers attribute
+    const disclaimersElements = document.querySelectorAll('[data-disclaimers]');
+    disclaimersElements.forEach((element) => {
+      element.addEventListener('click', function (e) {
+        e.preventDefault();
+        openDisclaimers();
+      });
+    });
+  });
+</script>

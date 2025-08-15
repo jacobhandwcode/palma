@@ -26,8 +26,46 @@ const t = useTranslations(currentLang);
       <p class="hero-subtitle">{t('hero.subtitle')}</p>
     </div>
 
-    <div class="scroll-indicator">
-      <img src="/images/icons/arrow.svg" alt={t('hero.scroll')} />
+    <div class="arrow">
+      <a href="#text-box" class="down-arrow"></a>
     </div>
   </div>
 </section>
+
+<style>
+  .arrow {
+    opacity: 1;
+    transition: opacity 0.5s 0.4s;
+    translate: none;
+    rotate: none;
+    scale: none;
+    transform: translate(-50%, 0%);
+    margin: 0 auto;
+    width: 0;
+  }
+  .down-arrow {
+    display: inline-block;
+    cursor: pointer;
+    animation: bounce 1.5s infinite alternate;
+  }
+
+  .down-arrow::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+</style>

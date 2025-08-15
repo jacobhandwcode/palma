@@ -1,0 +1,455 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t('legal.meta.title')}
+  description={t('legal.meta.description')}
+  lang={lang}
+>
+  <main>
+    <section class="legal-notices-section">
+      <div class="legal-notices-container">
+        <header class="legal-notices-header">
+          <h1 class="legal-notices-title">{t('legal.title')}</h1>
+          <p class="legal-notices-subtitle">{t('legal.subtitle')}</p>
+        </header>
+
+        <div class="legal-notices-content">
+          <p>
+            <strong>{t('legal.acceptance')}</strong>
+            {t('legal.description')}
+          </p>
+          <p><strong>{t('legal.noAgreement')}</strong></p>
+
+          <p><strong><u>{t('legal.notices.title')}</u></strong></p>
+          <p><strong>{t('legal.notices.oral')}</strong></p>
+          <p><strong><em>{t('legal.notices.newYork')}</em></strong></p>
+          <p><strong>{t('legal.notices.jurisdiction')}</strong></p>
+          <p>{t('legal.notices.equalHousing')}</p>
+          <p>{t('legal.notices.materials')}</p>
+
+          <p>
+            <strong><u>{t('legal.dispute.title')}</u></strong>: <strong
+              >{t('legal.dispute.description')}</strong>
+          </p>
+
+          <p><strong>{t('legal.developer.separation')}</strong></p>
+          <p>{t('legal.developer.license')}</p>
+          <p>{t('legal.developer.noResponsibility')}</p>
+          <p>{t('legal.developer.release')}</p>
+          <p><strong>{t('legal.developer.brokers')}</strong></p>
+
+          <p>{t('legal.communications.description')}</p>
+          <p>{t('legal.press.disclaimer')}</p>
+          <p>{t('legal.copyright.description')}</p>
+          <p>{t('legal.materials.service')}</p>
+          <p>{t('legal.pricing.disclaimer')}</p>
+          <p>{t('legal.plans.disclaimer')}</p>
+          <p>{t('legal.photos.disclaimer')}</p>
+          <p>{t('legal.interior.disclaimer')}</p>
+          <p>{t('legal.wood.disclaimer')}</p>
+          <p>{t('legal.ceiling.disclaimer')}</p>
+          <p>{t('legal.offsite.disclaimer')}</p>
+          <p>{t('legal.restaurants.disclaimer')}</p>
+
+          <p><strong><u>{t('legal.additional.title')}</u></strong></p>
+          <ol>
+            <li>
+              <u>{t('legal.updates.title')}</u>. {
+                t('legal.updates.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.privacy.title')}</u>. {
+                t('legal.privacy.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.yourUse.title')}</u>. {
+                t('legal.yourUse.description')
+              }
+              <ul>
+                <li>{t('legal.yourUse.impersonate')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.illegal')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.link')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.interfere')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.frame')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.spider')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.remove')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.decompile')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.virus')}</li>
+              </ul>
+              <ul>
+                <li>{t('legal.yourUse.circumvent')}</li>
+                <li>{t('legal.yourUse.inappropriate')}</li>
+                <li>{t('legal.yourUse.corrupted')}</li>
+                <li>{t('legal.yourUse.software')}</li>
+                <li>{t('legal.yourUse.laws')}</li>
+              </ul>
+              <p style="padding-left: 40px;">{t('legal.yourUse.monitoring')}</p>
+              <p style="padding-left: 40px;">
+                {t('legal.yourUse.limitations')}
+              </p>
+            </li>
+          </ol>
+
+          <ol start="4">
+            <li>
+              <u>{t('legal.intellectual.title')}</u>. {
+                t('legal.intellectual.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.management.title')}</u>
+              <ul>
+                <li>
+                  <em>{t('legal.management.right.title')}</em>. {
+                    t('legal.management.right.description')
+                  }
+                </li>
+                <li>
+                  <em>{t('legal.management.terminate.title')}</em>. {
+                    t('legal.management.terminate.description')
+                  }
+                </li>
+              </ul>
+            </li>
+            <li>
+              <u>{t('legal.thirdParty.title')}</u>. {
+                t('legal.thirdParty.description')
+              }
+            </li>
+            <li><u>{t('legal.arbitration.title')}</u>.</li>
+          </ol>
+
+          <p style="padding-left: 40px;">
+            <strong><u>{t('legal.arbitration.read')}</u></strong>
+          </p>
+
+          <ol style="list-style-type: none;">
+            <ol style="list-style-type: upper-alpha;">
+              <li>
+                <em>{t('legal.arbitration.initial.title')}</em>. {
+                  t('legal.arbitration.initial.description')
+                }
+              </li>
+              <li>
+                <em>{t('legal.arbitration.binding.title')}</em>. {
+                  t('legal.arbitration.binding.description')
+                }
+              </li>
+              <li>
+                <em>{t('legal.arbitration.class.title')}</em>. {
+                  t('legal.arbitration.class.description')
+                }
+              </li>
+              <li>
+                <em>{t('legal.arbitration.exception.title')}</em>. {
+                  t('legal.arbitration.exception.description')
+                }
+              </li>
+              <li>
+                <strong><em>{t('legal.arbitration.optout.title')}</em></strong>. {
+                  t('legal.arbitration.optout.description')
+                }
+              </li>
+              <li>
+                <em>{t('legal.arbitration.venue.title')}</em>. {
+                  t('legal.arbitration.venue.description')
+                }
+              </li>
+              <li>
+                <em>{t('legal.arbitration.law.title')}</em>. {
+                  t('legal.arbitration.law.description')
+                }
+              </li>
+            </ol>
+          </ol>
+
+          <ol start="8">
+            <li>
+              <u>{t('legal.warranty.title')}</u>
+              <ol style="list-style-type: upper-alpha;">
+                <li>
+                  <em>{t('legal.warranty.general.title')}</em>
+                  <ol style="list-style-type: lower-roman;">
+                    <li>{t('legal.warranty.general.materials')}</li>
+                    <li>{t('legal.warranty.general.accuracy')}</li>
+                  </ol>
+                </li>
+                <li>
+                  <em>{t('legal.warranty.limited.title')}</em>. {
+                    t('legal.warranty.limited.description')
+                  }
+                </li>
+                <li>
+                  <em>{t('legal.warranty.exceptions.title')}</em>. {
+                    t('legal.warranty.exceptions.description')
+                  }
+                </li>
+              </ol>
+            </li>
+            <li>
+              <u>{t('legal.indemnity.title')}</u>. {
+                t('legal.indemnity.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.information.title')}</u>. {
+                t('legal.information.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.nonWaiver.title')}</u>. {
+                t('legal.nonWaiver.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.severability.title')}</u>. {
+                t('legal.severability.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.assignment.title')}</u>. {
+                t('legal.assignment.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.modifications.title')}</u>. {
+                t('legal.modifications.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.reporting.title')}</u>. {
+                t('legal.reporting.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.dmca.title')}</u>. {t('legal.dmca.description')}
+            </li>
+          </ol>
+
+          <p>{t('legal.dmca.procedures')}</p>
+          <p>{t('legal.dmca.whatToDo')}</p>
+          <p>{t('legal.dmca.notification')}</p>
+          <p>{t('legal.dmca.serviceProvider')}</p>
+          <p>{t('legal.dmca.agent')}</p>
+          <p>{t('legal.dmca.address')}</p>
+          <p>{t('legal.dmca.phone')}</p>
+          <p>{t('legal.dmca.email')}</p>
+
+          <p>{t('legal.dmca.include')}</p>
+          <p>{t('legal.dmca.effective')}</p>
+          <ol>
+            <li>{t('legal.dmca.yourName')}</li>
+            <li>{t('legal.dmca.identification')}</li>
+            <li>{t('legal.dmca.material')}</li>
+            <li>{t('legal.dmca.goodFaith')}</li>
+            <li>{t('legal.dmca.accurate')}</li>
+            <li>{t('legal.dmca.signature')}</li>
+          </ol>
+
+          <p>{t('legal.dmca.response')}</p>
+          <p>{t('legal.dmca.uponReceipt')}</p>
+          <ol>
+            <li>{t('legal.dmca.remove')}</li>
+            <li>{t('legal.dmca.forward')}</li>
+            <li>{t('legal.dmca.notify')}</li>
+          </ol>
+
+          <p>{t('legal.dmca.counterResponse')}</p>
+          <p>{t('legal.dmca.counterInclude')}</p>
+          <ol>
+            <li>{t('legal.dmca.counterName')}</li>
+            <li>{t('legal.dmca.counterConsent')}</li>
+            <li>{t('legal.dmca.counterIdentification')}</li>
+            <li>{t('legal.dmca.counterGoodFaith')}</li>
+            <li>{t('legal.dmca.counterSignature')}</li>
+          </ol>
+
+          <p>{t('legal.dmca.counterResponse2')}</p>
+          <ol>
+            <li>{t('legal.dmca.counterUpon')}</li>
+            <li>{t('legal.dmca.counterProvide')}</li>
+            <li>{t('legal.dmca.counterInform')}</li>
+            <li>{t('legal.dmca.counterReplace')}</li>
+          </ol>
+
+          <ol start="17">
+            <li>
+              <u>{t('legal.questions.title')}</u>. {
+                t('legal.questions.description')
+              }
+            </li>
+            <li>
+              <u>{t('legal.entire.title')}</u>. {t('legal.entire.description')}
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .legal-notices-section {
+    margin: 12rem auto 3rem auto;
+    max-width: 800px;
+    width: 90%;
+    padding: 0 20px;
+  }
+
+  .legal-notices-container {
+    margin: 0 auto;
+  }
+
+  .legal-notices-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .legal-notices-title {
+    font-size: 48px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #7b705e;
+    margin: 0 0 1rem 0;
+    font-family: 'didot-headline', serif;
+    line-height: 1.1;
+  }
+
+  .legal-notices-subtitle {
+    font-size: 18px;
+    color: #7b705e;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+  }
+
+  .legal-notices-content {
+    color: #7b705e;
+  }
+
+  .legal-notices-content h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #7b705e;
+    margin: 2rem 0 1rem 0;
+    font-family: 'didot-headline', serif;
+  }
+
+  .legal-notices-content h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #7b705e;
+    margin: 1.5rem 0 1rem 0;
+    font-family: 'didot-headline', serif;
+  }
+
+  .legal-notices-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+
+  .legal-notices-content ul,
+  .legal-notices-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .legal-notices-content li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+
+  .legal-notices-content a {
+    color: #7b705e;
+    text-decoration: underline;
+  }
+
+  .legal-notices-content a:hover {
+    color: #5a4e42;
+  }
+
+  @media (max-width: 768px) {
+    .legal-notices-section {
+      margin: 8rem auto 3rem auto;
+      padding: 0 16px;
+    }
+
+    .legal-notices-header {
+      margin-bottom: 60px;
+    }
+
+    .legal-notices-title {
+      font-size: 36px;
+    }
+
+    .legal-notices-subtitle {
+      font-size: 16px;
+    }
+
+    .legal-notices-content h2 {
+      font-size: 24px;
+    }
+
+    .legal-notices-content h4 {
+      font-size: 18px;
+    }
+
+    .legal-notices-content p,
+    .legal-notices-content li {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .legal-notices-title {
+      font-size: 28px;
+    }
+
+    .legal-notices-subtitle {
+      font-size: 14px;
+    }
+
+    .legal-notices-content h2 {
+      font-size: 22px;
+    }
+
+    .legal-notices-content h4 {
+      font-size: 16px;
+    }
+
+    .legal-notices-content p,
+    .legal-notices-content li {
+      font-size: 14px;
+    }
+  }
+</style>

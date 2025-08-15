@@ -11,9 +11,22 @@ const t = useTranslations(currentLang);
 
 const currentPath =
   Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^\//, '') || '';
+
+// Pages that should have background from start
+const backgroundPages = [
+  'team',
+  'gallery',
+  'press',
+  'notices-terms',
+  'privacy-policy',
+];
+const hasInitialBackground = backgroundPages.includes(currentPath);
 ---
 
-<header>
+<header
+  class={hasInitialBackground ? 'has-initial-background' : ''}
+  id="header"
+>
   <div class="header-wrapper">
     <div class="hamburger" id="hamburger">
       <span></span>
@@ -116,9 +129,33 @@ const currentPath =
     const mobileMenu = document.getElementById('mobileMenu');
     const menuImage = document.getElementById('menuImage');
     const navItems = document.querySelectorAll('.mobile-nav-item');
+    const menuFooter = document.querySelector('.mobile-menu-footer');
+    const menuImageContainer = document.querySelector('.menu-image');
+    const header = document.getElementById('header');
     const baseImageSrc = '/images/nav.webp';
 
     let isTransitioning = false;
+    let isMenuOpen = false;
+    let lastHoveredImage = baseImageSrc; // Track the last hovered image
+
+    // Scroll handler for header background
+    function handleScroll() {
+      if (!header) return;
+
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollThreshold = 100; // Adjust this value to control when the background appears
+
+      // Don't add scrolled class if header already has initial background
+      if (scrollTop > scrollThreshold) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
 
     function changeImageWithTransition(newImageSrc) {
       if (!menuImage || isTransitioning) {
@@ -157,49 +194,119 @@ const currentPath =
       newImg.src = newImageSrc;
     }
 
+    function openMenu() {
+      isMenuOpen = true;
+      hamburger.classList.add('active');
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Add opening animation classes
+      navItems.forEach((item) => {
+        item.classList.remove('animate-out');
+        item.classList.add('animate-in');
+      });
+
+      if (menuFooter) {
+        menuFooter.classList.remove('animate-out');
+        menuFooter.classList.add('animate-in');
+      }
+
+      if (menuImageContainer) {
+        menuImageContainer.classList.remove('animate-out');
+        menuImageContainer.classList.add('animate-in');
+      }
+
+      // Reset to base image when opening menu
+      if (menuImage && menuImage.src !== baseImageSrc) {
+        changeImageWithTransition(baseImageSrc);
+        lastHoveredImage = baseImageSrc;
+      }
+    }
+
+    function closeMenu() {
+      isMenuOpen = false;
+      hamburger.classList.remove('active');
+      document.body.style.overflow = '';
+
+      // Add closing animation classes
+      navItems.forEach((item) => {
+        item.classList.remove('animate-in');
+        item.classList.add('animate-out');
+      });
+
+      if (menuFooter) {
+        menuFooter.classList.remove('animate-in');
+        menuFooter.classList.add('animate-out');
+      }
+
+      if (menuImageContainer) {
+        menuImageContainer.classList.remove('animate-in');
+        menuImageContainer.classList.add('animate-out');
+      }
+
+      // Wait for animations to complete before hiding menu
+      setTimeout(() => {
+        mobileMenu.classList.remove('active');
+
+        // Clean up animation classes
+        navItems.forEach((item) => {
+          item.classList.remove('animate-out');
+        });
+
+        if (menuFooter) {
+          menuFooter.classList.remove('animate-out');
+        }
+
+        if (menuImageContainer) {
+          menuImageContainer.classList.remove('animate-out');
+        }
+      }, 800); // Match the longest animation duration + delays
+    }
+
     if (hamburger && mobileMenu) {
       hamburger.addEventListener('click', function () {
-        hamburger.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-
-        if (mobileMenu.classList.contains('active')) {
-          document.body.style.overflow = 'hidden';
-          if (menuImage && menuImage.src !== baseImageSrc) {
-            changeImageWithTransition(baseImageSrc);
-          }
+        if (isMenuOpen) {
+          closeMenu();
         } else {
-          document.body.style.overflow = '';
+          openMenu();
         }
       });
 
       navItems.forEach((item) => {
         item.addEventListener('mouseenter', function () {
+          if (!isMenuOpen) return; // Only handle hover when menu is open
+
           const hoverImage = this.getAttribute('data-hover-image');
           console.log('Hovering on:', this.textContent, 'Image:', hoverImage);
           if (hoverImage) {
+            lastHoveredImage = hoverImage; // Update the last hovered image
             changeImageWithTransition(hoverImage);
           }
         });
 
         item.addEventListener('mouseleave', function () {
+          if (!isMenuOpen) return; // Only handle hover when menu is open
+
           console.log('Mouse left:', this.textContent);
-          changeImageWithTransition(baseImageSrc);
+          // Don't go back to base image, stay on the last hovered image
+          // The image will only change when hovering over another item
         });
 
         item.addEventListener('click', function () {
-          hamburger.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
+          closeMenu();
         });
       });
 
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-          hamburger.classList.remove('active');
-          mobileMenu.classList.remove('active');
-          document.body.style.overflow = '';
+        if (e.key === 'Escape' && isMenuOpen) {
+          closeMenu();
         }
       });
     }
+
+    // Clean up scroll listener when page unloads
+    window.addEventListener('beforeunload', function () {
+      window.removeEventListener('scroll', handleScroll);
+    });
   });
 </script>

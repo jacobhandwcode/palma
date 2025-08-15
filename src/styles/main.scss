@@ -43,6 +43,7 @@ html {
 main {
   min-height: 100vh;
   overflow-x: hidden;
+  overflow: hidden;
 }
 
 // header
@@ -50,15 +51,55 @@ header {
   width: 100%;
   z-index: 999;
   position: sticky;
-  top: 3rem;
-  margin-top: -3rem;
+  top: 0;
+  margin-top: -5.64rem;
+  padding: 1.5rem 0;
+  transition: background-color 0.3s ease-in-out;
+
+  // Default transparent background for ALL pages
+  background-color: transparent;
+  transition: background-color 0.3s ease-in-out;
+
+  &.scrolled {
+    background-color: rgba(168, 161, 149, 0.5) !important;
+  }
+
+  &.has-initial-background {
+    .logo img {
+      filter: brightness(0) saturate(100%) invert(44%) sepia(16%) saturate(419%)
+        hue-rotate(358deg) brightness(96%) contrast(95%);
+    }
+    .language-switcher span,
+    .language-dropdown a,
+    .phone-number {
+      color: $primary !important;
+    }
+    .hamburger span {
+      background-color: $primary !important;
+    }
+    .inquire {
+      background-color: $primary !important;
+      color: #ffffff !important;
+      &:hover {
+        background-color: rgb(
+          94.0921658986,
+          85.6774193548,
+          71.9078341014
+        ) !important;
+      }
+    }
+
+    &.scrolled {
+      background-color: rgba(255, 255, 255, 0.67) !important;
+    }
+  }
 
   .header-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    max-width: 1600px;
+    max-width: 1400px;
     width: 95%;
     margin: 0 auto;
     z-index: 20000;
@@ -128,7 +169,6 @@ header {
       flex-direction: column;
       gap: 7px;
       cursor: pointer;
-      padding: 8px;
       transition: transform 0.3s ease-in-out;
       z-index: 1001;
 
@@ -174,7 +214,6 @@ header {
     left: 0;
     width: 100%;
     height: 100vh;
-    backdrop-filter: blur(10px);
     z-index: 1000;
     pointer-events: none;
     visibility: hidden;
@@ -230,13 +269,13 @@ header {
             text-decoration: none;
             font-size: 2.5rem;
             font-weight: 400;
-            font-family: 'Montserrat', sans-serif;
+            font-family: $montserrat;
             letter-spacing: 4px;
             text-transform: uppercase;
             transition: all 0.3s ease-in-out;
             opacity: 0;
             transform: translateX(-30px);
-            animation: slideIn 0.6s ease forwards;
+
             &.active {
               color: $primary !important;
             }
@@ -246,23 +285,59 @@ header {
               transform: translateX(10px);
             }
 
-            &:nth-child(1) {
+            // Animation classes for both opening and closing
+            &.animate-in {
+              animation: slideIn 0.6s ease forwards;
+            }
+
+            &.animate-out {
+              animation: slideOut 0.4s ease forwards;
+            }
+
+            // Staggered delays for opening animation
+            &:nth-child(1).animate-in {
               animation-delay: 0.1s;
             }
-            &:nth-child(2) {
+            &:nth-child(2).animate-in {
               animation-delay: 0.2s;
             }
-            &:nth-child(3) {
+            &:nth-child(3).animate-in {
               animation-delay: 0.3s;
             }
-            &:nth-child(4) {
+            &:nth-child(4).animate-in {
               animation-delay: 0.4s;
             }
-            &:nth-child(5) {
+            &:nth-child(5).animate-in {
               animation-delay: 0.5s;
             }
-            &:nth-child(6) {
+            &:nth-child(6).animate-in {
               animation-delay: 0.6s;
+            }
+            &:nth-child(7).animate-in {
+              animation-delay: 0.7s;
+            }
+
+            // Reverse staggered delays for closing animation
+            &:nth-child(1).animate-out {
+              animation-delay: 0.6s;
+            }
+            &:nth-child(2).animate-out {
+              animation-delay: 0.5s;
+            }
+            &:nth-child(3).animate-out {
+              animation-delay: 0.4s;
+            }
+            &:nth-child(4).animate-out {
+              animation-delay: 0.3s;
+            }
+            &:nth-child(5).animate-out {
+              animation-delay: 0.2s;
+            }
+            &:nth-child(6).animate-out {
+              animation-delay: 0.1s;
+            }
+            &:nth-child(7).animate-out {
+              animation-delay: 0s;
             }
           }
         }
@@ -270,7 +345,14 @@ header {
         .mobile-menu-footer {
           margin-top: 4rem;
           opacity: 0;
-          animation: slideIn 0.6s ease forwards 0.8s;
+
+          &.animate-in {
+            animation: slideIn 0.6s ease forwards 0.8s;
+          }
+
+          &.animate-out {
+            animation: slideOut 0.4s ease forwards;
+          }
 
           .social-link {
             display: inline-block;
@@ -310,8 +392,15 @@ header {
           height: 100vh;
           overflow: hidden;
           opacity: 0;
-          animation: imageZoom 0.8s ease forwards 0.3s;
           transition: all 0.3s ease-in-out;
+
+          &.animate-in {
+            animation: imageZoom 0.8s ease forwards 0.3s;
+          }
+
+          &.animate-out {
+            animation: imageZoomOut 0.4s ease forwards;
+          }
 
           img {
             width: 100%;
@@ -358,6 +447,50 @@ header {
   }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes imageZoom {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes imageZoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
 @media (max-width: 985px) {
   .menu-right {
     display: none !important;
@@ -386,6 +519,8 @@ header {
   display: flex;
   align-items: flex-end;
   justify-content: center;
+
+  overflow: hidden;
 }
 
 .hero-video {
@@ -2012,12 +2147,9 @@ header {
 .gallery-container-image {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 20px;
-}
-
-@media (max-width: 768px) {
-  .gallery-container-image {
-    padding: 0;
+  width: 95%;
+  @media (max-width: 768px) {
+    width: 100%;
   }
 }
 
@@ -2264,6 +2396,9 @@ header {
 // team
 .team-section {
   margin: 12rem auto 3rem auto;
+  @media (max-width: 768px) {
+    margin: 8rem auto 3rem auto;
+  }
 }
 
 .team-container {
@@ -2451,6 +2586,9 @@ header {
 .gallery-page-section {
   margin: 12rem 0 0 0;
   overflow: hidden;
+  @media (max-width: 768px) {
+    margin: 8rem 0 0 0;
+  }
 }
 
 .gallery-page-header {
@@ -2769,6 +2907,14 @@ header {
     margin-top: 5rem;
     margin-bottom: -0.77rem;
     text-transform: uppercase;
+    @media (max-width: 960px) {
+      font-size: 50px;
+      margin-bottom: 0;
+    }
+    @media (max-width: 515px) {
+      font-size: 36px;
+      line-height: 50px;
+    }
   }
 }
 
@@ -2834,11 +2980,9 @@ header {
   margin: 12rem auto 3rem auto;
   max-width: 1400px;
   width: 95%;
-  padding: 0 20px;
 
   @media (max-width: 768px) {
     margin: 8rem auto 3rem auto;
-    padding: 0 16px;
   }
 }
 
@@ -2866,10 +3010,6 @@ header {
   @media (max-width: 768px) {
     font-size: 36px;
     margin-bottom: 1.5rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 28px;
   }
 }
 
@@ -3095,6 +3235,36 @@ footer {
   background: $other;
   padding: 4rem 2rem 3rem;
   text-align: center;
+
+  .disclaimers-link {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: $montserrat;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &:focus {
+      outline: 2px solid rgba(255, 255, 255, 0.5);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
 
   h3 {
     color: #fff;
@@ -4133,5 +4303,452 @@ footer .footer-info {
 
   .success-note {
     font-size: 12px;
+  }
+}
+
+// disclaimers
+// Disclaimers Modal Styles
+.disclaimers-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
+}
+
+.disclaimers-modal {
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  background: $other;
+  border-radius: 0;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+  &.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  @media (max-width: 768px) {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  @media (max-width: 480px) {
+    width: 98%;
+    max-height: 98vh;
+  }
+}
+
+.disclaimers-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.disclaimers-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+  z-index: 10;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 768px) {
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.disclaimers-header {
+  padding: 3rem 3rem 2rem 3rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  @media (max-width: 768px) {
+    padding: 2.5rem 2rem 1.5rem 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem 1.5rem 1rem 1.5rem;
+  }
+}
+
+.disclaimers-title {
+  font-family: $didot-headline;
+  font-size: 48px;
+  font-weight: 300;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+    letter-spacing: 1.5px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
+}
+
+.disclaimers-body {
+  flex: 1;
+  padding: 2rem 3rem 3rem 3rem;
+  overflow-y: auto;
+
+  // Custom scrollbar styling to match your design
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 2rem 2rem 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+  }
+}
+
+.disclaimer-section {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.disclaimer-text {
+  font-family: $montserrat;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin: 0;
+  text-align: justify;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    text-align: left;
+  }
+}
+
+// Body class to prevent scrolling when modal is open
+body.modal-open {
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    width: 100%;
+  }
+}
+
+// Animation keyframes
+@keyframes slideInModal {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) translateY(0);
+  }
+}
+
+@keyframes slideOutModal {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9) translateY(30px);
+  }
+}
+
+// Enhanced animations for better UX
+.disclaimers-modal {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: both;
+
+  &.active {
+    animation-name: slideInModal;
+  }
+
+  &:not(.active) {
+    animation-name: slideOutModal;
+  }
+}
+
+// Focus styles for accessibility
+.disclaimers-close:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+// animations
+/* Scroll Animation Styles */
+
+/* Base animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+}
+
+/* Fade up animation */
+.fade-up {
+  transform: translateY(40px);
+}
+
+.fade-up.animate-in {
+  transform: translateY(0);
+}
+
+/* Fade in from left */
+.fade-left {
+  transform: translateX(-50px);
+}
+
+.fade-left.animate-in {
+  transform: translateX(0);
+}
+
+/* Fade in from right */
+.fade-right {
+  transform: translateX(50px);
+}
+
+.fade-right.animate-in {
+  transform: translateX(0);
+}
+
+/* Scale up animation */
+.scale-up {
+  transform: scale(0.95);
+}
+
+.scale-up.animate-in {
+  transform: scale(1);
+}
+
+/* Staggered animations for multiple elements */
+.stagger-1 {
+  transition-delay: 0.1s;
+}
+.stagger-2 {
+  transition-delay: 0.2s;
+}
+.stagger-3 {
+  transition-delay: 0.3s;
+}
+.stagger-4 {
+  transition-delay: 0.4s;
+}
+.stagger-5 {
+  transition-delay: 0.5s;
+}
+
+/* Specific home page animations */
+.text-box {
+  &.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.two-imgs {
+  .img-container {
+    &.animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      &.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      &:first-child {
+        transition-delay: 0.1s;
+      }
+
+      &:last-child {
+        transition-delay: 0.3s;
+      }
+    }
+  }
+}
+
+.text-box-no-bg {
+  &.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.funnel-cards {
+  .funnel-card {
+    &.animate-on-scroll {
+      opacity: 0;
+      transform: translateY(50px) scale(0.95);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      &.animate-in {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      &:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      &:nth-child(2) {
+        transition-delay: 0.3s;
+      }
+      &:nth-child(3) {
+        transition-delay: 0.5s;
+      }
+    }
+  }
+}
+
+.gallery {
+  &.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    &.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+
+    &.animate-in {
+      transform: none !important;
+    }
+  }
+
+  .fade-up,
+  .fade-left,
+  .fade-right,
+  .scale-up {
+    transform: none !important;
+
+    &.animate-in {
+      transform: none !important;
+    }
   }
 }

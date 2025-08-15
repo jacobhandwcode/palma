@@ -1,0 +1,501 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t('privacy.meta.title')}
+  description={t('privacy.meta.description')}
+  lang={lang}
+>
+  <main>
+    <section class="privacy-policy-section">
+      <div class="privacy-policy-container">
+        <header class="privacy-policy-header">
+          <h1 class="privacy-policy-title">{t('privacy.title')}</h1>
+        </header>
+
+        <div class="privacy-policy-content">
+          <p class="effective-date">{t('privacy.effectiveDate')}</p>
+
+          <p>{t('privacy.intro.paragraph1')}</p>
+          <p><strong>{t('privacy.intro.paragraph2')}</strong></p>
+
+          <p><strong>{t('privacy.consent.title')}</strong></p>
+          <p>{t('privacy.consent.description')}</p>
+          <p>Phone: +1 305.882.9942</p>
+          <p>
+            Email: <a href="mailto:info@palmamiamibeach.com"
+              >info@palmamiamibeach.com</a
+            >
+          </p>
+          <p>Postal Address:</p>
+          <p>Palma Miami Beach LLC</p>
+          <p>Attn: Manager</p>
+          <p>7134 Carlyle Avenue</p>
+          <p>Miami Beach, FL 33141</p>
+
+          <p>{t('privacy.purpose.description')}</p>
+          <ul>
+            <li>{t('privacy.applies.website')}</li>
+            <li>{t('privacy.applies.electronic')}</li>
+            <li>{t('privacy.applies.offline')}</li>
+            <li>{t('privacy.applies.mobile')}</li>
+            <li>{t('privacy.applies.thirdParty')}</li>
+          </ul>
+
+          <h2>{t('privacy.collection.title')}</h2>
+          <p>{t('privacy.collection.description')}</p>
+          <ul>
+            <li>{t('privacy.collection.exclude1')}</li>
+            <li>{t('privacy.collection.exclude2')}</li>
+          </ul>
+
+          <p>{t('privacy.sources.description')}</p>
+          <ul>
+            <li>
+              <strong><u>{t('privacy.sources.directly.title')}</u></strong> – {
+                t('privacy.sources.directly.description')
+              }
+            </li>
+            <li>
+              <strong><u>{t('privacy.sources.indirectly.title')}</u></strong> – {
+                t('privacy.sources.indirectly.description')
+              }
+            </li>
+            <li>
+              <strong><u>{t('privacy.sources.thirdParties.title')}</u></strong> –
+              {t('privacy.sources.thirdParties.description')}
+            </li>
+          </ul>
+
+          <p>{t('privacy.categories.intro')}</p>
+          <ul>
+            <li>{t('privacy.categories.contact')}</li>
+            <li>{t('privacy.categories.visit')}</li>
+            <li>{t('privacy.categories.website')}</li>
+            <li>{t('privacy.categories.social')}</li>
+            <li>{t('privacy.categories.email')}</li>
+            <li>{t('privacy.categories.property')}</li>
+          </ul>
+          <p>{t('privacy.categories.required')}</p>
+
+          <h2>{t('privacy.use.title')}</h2>
+          <p>{t('privacy.use.description')}</p>
+          <ul>
+            <li>{t('privacy.use.operate')}</li>
+            <li>{t('privacy.use.marketing')}</li>
+            <li>{t('privacy.use.communicate')}</li>
+            <li>{t('privacy.use.analytics')}</li>
+          </ul>
+          <ul>
+            <li>{t('privacy.use.security')}</li>
+          </ul>
+          <ul>
+            <li>{t('privacy.use.legal')}</li>
+            <li>{t('privacy.use.protect')}</li>
+            <li>{t('privacy.use.consent')}</li>
+          </ul>
+
+          <p>{t('privacy.sharing.intro')}</p>
+
+          <p>
+            <strong>{t('privacy.sharing.affiliates.title')}</strong>
+            {t('privacy.sharing.affiliates.description')}
+          </p>
+
+          <p>
+            <strong>{t('privacy.sharing.providers.title')}</strong>
+            {t('privacy.sharing.providers.description')}
+          </p>
+
+          <p>
+            <strong>{t('privacy.sharing.partners.title')}</strong>
+            {t('privacy.sharing.partners.description')}
+          </p>
+
+          <p>
+            <strong>{t('privacy.sharing.advisors.title')}</strong>
+            {t('privacy.sharing.advisors.description')}
+          </p>
+
+          <p>
+            <strong>{t('privacy.sharing.authorities.title')}</strong>
+            {t('privacy.sharing.authorities.description')}
+          </p>
+
+          <p>
+            <strong>{t('privacy.sharing.transfers.title')}</strong>
+            {t('privacy.sharing.transfers.description')}
+          </p>
+
+          <p>
+            <strong>{t('privacy.sharing.sale.title')}</strong>
+            {t('privacy.sharing.sale.description')}
+          </p>
+
+          <h2>{t('privacy.otherInfo.title')}</h2>
+          <p>{t('privacy.otherInfo.description')}</p>
+
+          <h2>{t('privacy.otherInfoUse.title')}</h2>
+          <p>{t('privacy.otherInfoUse.description')}</p>
+          <p>{t('privacy.otherInfoUse.combining')}</p>
+
+          <h2>{t('privacy.technologies.title')}</h2>
+          <ul>
+            <li>
+              <strong><u>{t('privacy.technologies.logFiles.title')}</u></strong>
+              {t('privacy.technologies.logFiles.description')}
+            </li>
+            <li>
+              <strong><u>{t('privacy.technologies.cookies.title')}</u></strong>
+              {t('privacy.technologies.cookies.description')}
+            </li>
+            <li>
+              <strong><u>{t('privacy.technologies.beacons.title')}</u></strong>
+              {t('privacy.technologies.beacons.description')}
+            </li>
+            <li>
+              <strong><u>{t('privacy.technologies.analytics.title')}</u></strong
+              >
+              {t('privacy.technologies.analytics.description')}
+            </li>
+            <li>
+              <strong
+                ><u>{t('privacy.technologies.doNotTrack.title')}</u></strong
+              >
+              {t('privacy.technologies.doNotTrack.description')}
+            </li>
+          </ul>
+
+          <h2>{t('privacy.choices.title')}</h2>
+          <ul>
+            <li>
+              <strong><u>{t('privacy.choices.tracking.title')}</u></strong>
+              {t('privacy.choices.tracking.description')}
+            </li>
+            <li>
+              <strong><u>{t('privacy.choices.marketing.title')}</u></strong>
+              {t('privacy.choices.marketing.description')}
+            </li>
+            <li>
+              <strong><u>{t('privacy.choices.telephone.title')}</u></strong>
+              {t('privacy.choices.telephone.description')}
+            </li>
+            <li>
+              <strong><u>{t('privacy.choices.modify.title')}</u></strong>
+              {t('privacy.choices.modify.description')}
+            </li>
+            <li>
+              <strong><u>{t('privacy.choices.advertising.title')}</u></strong>
+              {t('privacy.choices.advertising.description')}
+            </li>
+          </ul>
+          <p>{t('privacy.choices.optOutNote')}</p>
+          <p>{t('privacy.choices.stillSeeAds')}</p>
+
+          <h2>{t('privacy.eea.title')}</h2>
+          <p>{t('privacy.eea.intro')}</p>
+          <ul>
+            <li>{t('privacy.eea.access')}</li>
+            <li>{t('privacy.eea.correction')}</li>
+            <li>{t('privacy.eea.erasure')}</li>
+            <li>{t('privacy.eea.object')}</li>
+            <li>{t('privacy.eea.restriction')}</li>
+            <li>{t('privacy.eea.portability')}</li>
+            <li>{t('privacy.eea.withdraw')}</li>
+            <li>{t('privacy.eea.complain')}</li>
+          </ul>
+
+          <h2>{t('privacy.legalBases.title')}</h2>
+          <p>{t('privacy.legalBases.description')}</p>
+          <ul>
+            <li>
+              <em>{t('privacy.legalBases.contracts.title')}</em>
+              {t('privacy.legalBases.contracts.description')}
+            </li>
+            <li>
+              <em>{t('privacy.legalBases.interests.title')}</em>
+              {t('privacy.legalBases.interests.description')}
+            </li>
+            <li>{t('privacy.legalBases.interests.customers')}</li>
+            <li>{t('privacy.legalBases.interests.cookies')}</li>
+            <li>
+              <em>{t('privacy.legalBases.obligations.title')}</em>
+              {t('privacy.legalBases.obligations.description')}
+            </li>
+            <li>
+              <em>{t('privacy.legalBases.consent.title')}</em>
+              {t('privacy.legalBases.consent.description')}
+            </li>
+          </ul>
+
+          <h2>{t('privacy.california.title')}</h2>
+          <p>{t('privacy.california.intro')}</p>
+
+          <h2>{t('privacy.california.categories.title')}</h2>
+          <p>{t('privacy.california.categories.description')}</p>
+          <p>{t('privacy.california.categories.table')}</p>
+          <ol>
+            <li>{t('privacy.california.categories.list1')}</li>
+            <li>{t('privacy.california.categories.list2')}</li>
+            <li>{t('privacy.california.categories.list3')}</li>
+            <li>{t('privacy.california.categories.list4')}</li>
+            <li>{t('privacy.california.categories.list5')}</li>
+          </ol>
+          <p>{t('privacy.california.categories.chart')}</p>
+
+          <img class="table" src="/images/privacy-policy-table.png" />
+
+          <h2>{t('privacy.california.rights.title')}</h2>
+          <p>{t('privacy.california.rights.description')}</p>
+          <ul>
+            <li>
+              <strong><u>{t('privacy.california.rights.know.title')}</u></strong
+              >
+              {t('privacy.california.rights.know.description')}
+            </li>
+            <li>
+              <strong
+                ><u>{t('privacy.california.rights.delete.title')}</u></strong
+              >
+              {t('privacy.california.rights.delete.description')}
+            </li>
+            <li>
+              <strong
+                ><u>{t('privacy.california.rights.correct.title')}</u></strong
+              >
+              {t('privacy.california.rights.correct.description')}
+            </li>
+            <li>
+              <strong
+                ><u>{t('privacy.california.rights.optOutSale.title')}</u
+                ></strong
+              >
+              {t('privacy.california.rights.optOutSale.description')}
+            </li>
+            <li>
+              <strong
+                ><u>{t('privacy.california.rights.optOutSharing.title')}</u
+                ></strong
+              >
+              {t('privacy.california.rights.optOutSharing.description')}
+            </li>
+            <li>
+              <strong
+                ><u>{t('privacy.california.rights.access.title')}</u></strong
+              >
+              {t('privacy.california.rights.access.description')}
+            </li>
+            <li>
+              <strong
+                ><u>{t('privacy.california.rights.nonDiscrimination.title')}</u
+                ></strong
+              >
+              {t('privacy.california.rights.nonDiscrimination.description')}
+            </li>
+          </ul>
+
+          <h2>{t('privacy.informationRights.title')}</h2>
+
+          <h4>{t('privacy.informationRights.information.title')}</h4>
+          <p>{t('privacy.informationRights.information.description')}</p>
+
+          <h4>{t('privacy.informationRights.access.title')}</h4>
+          <p>{t('privacy.informationRights.access.description')}</p>
+
+          <h4>{t('privacy.informationRights.deletion.title')}</h4>
+          <p>{t('privacy.informationRights.deletion.intro')}</p>
+          <ol>
+            <li>{t('privacy.informationRights.deletion.complete')}</li>
+            <li>{t('privacy.informationRights.deletion.security')}</li>
+            <li>{t('privacy.informationRights.deletion.debug')}</li>
+            <li>{t('privacy.informationRights.deletion.speech')}</li>
+            <li>{t('privacy.informationRights.deletion.privacy')}</li>
+            <li>{t('privacy.informationRights.deletion.research')}</li>
+            <li>{t('privacy.informationRights.deletion.internal')}</li>
+            <li>{t('privacy.informationRights.deletion.legal')}</li>
+            <li>{t('privacy.informationRights.deletion.lawful')}</li>
+          </ol>
+
+          <h4>{t('privacy.exercising.title')}</h4>
+          <p>{t('privacy.exercising.description')}</p>
+          <ul>
+            <li>{t('privacy.exercising.call')}</li>
+            <li>{t('privacy.exercising.email')}</li>
+          </ul>
+          <p>{t('privacy.exercising.verification')}</p>
+
+          <h4>{t('privacy.thirdParty.title')}</h4>
+          <p>{t('privacy.thirdParty.description')}</p>
+
+          <h4>{t('privacy.security.title')}</h4>
+          <p>{t('privacy.security.description')}</p>
+
+          <h4>{t('privacy.retention.title')}</h4>
+          <p>{t('privacy.retention.description')}</p>
+
+          <h4>{t('privacy.minors.title')}</h4>
+          <p>{t('privacy.minors.description')}</p>
+
+          <h4>{t('privacy.governing.title')}</h4>
+          <p>{t('privacy.governing.description')}</p>
+
+          <h4>{t('privacy.crossBorder.title')}</h4>
+          <p>{t('privacy.crossBorder.description')}</p>
+
+          <h4>{t('privacy.contact.title')}</h4>
+          <p>{t('privacy.contact.description')}</p>
+          <p>Phone: +1 305.882.9942</p>
+          <p>
+            Email: <a href="mailto:info@palmamiamibeach.com"
+              >info@palmamiamibeach.com</a
+            >
+          </p>
+          <p>Postal Address:</p>
+          <p>Palma Miami Beach LLC</p>
+          <p>Attn: Manager</p>
+          <p>7134 Carlyle Avenue</p>
+          <p>Miami Beach, FL 33141</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .privacy-policy-section {
+    margin: 12rem auto 3rem auto;
+    max-width: 800px;
+    width: 90%;
+    padding: 0 20px;
+  }
+
+  .table {
+    width: 100%;
+  }
+
+  .privacy-policy-container {
+    margin: 0 auto;
+  }
+
+  .privacy-policy-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .privacy-policy-title {
+    font-size: 48px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #7b705e;
+    margin: 0;
+    font-family: 'didot-headline', serif;
+  }
+
+  .privacy-policy-content {
+    color: #7b705e;
+  }
+
+  .privacy-policy-content h2 {
+    font-size: 28px;
+    font-weight: 400;
+    color: #7b705e;
+    margin: 2rem 0 1rem 0;
+    font-family: 'didot-headline', serif;
+  }
+
+  .privacy-policy-content h4 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #7b705e;
+    margin: 1.5rem 0 1rem 0;
+    font-family: 'didot-headline', serif;
+  }
+
+  .privacy-policy-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+
+  .privacy-policy-content ul,
+  .privacy-policy-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .privacy-policy-content li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+  }
+
+  .privacy-policy-content a {
+    color: #7b705e;
+    text-decoration: underline;
+  }
+
+  .privacy-policy-content a:hover {
+    color: #5a4e42;
+  }
+
+  .effective-date {
+    font-weight: 600 !important;
+    margin-bottom: 2rem !important;
+  }
+
+  @media (max-width: 768px) {
+    .privacy-policy-section {
+      margin: 8rem auto 3rem auto;
+      padding: 0 16px;
+    }
+
+    .privacy-policy-header {
+      margin-bottom: 60px;
+    }
+
+    .privacy-policy-title {
+      font-size: 36px;
+    }
+
+    .privacy-policy-content h2 {
+      font-size: 24px;
+    }
+
+    .privacy-policy-content h4 {
+      font-size: 18px;
+    }
+
+    .privacy-policy-content p,
+    .privacy-policy-content li {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .privacy-policy-title {
+      font-size: 28px;
+    }
+
+    .privacy-policy-content h2 {
+      font-size: 22px;
+    }
+
+    .privacy-policy-content h4 {
+      font-size: 16px;
+    }
+
+    .privacy-policy-content p,
+    .privacy-policy-content li {
+      font-size: 14px;
+    }
+  }
+</style>

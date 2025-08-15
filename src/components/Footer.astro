@@ -4,6 +4,7 @@ import {
   useTranslations,
   getLocalizedUrl,
 } from '../i18n/utils';
+import Disclaimers from './Disclaimers.astro';
 
 interface Props {
   lang?: 'en' | 'es' | 'pt';
@@ -207,13 +208,21 @@ const t = useTranslations(currentLang);
           >{t('footer.links.notices')}</a
         >
         <span>|</span>
-        <a href={getLocalizedUrl(currentLang, 'disclaimers')}
-          >{t('footer.links.disclaimers')}</a
+        <button 
+          type="button" 
+          class="disclaimers-link" 
+          data-disclaimers
+          aria-label={t('disclaimers.title')}
         >
+          {t('footer.links.disclaimers')}
+        </button>
       </div>
     </div>
   </div>
 </footer>
+
+<!-- Include the Disclaimers modal component -->
+<Disclaimers lang={currentLang} />
 
 <!-- Widget Tracker Code -->
 <script>
