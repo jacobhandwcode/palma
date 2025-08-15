@@ -9,8 +9,17 @@ interface Props {
 const { currentLang = 'en' } = Astro.props;
 const t = useTranslations(currentLang);
 
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const relativePath = Astro.url.pathname.replace(
+  import.meta.env.BASE_URL || '/',
+  ''
+);
 const currentPath =
-  Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^\//, '') || '';
+  relativePath
+    .replace(`/${currentLang}`, '')
+    .replace(/^\//, '')
+    .replace(/\/$/, '') || '';
 
 const backgroundPages = [
   'team',
@@ -276,7 +285,6 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
 
         item.addEventListener('mouseleave', function () {
           if (!isMenuOpen) return;
-
         });
 
         item.addEventListener('click', function () {
