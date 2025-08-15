@@ -552,6 +552,9 @@ header {
   max-width: 1200px;
   margin: 0 auto;
   margin-bottom: 2rem;
+  @media (max-width: 650px) {
+    margin-bottom: 5rem;
+  }
 }
 
 .hero-text {
@@ -5518,7 +5521,6 @@ body.modal-open {
   .text-box.no-bg.animate-on-scroll,
   .full-width-img.animate-on-scroll,
   .map-section.animate-on-scroll,
-
   .map-popup.animate-on-scroll {
     transition: opacity 0.3s ease !important;
     transform: none !important;
@@ -5867,5 +5869,11 @@ body.modal-open {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+  }
+}
+
+@media (max-width: 650px) {
+  #text-box {
+    margin-top: -3rem;
   }
 }
