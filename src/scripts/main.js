@@ -970,3 +970,39 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 window.neighborhoodScrollAnimations = neighborhoodScrollAnimations;
+
+function scrollToElementAndRemoveHash(targetId, offset = 0) {
+  const targetElement = document.getElementById(targetId);
+  
+  if (targetElement) {
+    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementPosition - offset;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+    
+    setTimeout(() => {
+      history.replaceState(null, null, window.location.pathname + window.location.search);
+    }, 100);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const inquireLink = document.querySelector('.inquire');
+  if (inquireLink) {
+    inquireLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      scrollToElementAndRemoveHash('contact');
+    });
+  }
+  
+  const downArrowLink = document.querySelector('.down-arrow');
+  if (downArrowLink) {
+    downArrowLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      scrollToElementAndRemoveHash('text-box', 100);
+    });
+  }
+});
