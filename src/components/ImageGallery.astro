@@ -395,3 +395,105 @@ const t = useTranslations(currentLang);
     </div>
   </div>
 </section>
+
+<script>
+  // Gallery scroll animation with staggered fade-in effect
+  class GalleryScrollAnimation {
+    constructor() {
+      this.galleryItems = document.querySelectorAll('.gallery-item');
+      this.animatedItems = new Set();
+      this.init();
+    }
+
+    init() {
+      // Set up intersection observer for better performance
+      this.observer = new IntersectionObserver(
+        (entries) => this.handleIntersection(entries),
+        {
+          threshold: 0.1, // Trigger when 10% of the element is visible
+          rootMargin: '50px 0px -50px 0px', // Start animation slightly before element enters viewport
+        }
+      );
+
+      // Observe all gallery items
+      this.galleryItems.forEach((item) => {
+        this.observer.observe(item);
+      });
+    }
+
+    handleIntersection(entries) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !this.animatedItems.has(entry.target)) {
+          this.animateItem(entry.target);
+        }
+      });
+    }
+
+    animateItem(item) {
+      // Mark item as animated to prevent re-triggering
+      this.animatedItems.add(item);
+
+      // Get the item's position in the grid for stagger calculation
+      const allItems = Array.from(this.galleryItems);
+      const itemIndex = allItems.indexOf(item);
+
+      // Calculate stagger delay based on item position
+      // Reduce delay for better UX - items animate more quickly
+      const staggerDelay = itemIndex * 100; // 100ms between each item
+
+      // Apply the animation with delay
+      setTimeout(() => {
+        item.classList.add('scroll-animate');
+      }, staggerDelay);
+    }
+
+    // Method to reset animations (useful for debugging or dynamic content)
+    resetAnimations() {
+      this.animatedItems.clear();
+      this.galleryItems.forEach((item) => {
+        item.classList.remove('scroll-animate');
+      });
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new GalleryScrollAnimation();
+  });
+
+  // Fallback for browsers without IntersectionObserver support
+  if (!window.IntersectionObserver) {
+    // Simple scroll-based fallback
+    let ticking = false;
+
+    function checkScroll() {
+      const galleryItems = document.querySelectorAll(
+        '.gallery-item:not(.scroll-animate)'
+      );
+
+      galleryItems.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // Check if item is in viewport
+        if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+          setTimeout(() => {
+            item.classList.add('scroll-animate');
+          }, index * 100);
+        }
+      });
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(checkScroll);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', checkScroll);
+  }
+</script>

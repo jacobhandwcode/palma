@@ -765,11 +765,6 @@ class NeighborhoodScrollAnimations {
       mapSection.classList.add('animate-on-scroll');
     }
 
-    const gallerySection = document.querySelector('.gallery-section');
-    if (gallerySection) {
-      gallerySection.classList.add('animate-on-scroll');
-    }
-
     const mobileOrderItems = document.querySelectorAll('.mobile-order .gallery-item');
     mobileOrderItems.forEach(item => {
       item.classList.add('animate-on-scroll');
@@ -792,8 +787,6 @@ class NeighborhoodScrollAnimations {
           delay = 100;
         } else if (entry.target.classList.contains('map-section')) {
           delay = 150;
-        } else if (entry.target.classList.contains('gallery-section')) {
-          delay = 200;
         } else if (entry.target.classList.contains('gallery-item')) {
           delay = 30;
         }
@@ -804,8 +797,6 @@ class NeighborhoodScrollAnimations {
           
           if (entry.target.classList.contains('map-section')) {
             this.animateMapElements(entry.target);
-          } else if (entry.target.classList.contains('gallery-section')) {
-            this.animateGalleryElements(entry.target);
           } else if (entry.target.classList.contains('text-box')) {
             this.animateTextElements(entry.target);
           }
@@ -911,8 +902,6 @@ class NeighborhoodScrollAnimations {
         
         if (element.classList.contains('map-section')) {
           this.animateMapElements(element);
-        } else if (element.classList.contains('gallery-section')) {
-          this.animateGalleryElements(element);
         } else if (element.classList.contains('text-box')) {
           this.animateTextElements(element);
         }
@@ -929,8 +918,6 @@ class NeighborhoodScrollAnimations {
       
       if (element.classList.contains('map-section')) {
         this.animateMapElements(element);
-      } else if (element.classList.contains('gallery-section')) {
-        this.animateGalleryElements(element);
       } else if (element.classList.contains('text-box')) {
         this.animateTextElements(element);
       }

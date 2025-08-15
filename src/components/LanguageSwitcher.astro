@@ -19,10 +19,30 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
 ---
 
 <div class="language-switcher">
-  <div class="current-language">
+  <button
+    class="current-language"
+    id="language-toggle"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
     <span>{currentLanguage?.label}</span>
-  </div>
-  <div class="language-dropdown">
+    <svg
+      class="dropdown-arrow"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 4.5L6 7.5L9 4.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </button>
+  <div class="language-dropdown" id="language-dropdown">
     {
       otherLanguages.map((lang) => (
         <a href={lang.url} class="language-option">
@@ -32,6 +52,91 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     }
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('language-toggle');
+    const dropdown = document.getElementById('language-dropdown');
+    let isOpen = false;
+
+    function openDropdown() {
+      isOpen = true;
+      dropdown.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.classList.add('active');
+    }
+
+    function closeDropdown() {
+      isOpen = false;
+      dropdown.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.classList.remove('active');
+    }
+
+    // Toggle on click
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (isOpen) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!toggle.contains(e.target) && !dropdown.contains(e.target)) {
+        closeDropdown();
+      }
+    });
+
+    // Handle keyboard navigation
+    toggle.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (isOpen) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      } else if (e.key === 'Escape') {
+        closeDropdown();
+      } else if (e.key === 'ArrowDown' && !isOpen) {
+        e.preventDefault();
+        openDropdown();
+      }
+    });
+
+    // Handle keyboard navigation within dropdown
+    dropdown.addEventListener('keydown', function (e) {
+      const options = dropdown.querySelectorAll('.language-option');
+      const currentFocus = document.activeElement;
+      const currentIndex = Array.from(options).indexOf(currentFocus);
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        const nextIndex =
+          currentIndex < options.length - 1 ? currentIndex + 1 : 0;
+        options[nextIndex].focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prevIndex =
+          currentIndex > 0 ? currentIndex - 1 : options.length - 1;
+        options[prevIndex].focus();
+      } else if (e.key === 'Escape') {
+        closeDropdown();
+        toggle.focus();
+      }
+    });
+
+    // Close dropdown when a language option is clicked
+    dropdown.addEventListener('click', function () {
+      closeDropdown();
+    });
+  });
+</script>
 
 <style>
   .language-switcher {
@@ -43,6 +148,7 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
   .current-language {
     color: white;
     background-color: transparent;
+    border: none;
     padding: 8px 12px;
     cursor: pointer;
     user-select: none;
@@ -54,24 +160,48 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     text-align: center;
     min-width: 60px;
     box-sizing: border-box;
-    width: 60px;
-    text-align: center;
+    width: 80px;
+    gap: 4px;
+    font-family: inherit;
+    font-size: inherit;
+    transition: background-color 0.2s ease;
+    border-radius: 4px;
+  }
+
+  .current-language:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .current-language.active {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .dropdown-arrow {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .current-language.active .dropdown-arrow {
+    transform: rotate(180deg);
   }
 
   .language-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
-    min-width: 60px;
+    min-width: 80px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.3s ease;
     z-index: 1000;
     backdrop-filter: blur(10px);
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    margin-top: 2px;
   }
 
-  .language-switcher:hover .language-dropdown {
+  .language-dropdown.open {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -88,23 +218,16 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     letter-spacing: 0.5px;
     transition: background-color 0.2s ease;
     text-align: center;
-    min-width: 60px;
+    min-width: 80px;
     box-sizing: border-box;
-    background: #a8a19529;
+    background: rgba(168, 161, 149, 0.16);
+    border: none;
   }
 
-  .language-option:hover {
+  .language-option:hover,
+  .language-option:focus {
     background-color: rgba(255, 255, 255, 0.3);
-  }
-
-  .language-option:last-child {
-    border-radius: 0 0 8px 8px;
-  }
-
-  .language-switcher:focus-within .language-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    outline: none;
   }
 
   .current-language:focus {
@@ -112,8 +235,26 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     outline-offset: 2px;
   }
 
-  .language-option:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    outline: none;
+  /* Touch-friendly sizing for mobile */
+  @media (max-width: 768px) {
+    .current-language {
+      min-height: 44px;
+      padding: 12px 16px;
+    }
+
+    .language-option {
+      min-height: 44px;
+      padding: 12px 16px;
+    }
+  }
+
+  /* Prevent text selection on mobile */
+  .language-switcher * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 </style>
