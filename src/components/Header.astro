@@ -12,7 +12,6 @@ const t = useTranslations(currentLang);
 const currentPath =
   Astro.url.pathname.replace(`/${currentLang}`, '').replace(/^\//, '') || '';
 
-// Pages that should have background from start
 const backgroundPages = [
   'team',
   'gallery',
@@ -136,17 +135,15 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
 
     let isTransitioning = false;
     let isMenuOpen = false;
-    let lastHoveredImage = baseImageSrc; // Track the last hovered image
+    let lastHoveredImage = baseImageSrc;
 
-    // Scroll handler for header background
     function handleScroll() {
       if (!header) return;
 
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
-      const scrollThreshold = 100; // Adjust this value to control when the background appears
+      const scrollThreshold = 100;
 
-      // Don't add scrolled class if header already has initial background
       if (scrollTop > scrollThreshold) {
         header.classList.add('scrolled');
       } else {
@@ -154,7 +151,6 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
       }
     }
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
 
     function changeImageWithTransition(newImageSrc) {
@@ -200,7 +196,6 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
       mobileMenu.classList.add('active');
       document.body.style.overflow = 'hidden';
 
-      // Add opening animation classes
       navItems.forEach((item) => {
         item.classList.remove('animate-out');
         item.classList.add('animate-in');
@@ -216,7 +211,6 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
         menuImageContainer.classList.add('animate-in');
       }
 
-      // Reset to base image when opening menu
       if (menuImage && menuImage.src !== baseImageSrc) {
         changeImageWithTransition(baseImageSrc);
         lastHoveredImage = baseImageSrc;
@@ -228,7 +222,6 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
       hamburger.classList.remove('active');
       document.body.style.overflow = '';
 
-      // Add closing animation classes
       navItems.forEach((item) => {
         item.classList.remove('animate-in');
         item.classList.add('animate-out');
@@ -244,11 +237,9 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
         menuImageContainer.classList.add('animate-out');
       }
 
-      // Wait for animations to complete before hiding menu
       setTimeout(() => {
         mobileMenu.classList.remove('active');
 
-        // Clean up animation classes
         navItems.forEach((item) => {
           item.classList.remove('animate-out');
         });
@@ -260,7 +251,7 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
         if (menuImageContainer) {
           menuImageContainer.classList.remove('animate-out');
         }
-      }, 800); // Match the longest animation duration + delays
+      }, 800);
     }
 
     if (hamburger && mobileMenu) {
@@ -274,22 +265,18 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
 
       navItems.forEach((item) => {
         item.addEventListener('mouseenter', function () {
-          if (!isMenuOpen) return; // Only handle hover when menu is open
+          if (!isMenuOpen) return;
 
           const hoverImage = this.getAttribute('data-hover-image');
-          console.log('Hovering on:', this.textContent, 'Image:', hoverImage);
           if (hoverImage) {
-            lastHoveredImage = hoverImage; // Update the last hovered image
+            lastHoveredImage = hoverImage;
             changeImageWithTransition(hoverImage);
           }
         });
 
         item.addEventListener('mouseleave', function () {
-          if (!isMenuOpen) return; // Only handle hover when menu is open
+          if (!isMenuOpen) return;
 
-          console.log('Mouse left:', this.textContent);
-          // Don't go back to base image, stay on the last hovered image
-          // The image will only change when hovering over another item
         });
 
         item.addEventListener('click', function () {
@@ -304,7 +291,6 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
       });
     }
 
-    // Clean up scroll listener when page unloads
     window.addEventListener('beforeunload', function () {
       window.removeEventListener('scroll', handleScroll);
     });

@@ -194,7 +194,6 @@ const t = useTranslations(currentLang);
           }
         }
 
-        // Ensure all group elements have white fill by default
         g {
           .bg {
             fill: white !important;
@@ -319,7 +318,6 @@ const t = useTranslations(currentLang);
 </style>
 
 <script>
-  // Translation support for JavaScript
   const translations = {
     en: {
       residence: 'RESIDENCE',
@@ -340,7 +338,6 @@ const t = useTranslations(currentLang);
     },
   };
 
-  // Get current language from URL
   function getCurrentLanguage() {
     const path = window.location.pathname;
     if (path.startsWith('/es/')) return 'es';
@@ -351,7 +348,6 @@ const t = useTranslations(currentLang);
   const currentLang = getCurrentLanguage();
   const t = translations[currentLang];
 
-  // SVG Data for each floor type (keep your existing svgData object here)
   const svgData = {
     penthouse: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208.21 173.75">
 <g id="Base">
@@ -619,7 +615,6 @@ const t = useTranslations(currentLang);
 </svg>`,
   };
 
-  // Residence data for each unit
   const residenceData = {
     ph_01: {
       title: 'Penthouse 01',
@@ -899,32 +894,27 @@ const t = useTranslations(currentLang);
     'level-3': '3_301',
   };
 
-  // Initialize when DOM is loaded
   document.addEventListener('DOMContentLoaded', function () {
     const floorButtons = document.querySelectorAll('.floor-button');
     const residenceInfo = document.getElementById('residence-info');
     const floorPlanDisplay = document.getElementById('floor-plan-display');
     let currentActiveUnit = null;
 
-    // Initialize default state - show levels 4-12 with first unit selected
     function initializeDefault() {
       const defaultFloor = 'levels-4-12';
       const defaultUnit = firstUnitByFloor[defaultFloor];
       loadFloorAndSelectFirstUnit(defaultFloor, defaultUnit);
     }
 
-    // Function to load floor and select first unit
     function loadFloorAndSelectFirstUnit(floorType, firstUnitId) {
       const svgContainer = document.getElementById(`${floorType}-svg`);
 
       if (svgContainer && svgData[floorType]) {
         svgContainer.innerHTML = svgData[floorType];
 
-        // Add event listeners after SVG is loaded
         setTimeout(() => {
           addFloorUnitListeners(svgContainer);
 
-          // Auto-select the first unit
           const firstUnit = svgContainer.querySelector(
             `[data-id="${firstUnitId}"]`
           );
@@ -935,12 +925,10 @@ const t = useTranslations(currentLang);
       }
     }
 
-    // Function to add event listeners to floor units
     function addFloorUnitListeners(svgContainer) {
       const floorUnits = svgContainer.querySelectorAll('.floor, g[data-id]');
       floorUnits.forEach((unit) => {
         if (!unit.classList.contains('disabled')) {
-          // Add hover effect
           unit.addEventListener('mouseenter', function () {
             if (this !== currentActiveUnit) {
               const bg = this.querySelector('.bg');
@@ -955,7 +943,6 @@ const t = useTranslations(currentLang);
             }
           });
 
-          // Add click functionality
           unit.addEventListener('click', function () {
             const unitId = this.dataset.id;
             selectUnit(this, unitId);
@@ -964,51 +951,42 @@ const t = useTranslations(currentLang);
       });
     }
 
-    // Function to select a unit
     function selectUnit(unitElement, unitId) {
-      // Clear previous active unit
       if (currentActiveUnit) {
         currentActiveUnit.classList.remove('active');
         const prevBg = currentActiveUnit.querySelector('.bg');
         if (prevBg) prevBg.style.fill = 'white';
       }
 
-      // Set new active unit
       currentActiveUnit = unitElement;
       unitElement.classList.add('active');
       const bg = unitElement.querySelector('.bg');
       if (bg) bg.style.fill = 'rgba(139, 115, 85, 0.4)';
 
-      // Show residence info
       showResidenceInfo(unitId);
     }
 
-    // Floor button functionality
     floorButtons.forEach((button) => {
       button.addEventListener('click', function () {
         const floorType = this.dataset.floor;
         const svgContainer = document.getElementById(`${floorType}-svg`);
         const isActive = this.classList.contains('active');
 
-        // Reset all buttons and hide all SVGs
         floorButtons.forEach((btn) => {
           btn.classList.remove('active');
           const targetSvg = document.getElementById(`${btn.dataset.floor}-svg`);
           if (targetSvg) targetSvg.style.display = 'none';
         });
 
-        // Only clear active unit if we're closing the current floor
         if (isActive) {
           currentActiveUnit = null;
           residenceInfo.style.display = 'none';
           floorPlanDisplay.style.display = 'none';
         } else {
-          // Show the clicked floor
           this.classList.add('active');
           if (svgContainer && svgData[floorType]) {
             svgContainer.style.display = 'block';
 
-            // Load floor and auto-select first unit
             const firstUnitId = firstUnitByFloor[floorType];
             loadFloorAndSelectFirstUnit(floorType, firstUnitId);
           }
@@ -1016,7 +994,6 @@ const t = useTranslations(currentLang);
       });
     });
 
-    // Function to show residence information
     function showResidenceInfo(unitId) {
       const data = residenceData[unitId];
       if (!data) return;
@@ -1028,8 +1005,7 @@ const t = useTranslations(currentLang);
       document.getElementById('exterior-spec').textContent = data.exterior;
       document.getElementById('total-spec').textContent = data.total;
 
-      // Hide/show exterior row based on value
-      const exteriorRow = document.querySelector('.spec-row:nth-child(2)'); // Exterior is the second spec-row
+      const exteriorRow = document.querySelector('.spec-row:nth-child(2)');
       if (data.exterior === '0') {
         exteriorRow.style.display = 'none';
       } else {
@@ -1038,19 +1014,15 @@ const t = useTranslations(currentLang);
 
       residenceInfo.style.display = 'block';
 
-      // Show floor plan image or placeholder
       const floorPlanContainer = floorPlanDisplay;
 
-      // Clear any existing content and recreate the image element
       floorPlanContainer.innerHTML = `
         <img id="floor-plan-img" src="/images/floorplans/${unitId}.png" alt="Floor Plan" />
       `;
 
       const floorPlanImg = document.getElementById('floor-plan-img');
 
-      // Handle image load error with translated message
       floorPlanImg.onerror = function () {
-        // Replace with placeholder text, but keep the container structure
         floorPlanContainer.innerHTML = `
           <div style="display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.9rem; min-height: 400px;">
             ${t.floorPlanNotAvailable} ${data.title}
@@ -1061,7 +1033,6 @@ const t = useTranslations(currentLang);
       floorPlanDisplay.style.display = 'block';
     }
 
-    // Download button functionality with translated alert
     document
       .querySelector('.download-button')
       .addEventListener('click', function () {
@@ -1069,9 +1040,7 @@ const t = useTranslations(currentLang);
           const unitId = currentActiveUnit.dataset.id;
           const data = residenceData[unitId];
 
-          // Check if PDF is available, otherwise fallback to image
           if (data && data.pdfUrl) {
-            // Create download link for PDF
             const link = document.createElement('a');
             link.href = data.pdfUrl;
             link.download = `${unitId}_floorplan.pdf`;
@@ -1079,7 +1048,6 @@ const t = useTranslations(currentLang);
             link.click();
             document.body.removeChild(link);
           } else {
-            // Fallback to image download
             const link = document.createElement('a');
             link.href = `/images/floorplans/${unitId}.png`;
             link.download = `${unitId}_floorplan.png`;
@@ -1092,7 +1060,6 @@ const t = useTranslations(currentLang);
         }
       });
 
-    // Initialize the default state
     initializeDefault();
   });
 </script>

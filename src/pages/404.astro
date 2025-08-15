@@ -1,0 +1,151 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page Not Found"
+  description="The page you're looking for could not be found."
+  lang="en"
+>
+  <main class="error-page">
+    <section class="error-hero">
+      <div class="error-hero-content">
+        <div class="error-code animate-on-scroll fade-up">404</div>
+        <h1 class="error-title animate-on-scroll fade-up stagger-1">
+          Page Not Found
+        </h1>
+        <p class="error-subtitle animate-on-scroll fade-up stagger-2">
+          The page you're looking for seems to have sailed away with the tide.
+        </p>
+        <div class="error-actions animate-on-scroll fade-up stagger-3">
+          <a href="/" class="error-btn primary">Return Home</a>
+        </div>
+      </div>
+
+      <div class="error-background">
+        <img
+          src="/images/home/aqua-lounge.webp"
+          alt="Ocean view from the property"
+          class="error-bg-image"
+        />
+        <div class="error-overlay"></div>
+      </div>
+    </section>
+
+    <section class="suggested-links animate-on-scroll fade-up">
+      <div class="suggested-container">
+        <h2>Explore Our Property</h2>
+        <div class="suggested-grid">
+          <a
+            href="/gallery"
+            class="suggested-card animate-on-scroll fade-up stagger-1"
+          >
+            <div class="suggested-image">
+              <img
+                src="/images/gallery-page/crownshot.webp"
+                alt="Property Gallery"
+              />
+            </div>
+            <div class="suggested-content">
+              <h3>Gallery</h3>
+              <p>Discover stunning views and luxurious spaces</p>
+            </div>
+          </a>
+
+          <a
+            href="/residences"
+            class="suggested-card animate-on-scroll fade-up stagger-2"
+          >
+            <div class="suggested-image">
+              <img src="/images/residences/bedroom.webp" alt="Floor Plans" />
+            </div>
+            <div class="suggested-content">
+              <h3>Residences</h3>
+              <p>Find your perfect home layout</p>
+            </div>
+          </a>
+
+          <a
+            href="/amenities"
+            class="suggested-card animate-on-scroll fade-up stagger-3"
+          >
+            <div class="suggested-image">
+              <img src="/images/home/pool.webp" alt="Amenities" />
+            </div>
+            <div class="suggested-content">
+              <h3>Amenities</h3>
+              <p>Experience Palma's amenities</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="error-contact animate-on-scroll fade-up">
+      <div class="error-contact-content">
+        <h2>Need Assistance?</h2>
+        <p>
+          Our team is here to help you find exactly what you're looking for.
+        </p>
+        <div class="contact-options">
+          <a href="tel:+13059464264" class="contact-option">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+            <span>Call Us</span>
+          </a>
+          <a href="mailto:info@palmamiamibeach.com" class="contact-option">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>Email Us</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px',
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+      observer.observe(el);
+    });
+  });
+</script>

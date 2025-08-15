@@ -172,7 +172,6 @@ const t = useTranslations(lang);
       this.progressFill = document.querySelector('.progress-fill');
 
       if (!this.track || !this.items.length || !this.prevBtn || !this.nextBtn || !this.progressFill) {
-        console.log('HorizontalGallery: Required elements not found, skipping initialization');
         return;
       }
 
@@ -240,13 +239,11 @@ const t = useTranslations(lang);
     constructor() {
       this.section = document.getElementById('zoomSection');
       if (!this.section) {
-        console.log('ZoomScrollEffect: Section not found, skipping initialization');
         return;
       }
 
       this.image = this.section.querySelector('.zoom-background img');
       if (!this.image) {
-        console.log('ZoomScrollEffect: Image not found, skipping initialization');
         return;
       }
 
@@ -295,7 +292,6 @@ const t = useTranslations(lang);
     constructor(containerSelector = '.img-txt.has-gallery') {
       this.container = document.querySelector(containerSelector);
       if (!this.container) {
-        console.log('ImgTxtGallery: Container not found, skipping initialization');
         return;
       }
 
@@ -307,7 +303,6 @@ const t = useTranslations(lang);
       this.isTransitioning = false;
 
       if (!this.slides.length || !this.dots.length || !this.prevBtn || !this.nextBtn) {
-        console.log('ImgTxtGallery: Required elements not found, skipping initialization');
         return;
       }
 
@@ -367,8 +362,8 @@ const t = useTranslations(lang);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    try { new HorizontalGallery(); } catch (error) { console.log('HorizontalGallery initialization failed:', error); }
-    try { new ZoomScrollEffect(); } catch (error) { console.log('ZoomScrollEffect initialization failed:', error); }
-    try { new ImgTxtGallery(); } catch (error) { console.log('ImgTxtGallery initialization failed:', error); }
+    try { new HorizontalGallery(); } catch (error) {}
+    try { new ZoomScrollEffect(); } catch (error) {}
+    try { new ImgTxtGallery(); } catch (error) {}
   });
 </script>

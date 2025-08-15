@@ -201,9 +201,6 @@ const t = useTranslations(lang);
         !this.nextBtn ||
         !this.progressFill
       ) {
-        console.log(
-          'HorizontalGallery: Required elements not found, skipping initialization'
-        );
         return;
       }
 
@@ -272,17 +269,11 @@ const t = useTranslations(lang);
     constructor() {
       this.section = document.getElementById('zoomSection');
       if (!this.section) {
-        console.log(
-          'ZoomScrollEffect: Section not found, skipping initialization'
-        );
         return;
       }
 
       this.image = this.section.querySelector('.zoom-background img');
       if (!this.image) {
-        console.log(
-          'ZoomScrollEffect: Image not found, skipping initialization'
-        );
         return;
       }
 
@@ -338,9 +329,6 @@ const t = useTranslations(lang);
     constructor(containerSelector = '.img-txt.has-gallery') {
       this.container = document.querySelector(containerSelector);
       if (!this.container) {
-        console.log(
-          'ImgTxtGallery: Container not found, skipping initialization'
-        );
         return;
       }
 
@@ -357,9 +345,6 @@ const t = useTranslations(lang);
         !this.prevBtn ||
         !this.nextBtn
       ) {
-        console.log(
-          'ImgTxtGallery: Required elements not found, skipping initialization'
-        );
         return;
       }
 
@@ -428,17 +413,17 @@ const t = useTranslations(lang);
     try {
       new HorizontalGallery();
     } catch (error) {
-      console.log('HorizontalGallery initialization failed:', error);
+      // 
     }
     try {
       new ZoomScrollEffect();
     } catch (error) {
-      console.log('ZoomScrollEffect initialization failed:', error);
+      // 
     }
     try {
       new ImgTxtGallery();
     } catch (error) {
-      console.log('ImgTxtGallery initialization failed:', error);
+      // 
     }
   });
 </script>

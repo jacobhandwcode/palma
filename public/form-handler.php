@@ -1,5 +1,4 @@
 <?php
-// Simple form handler without PHPMailer for testing
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('log_errors', 1);
@@ -9,7 +8,6 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
-// Handle preflight requests
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
@@ -21,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Get and decode input
 $raw_input = file_get_contents('php://input');
 if (empty($raw_input)) {
     http_response_code(400);
@@ -36,7 +33,6 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     exit;
 }
 
-// Basic validation
 $firstName = trim($input['firstName'] ?? '');
 $lastName = trim($input['lastName'] ?? '');
 $email = trim($input['email'] ?? '');
@@ -65,7 +61,6 @@ if (!$terms) {
     exit;
 }
 
-// Create FollowUpBoss email content
 $campaign = map_hear_about_to_campaign($hearAbout);
 $leadType = ($buyerBroker === 'buyer') ? 'Buyer' : 'Seller';
 $tags = [
@@ -77,7 +72,6 @@ $tags = [
 
 $subject = 'New Lead - Palma Miami Beach - ' . $firstName . ' ' . $lastName;
 
-// Create FollowUpBoss formatted email
 $html_message = create_followupboss_email(
     $firstName, $lastName, $email, $phone, $comments, 
     $hearAbout, $realtor, $buyerBroker, 
@@ -85,7 +79,6 @@ $html_message = create_followupboss_email(
     $_SERVER['HTTP_REFERER'] ?? 'https://palma.dreamhosters.com'
 );
 
-// Use PHP's built-in mail() function instead of PHPMailer
 $to = 'palma.miami.beach@followupboss.me';
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -94,7 +87,6 @@ $headers .= "From: no-reply@palma.dreamhosters.com" . "\r\n";
 $mailSent = mail($to, $subject, $html_message, $headers);
 
 if ($mailSent) {
-    // Save lead record
     save_lead_record([
         'timestamp' => date('Y-m-d H:i:s'),
         'firstName' => $firstName,
@@ -237,7 +229,6 @@ function save_lead_record($data)
     
     $leads[] = $data;
     
-    // Keep only last 100 leads to prevent file bloat
     if (count($leads) > 100) {
         $leads = array_slice($leads, -100);
     }

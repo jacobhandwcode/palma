@@ -255,11 +255,9 @@ const {
     popupTitle.textContent = title;
     popupAddress.textContent = address;
 
-    // Position the popup relative to the map
     const mapContainer = document.getElementById('googleMap');
     const mapRect = mapContainer.getBoundingClientRect();
 
-    // Simple positioning - center popup in map area
     popup.style.left = '50%';
     popup.style.top = '50%';
     popup.style.transform = 'translate(-50%, -50%)';
@@ -470,7 +468,6 @@ const {
       },
     });
 
-    // Create PALMA marker (without icon for now)
     marker = new google.maps.Marker({
       position: palmaLocation,
       map: map,
@@ -486,7 +483,6 @@ const {
       },
     });
 
-    // Create location markers
     locations.forEach((location) => {
       const locationMarker = new google.maps.Marker({
         position: new google.maps.LatLng(location.lat, location.lng),
@@ -496,23 +492,19 @@ const {
         optimized: false,
       });
 
-      // Add click listener for each marker
       locationMarker.addListener('click', () => {
         showCustomPopup(location.name, location.address, locationMarker);
       });
     });
 
-    // Close popup when clicking on map
     map.addListener('click', () => {
       hideCustomPopup();
     });
 
-    // Close popup button
     document.getElementById('mapPopupClose').addEventListener('click', () => {
       hideCustomPopup();
     });
 
-    // Close popup when clicking outside
     document.addEventListener('click', (e) => {
       const popup = document.getElementById('mapPopup');
       if (!popup.contains(e.target) && !e.target.closest('.google-map')) {
