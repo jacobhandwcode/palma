@@ -165,7 +165,7 @@ function create_followupboss_email($firstName, $lastName, $email, $phone, $comme
 <meta name="fub-tags" content="' . htmlspecialchars(implode(', ', $tags)) . '">
 <meta name="fub-message" content="' . htmlspecialchars($comments) . '">
 <meta name="fub-description" content="Property inquiry from ' . htmlspecialchars($firstName . ' ' . $lastName) . '">
-<meta name="fub-background" content="Inquiry type: ' . htmlspecialchars($buyerBroker) . ', Is realtor: ' . htmlspecialchars($realtor) . ', Source: ' . htmlspecialchars($hearAbout) . '">
+<meta name="fub-background" content="Inquiry type: ' . htmlspecialchars($buyerBroker) . ', Source: ' . htmlspecialchars($hearAbout) . '">
 <meta name="fub-property-street" content="600 71st Street">
 <meta name="fub-property-city" content="Miami Beach">
 <meta name="fub-property-state" content="FL">

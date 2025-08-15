@@ -67,7 +67,7 @@ export const ui = {
     'form.hearAbout.referral': 'REFERRAL',
 
     'form.realtor.question': 'ARE YOU A REALTOR?',
-    'form.buyerBroker.question': 'ARE YOU A BUYER OR A BROKER?',
+    'form.buyerBroker.question': 'ARE YOU A BUYER?',
     'form.yes': 'YES',
     'form.no': 'NO',
     'form.buyer': 'YES',
@@ -1097,7 +1097,7 @@ export const ui = {
     'form.hearAbout.referral': 'Remisión',
 
     'form.realtor.question': '¿Es usted agente inmobiliario?',
-    'form.buyerBroker.question': '¿Es usted comprador o intermediario?',
+    'form.buyerBroker.question': '¿Es usted comprador?',
     'form.yes': 'Sí',
     'form.no': 'NO',
     'form.buyer': 'Sí',
@@ -2128,7 +2128,7 @@ export const ui = {
     'form.hearAbout.referral': 'REFERÊNCIA',
 
     'form.realtor.question': 'É MEDIADOR IMOBILIÁRIO?',
-    'form.buyerBroker.question': 'É COMPRADOR OU MEDIADOR?',
+    'form.buyerBroker.question': 'É COMPRADOR?',
     'form.yes': 'SIM',
     'form.no': 'NÃO',
     'form.buyer': 'SIM',
