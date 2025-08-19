@@ -8,6 +8,19 @@ interface Props {
 const { lang } = Astro.props;
 const currentLang = lang || getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
+
+// Split the title into letters on the server side
+const titleText = t('hero.title');
+const titleLetters = titleText.split('').map((char, index) => ({
+  char: char === ' ' ? '\u00A0' : char, // Use non-breaking space
+  isSpace: char === ' ',
+  delay: index * 0.02, // Much faster timing
+}));
+
+// Calculate when title animation completes
+const titleAnimationDuration = (titleLetters.length * 0.02) + 0.4; // last letter delay + animation duration
+const subtitleDelay = titleAnimationDuration; // small gap after title
+const arrowDelay = subtitleDelay + 0.4; // subtitle delay + subtitle duration + small gap
 ---
 
 <section class="hero">
@@ -21,27 +34,52 @@ const t = useTranslations(currentLang);
   <div class="hero-content">
     <div class="hero-text">
       <h1 class="hero-title">
-        {t('hero.title')}
+        <span class="desktop-title">
+          {
+            titleLetters.map((letter) => (
+              <span
+                class={`letter ${letter.isSpace ? 'space' : ''}`}
+                style={`animation-delay: ${letter.delay}s`}
+              >
+                {letter.char}
+              </span>
+            ))
+          }
+        </span>
+        <span class="mobile-title">
+          {titleText}
+        </span>
       </h1>
-      <p class="hero-subtitle">{t('hero.subtitle')}</p>
+      <p 
+        class="hero-subtitle hero-subtitle-animated"
+        style={`animation-delay: ${subtitleDelay}s`}
+      >
+        {t('hero.subtitle')}
+      </p>
     </div>
 
-    <div class="arrow">
+    <div
+      class="arrow arrow-animated"
+      style={`animation-delay: ${arrowDelay}s`}
+    >
       <a href="#palma" class="down-arrow"></a>
     </div>
   </div>
 </section>
 
 <style>
-  .arrow {
-    opacity: 1;
-    transition: opacity 0.5s 0.4s;
-    translate: none;
-    rotate: none;
-    scale: none;
-    transform: translate(-50%, 0%);
+  .hero-subtitle-animated {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .arrow-animated {
+    opacity: 0;
+    transform: translate(-50%, 30px);
     margin: 0 auto;
     width: 0;
+    animation: arrowFadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
 
   .down-arrow {
@@ -73,6 +111,92 @@ const t = useTranslations(currentLang);
     }
     60% {
       transform: translateY(-8px);
+    }
+  }
+
+  /* Letter animation styles */
+  .hero-title {
+    overflow: hidden;
+  }
+
+  .mobile-title {
+    display: none;
+  }
+
+  .desktop-title {
+    display: block;
+  }
+
+  .desktop-title .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: letterFadeIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  .desktop-title .letter.space {
+    width: 0.3em;
+  }
+
+  @keyframes letterFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes arrowFadeUp {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, 30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, 0%);
+    }
+  }
+
+  /* Mobile responsive styles - disable stagger animation at 875px and below */
+  @media (max-width: 875px) {
+    .desktop-title {
+      display: none;
+    }
+
+    .mobile-title {
+      display: block;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .hero-subtitle-animated {
+      animation-delay: 0.2s !important;
+    }
+
+    .arrow-animated {
+      animation-delay: 0.4s !important;
+    }
+  }
+
+  /* Hide arrow at 650px and below */
+  @media (max-width: 650px) {
+    .arrow-animated {
+      display: none;
     }
   }
 </style>
