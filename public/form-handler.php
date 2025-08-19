@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Configuration
 $config = [
-    'turnstile_secret' => '0x4AAAAAABnGYtiTkDJKVBmOOTO3fKRvsDM',
+    'turnstile_secret' => '0x4AAAAAABr_qHGqiOr6KPwJTPFWV8PnEc8',
     'max_requests_per_hour' => 10,
     'data_dir' => './data/',
     'max_message_length' => 5000,
