@@ -215,10 +215,13 @@ header {
     z-index: 1000;
     pointer-events: none;
     visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 
     &.active {
       pointer-events: auto;
       visibility: visible;
+      opacity: 1;
     }
 
     .menu-reveal-block {
@@ -2099,10 +2102,10 @@ header {
       opacity: 0.7;
     }
 
-    &:focus {
-      outline: 2px solid rgba(255, 255, 255, 0.5);
-      outline-offset: 2px;
-    }
+    // &:focus {
+    //   outline: 2px solid rgba(255, 255, 255, 0.5);
+    //   outline-offset: 2px;
+    // }
   }
 
   &__title {
@@ -3182,11 +3185,11 @@ footer {
       color: #fff;
     }
 
-    &:focus {
-      outline: 2px solid rgba(255, 255, 255, 0.5);
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
+    // &:focus {
+    //   outline: 2px solid rgba(255, 255, 255, 0.5);
+    //   outline-offset: 2px;
+    //   border-radius: 2px;
+    // }
 
     &:active {
       transform: translateY(0);
@@ -5872,7 +5875,7 @@ body.modal-open {
 }
 
 @media (max-width: 650px) {
-  #text-box {
+  #palma {
     margin-top: -3rem;
   }
 }

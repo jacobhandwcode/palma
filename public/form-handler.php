@@ -232,8 +232,14 @@ $tags = [
 $subject = 'New Lead - Palma Miami Beach - ' . $firstName . ' ' . $lastName;
 
 $html_message = create_followupboss_email(
-    $firstName, $lastName, $email, $phone, $comments, 
-    $hearAbout, $realtor, $buyerBroker, 
+    $firstName,
+    $lastName,
+    $email,
+    $phone,
+    $comments,
+    $hearAbout,
+    $realtor,
+    $buyerBroker,
     $_SERVER['REMOTE_ADDR'] ?? 'unknown',
     $_SERVER['HTTP_REFERER'] ?? 'https://palmamiamibeach.com'
 );
@@ -259,7 +265,7 @@ if ($mailSent) {
         'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
         'turnstile_verified' => true
     ]);
-    
+
     echo json_encode(['success' => true, 'message' => 'Thank you for your inquiry! We will contact you soon.']);
 } else {
     error_log("Failed to send email to FollowUpBoss");
@@ -299,7 +305,7 @@ function create_followupboss_email($firstName, $lastName, $email, $phone, $comme
         $realtor === 'yes' ? 'Realtor' : 'Non-Realtor',
         'Website Lead'
     ];
-    
+
     $html_message = '
 <html>
 <head>
@@ -379,20 +385,19 @@ function save_lead_record($data)
 {
     $file = 'leads.json';
     $leads = [];
-    
+
     if (file_exists($file)) {
         $content = file_get_contents($file);
         if ($content) {
             $leads = json_decode($content, true) ?: [];
         }
     }
-    
+
     $leads[] = $data;
-    
+
     if (count($leads) > 100) {
         $leads = array_slice($leads, -100);
     }
-    
+
     file_put_contents($file, json_encode($leads, JSON_PRETTY_PRINT));
 }
-?>

@@ -1047,7 +1047,7 @@ export const ui = {
 
     // nav
     'nav.home': 'Inicio',
-    'nav.amenities': 'Servicios',
+    'nav.amenities': 'Amenidades',
     'nav.residences': 'Residencias',
     'nav.neighborhood': 'Barrio',
     'nav.team': 'Equipo',
@@ -1128,7 +1128,7 @@ export const ui = {
       'Una residencia boutique de estilo mediterráneo situada cerca del famoso Bal Harbour, playas de arena blanca y a pocos minutos de South Beach.',
     'home.residences': 'RESIDENCIAS',
     'home.amenities': 'AMENIDADES',
-    'home.neighborhood': 'VECINOS',
+    'home.neighborhood': 'BARRIO',
 
     'two-img.one': 'The luxury of island life',
     'two-img.two': 'Black and white photo of woman with magazine',
@@ -1292,7 +1292,7 @@ export const ui = {
       'Vecindario | Palma Miami Beach | Condominios de Lujo en Venta',
     'neighborhood.meta.description':
       'Palma Miami Beach ofrece una residencia boutique de estilo mediterráneo situada cerca del famoso Bal Harbour, playas de arena blanca y a pocos minutos de South Beach.',
-    'neighborhood.title': 'Vecinos',
+    'neighborhood.title': 'Barrio',
     'neighborhood.intro.paragraph1':
       'En el corazón de Miami Beach se encuentra un barrio donde la vida se desarrolla con elegancia y emoción. Las calles están repletas de restaurantes de lujo y animados locales de ocio, mientras que el Centro Acuático y el Centro de Tenis de Miami Beach satisfacen su lado más activo. El cercano Normandy Shores Golf Club ofrece exuberantes greens para una escapada serena, y las canchas de voleibol de playa proporcionan un patio de recreo de arena para los partidos animados.',
     'neighborhood.intro.paragraph2':

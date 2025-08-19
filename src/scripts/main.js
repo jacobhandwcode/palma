@@ -989,7 +989,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (downArrowLink) {
     downArrowLink.addEventListener('click', function(e) {
       e.preventDefault();
-      scrollToElementAndRemoveHash('text-box', 100);
+      scrollToElementAndRemoveHash('palma', 100);
     });
   }
 });

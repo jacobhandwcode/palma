@@ -251,7 +251,9 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
 
       setTimeout(() => {
         mobileMenu.classList.remove('active');
+      }, 800);
 
+      setTimeout(() => {
         navItems.forEach((item) => {
           item.classList.remove('animate-out');
         });
@@ -263,7 +265,7 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
         if (menuImageContainer) {
           menuImageContainer.classList.remove('animate-out');
         }
-      }, 800);
+      }, 1100);
     }
 
     if (hamburger && mobileMenu) {
