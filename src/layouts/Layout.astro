@@ -67,6 +67,20 @@ const schemaData = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-WGZJSB3P');
+    </script>
+    <!-- End Google Tag Manager -->
     {keywords && <meta name="keywords" content={keywords} />}
     <meta name="robots" content={robotsContent} />
     <meta name="googlebot" content={robotsContent} />
@@ -111,6 +125,15 @@ const schemaData = {
     <script src="../scripts/main.js"></script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WGZJSB3P"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
     <Header currentLang={currentLang} />
     <main>
       <slot />
