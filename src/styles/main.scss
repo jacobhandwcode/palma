@@ -2095,7 +2095,6 @@ header {
     height: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
     transition: opacity 0.2s ease;
 
     &:hover {
@@ -5878,4 +5877,14 @@ body.modal-open {
   #palma {
     margin-top: -3rem;
   }
+}
+
+.turnstile-hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
