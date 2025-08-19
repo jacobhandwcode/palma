@@ -2,6 +2,13 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('log_errors', 1);
+ini_set('error_log', '../logs/form_errors.log'); // Optional: specify log file location
+
+// Add logging for all requests
+error_log("=== NEW FORM SUBMISSION ===");
+error_log("Method: " . $_SERVER['REQUEST_METHOD']);
+error_log("IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
+error_log("User Agent: " . ($_SERVER['HTTP_USER_AGENT'] ?? 'unknown'));
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -14,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    error_log("Invalid method: " . $_SERVER['REQUEST_METHOD']);
     http_response_code(405);
     echo json_encode(['error' => 'Method not allowed']);
     exit;
@@ -157,6 +165,7 @@ if (!check_rate_limit($user_ip, $config)) {
 
 $raw_input = file_get_contents('php://input');
 if (empty($raw_input)) {
+    error_log("Empty input received");
     http_response_code(400);
     echo json_encode(['error' => 'No data received']);
     exit;
@@ -164,6 +173,7 @@ if (empty($raw_input)) {
 
 $input = json_decode($raw_input, true);
 if (json_last_error() !== JSON_ERROR_NONE) {
+    error_log("JSON decode error: " . json_last_error_msg());
     http_response_code(400);
     echo json_encode(['error' => 'Invalid JSON data']);
     exit;
@@ -253,6 +263,7 @@ $mailSent = mail($to, $subject, $html_message, $headers);
 
 if ($mailSent) {
     save_lead_record([
+        'id' => uniqid('lead_', true),
         'timestamp' => date('Y-m-d H:i:s'),
         'firstName' => $firstName,
         'lastName' => $lastName,
@@ -262,16 +273,24 @@ if ($mailSent) {
         'hearAbout' => $hearAbout,
         'realtor' => $realtor,
         'buyerBroker' => $buyerBroker,
+        'leadType' => $leadType,
+        'tags' => $tags,
+        'campaign' => $campaign,
         'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
+        'userAgent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown',
+        'referer' => $_SERVER['HTTP_REFERER'] ?? 'unknown',
         'turnstile_verified' => true
-    ]);
+    ], $config);
 
     echo json_encode(['success' => true, 'message' => 'Thank you for your inquiry! We will contact you soon.']);
+    error_log("Form submission successful - ID: " . $data['id'] . ", Name: " . $firstName . " " . $lastName . ", Email: " . $email);
 } else {
     error_log("Failed to send email to FollowUpBoss");
     http_response_code(500);
     echo json_encode(['error' => 'Failed to submit your inquiry. Please try again or contact us directly.']);
 }
+
+error_log("=== FORM SUBMISSION COMPLETED ===\n");
 
 function map_hear_about_to_campaign($hearAbout)
 {
@@ -381,10 +400,18 @@ Notes: Palma Miami Beach website inquiry submitted on ' . date('Y-m-d H:i:s') . 
     return $html_message;
 }
 
-function save_lead_record($data)
+function save_lead_record($data, $config)
 {
-    $file = 'leads.json';
+    $file = $config['data_dir'] . 'data.json';
     $leads = [];
+
+    // Ensure data directory exists
+    if (!file_exists($config['data_dir'])) {
+        if (!mkdir($config['data_dir'], 0755, true)) {
+            error_log("Failed to create data directory for leads");
+            return false;
+        }
+    }
 
     if (file_exists($file)) {
         $content = file_get_contents($file);
@@ -395,9 +422,17 @@ function save_lead_record($data)
 
     $leads[] = $data;
 
-    if (count($leads) > 100) {
-        $leads = array_slice($leads, -100);
+    // Keep only last 1000 leads to prevent file from getting too large
+    if (count($leads) > 1000) {
+        $leads = array_slice($leads, -1000);
     }
 
-    file_put_contents($file, json_encode($leads, JSON_PRETTY_PRINT));
+    $result = file_put_contents($file, json_encode($leads, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    
+    if ($result === false) {
+        error_log("Failed to save lead record to data.json");
+        return false;
+    }
+    
+    return true;
 }
