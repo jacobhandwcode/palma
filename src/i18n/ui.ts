@@ -1447,6 +1447,7 @@ export const ui = {
     'press.subtitle':
       'Descubre las últimas noticias y cobertura mediática sobre Palma Miami Beach, un ícono arquitectónico que ofrece residencias boutique exclusivas en el corazón de Miami Beach.',
     'press.readFullArticle': 'Leer Artículo Completo',
+
     // DISCLAIMERS
     'disclaimers.title': 'AVISO LEGAL',
     'disclaimers.close': 'Cerrar aviso legal',
@@ -2073,36 +2074,36 @@ export const ui = {
     'site.title':
       'Palma Miami Beach | Residências de Luxo à Venda em Miami Beach',
     'site.description':
-      'Palma é um ícone arquitetónico em Miami Beach, Florida, oferecendo residências boutique exclusivas concebidas para uns poucos privilegiados. Informe-se hoje para saber mais.',
+      'Palma é um ícone arquitetônico em Miami Beach, Florida, oferecendo residências boutique exclusivas projetadas para uns poucos privilegiados. Informe-se hoje para saber mais.',
     'site.name': 'Palma Miami Beach',
 
     // nav
     'nav.home': 'Início',
-    'nav.amenities': 'Comodidades',
+    'nav.amenities': 'Amenidades',
     'nav.residences': 'Residências',
-    'nav.neighborhood': 'Vizinhança',
-    'nav.team': 'Equipa',
+    'nav.neighborhood': 'Bairro',
+    'nav.team': 'Equipe',
     'nav.gallery': 'Galeria',
     'nav.press': 'Imprensa',
     'nav.inquire': 'Informações',
 
     // footer
     'footer.tagline':
-      'Charme Mediterrânico | Miami Beach Luxe-Life | Fácil Acesso à Praia e ao Mundo',
+      'Charme Mediterrâneo | Miami Beach Luxe-Life | Fácil Acesso à Praia e ao Mundo',
     'footer.inquire': 'INFORMAÇÕES',
     'footer.telephone': 'Telefone',
-    'footer.projectAddress': 'MORADA DO PROJECTO',
+    'footer.projectAddress': 'ENDEREÇO DO PROJETO',
     'footer.salesGallery': 'GALERIA DE VENDAS:',
     'footer.copyright':
       'TODOS OS CONTEÚDOS DESTE WEBSITE © 2025. TODOS OS DIREITOS RESERVADOS. TODAS AS REPRESENTAÇÕES SÃO ARTÍSTICAS E AS IMAGENS PODEM SER ALTERADAS SEM AVISO PRÉVIO.',
     'footer.links.privacy': 'POLÍTICA DE PRIVACIDADE',
     'footer.links.notices': 'AVISOS E TERMOS',
-    'footer.links.disclaimers': 'DECLARAÇÕES DE EXONERAÇÃO',
+    'footer.links.disclaimers': 'ISENÇÕES DE RESPONSABILIDADE',
 
     'form.firstName.placeholder': 'Nome',
     'form.firstName.label': 'NOME',
-    'form.lastName.placeholder': 'Apelido',
-    'form.lastName.label': 'APELIDO',
+    'form.lastName.placeholder': 'Sobrenome',
+    'form.lastName.label': 'SOBRENOME',
     'form.email.placeholder': 'Email',
     'form.email.label': 'EMAIL',
     'form.phone.placeholder': 'Telefone',
@@ -2114,10 +2115,10 @@ export const ui = {
     'form.hearAbout.label': 'COMO SOUBE DE NÓS?',
     'form.hearAbout.driveby': 'PASSOU DE CARRO NA ÁREA',
     'form.hearAbout.gale': 'HÓSPEDE FIEL DO GALE SOUTH BEACH',
-    'form.hearAbout.broker': 'MEDIADOR',
+    'form.hearAbout.broker': 'CORRETOR',
     'form.hearAbout.event': 'EVENTO',
     'form.hearAbout.googleOrganic': 'GOOGLE ORGÂNICO',
-    'form.hearAbout.direct': 'DIRECTO',
+    'form.hearAbout.direct': 'DIRETO',
     'form.hearAbout.googleKeywords': 'PALAVRAS-CHAVE DO GOOGLE',
     'form.hearAbout.realEstate': 'SITE IMOBILIÁRIO',
     'form.hearAbout.socialMedia': 'REDES SOCIAIS',
@@ -2125,49 +2126,49 @@ export const ui = {
     'form.hearAbout.internetSearch': 'PESQUISA NA INTERNET',
     'form.hearAbout.magazine': 'REVISTA',
     'form.hearAbout.newspaper': 'JORNAL',
-    'form.hearAbout.referral': 'REFERÊNCIA',
+    'form.hearAbout.referral': 'INDICAÇÃO',
 
-    'form.realtor.question': 'É MEDIADOR IMOBILIÁRIO?',
-    'form.buyerBroker.question': 'É COMPRADOR?',
+    'form.realtor.question': 'VOCÊ É CORRETOR IMOBILIÁRIO?',
+    'form.buyerBroker.question': 'VOCÊ É COMPRADOR?',
     'form.yes': 'SIM',
     'form.no': 'NÃO',
     'form.buyer': 'SIM',
     'form.broker': 'NÃO',
 
-    'form.terms.intro': 'POR FAVOR ACEITE OS NOSSOS TERMOS E LEIA A NOSSA',
+    'form.terms.intro': 'POR FAVOR ACEITE NOSSOS TERMOS E LEIA NOSSA',
     'form.terms.privacyPolicy': 'POLÍTICA DE PRIVACIDADE',
     'form.terms.agreement':
-      "CONCORDO EM SER CONTACTADO PELA PALMAMIAMIBEACH VIA CHAMADA, EMAIL E TEXTO. PARA CANCELAR, PODE RESPONDER 'STOP' A QUALQUER MOMENTO OU CLICAR NO LINK DE CANCELAMENTO NOS EMAILS. PODEM APLICAR-SE TARIFAS DE MENSAGENS E DADOS.",
+      "CONCORDO EM SER CONTATADO PELA PALMAMIAMIBEACH VIA LIGAÇÃO, EMAIL E TEXTO. PARA CANCELAR, VOCÊ PODE RESPONDER 'STOP' A QUALQUER MOMENTO OU CLICAR NO LINK DE CANCELAMENTO NOS EMAILS. TARIFAS DE MENSAGENS E DADOS PODEM SE APLICAR.",
 
     // phone
     'contact.questions': 'Tem perguntas?',
     'contact.call': 'Ligue hoje, estamos aqui para ajudar!',
     'contact.phone': '305-946-4264',
     'contact.disclaimer':
-      "Concordo em ser contactado pela PalmaMiamiBeach via texto, chamada e email. Para cancelar, responda 'stop' ou clique em cancelar subscrição.",
+      "Concordo em ser contatado pela PalmaMiamiBeach via texto, ligação e email. Para cancelar, responda 'stop' ou clique em cancelar inscrição.",
     'contact.call.button': 'Ligar',
 
     // HOME PAGE
-    'hero.title': 'Uma Experiência Mediterrânica que começa em Miami Beach.',
+    'hero.title': 'Uma Experiência Mediterrânea que começa em Miami Beach.',
     'hero.subtitle': 'Um Empreendimento Lefferts',
-    'hero.video.fallback': 'O seu navegador não suporta a etiqueta de vídeo.',
-    'hero.scroll': 'Deslize para baixo',
+    'hero.video.fallback': 'Seu navegador não suporta a tag de vídeo.',
+    'hero.scroll': 'Role para baixo',
 
     'home.hero.title': 'Palma',
     'home.intro':
-      'é um ícone arquitetónico em Miami Beach, oferecendo residências boutique exclusivas concebidas para uns poucos privilegiados. Os interiores, criados pelo premiado Studio Ramirez, exalam glamour e requinte. Cada residência apresenta plantas impecáveis, servindo tanto como santuário quanto como espaço ideal para entretenimento. Todas as residências são entregues totalmente mobiladas e acabadas sem restrições de arrendamento.',
+      'é um ícone arquitetônico em Miami Beach, oferecendo residências boutique exclusivas projetadas para uns poucos privilegiados. Os interiores, criados pelo premiado Studio Ramirez, exalam glamour e requinte. Cada residência apresenta plantas impecáveis, servindo tanto como santuário quanto como espaço ideal para entretenimento. Todas as residências são entregues totalmente mobiliadas e acabadas sem restrições de aluguel.',
     'home.location':
-      'Uma residência boutique de estilo mediterrânico localizada perto do famoso Bal Harbour, praias de areia branca e a poucos minutos de South Beach.',
+      'Uma residência boutique de estilo mediterrâneo localizada perto do famoso Bal Harbour, praias de areia branca e a poucos minutos de South Beach.',
     'home.residences': 'Residências',
-    'home.amenities': 'Comodidades',
-    'home.neighborhood': 'Vizinhança',
+    'home.amenities': 'Amenidades',
+    'home.neighborhood': 'Bairro',
 
     'two-img.one': 'O luxo da vida insular',
-    'two-img.two': 'Fotografia a preto e branco de mulher com revista',
+    'two-img.two': 'Fotografia em preto e branco de mulher com revista',
 
-    'gallery.gym': 'Ginásio Palma Miami Beach',
+    'gallery.gym': 'Academia Palma Miami Beach',
     'gallery.pool': 'Piscina Palma Miami Beach',
-    'gallery.aqua-lounge': 'Salão aquático',
+    'gallery.aqua-lounge': 'Lounge aquático',
     'gallery.terrace': 'Terraço com vista para a piscina e a água',
     'gallery.bedroom': 'Um quarto Palma Miami Beach',
     'gallery.prev': 'Imagem anterior',
@@ -2175,39 +2176,39 @@ export const ui = {
 
     // AMENITIES PAGE
     'amenities.meta.title':
-      'Comodidades | Palma Miami Beach | Apartamentos de Luxo em Miami Beach',
+      'Amenidades | Palma Miami Beach | Apartamentos de Luxo em Miami Beach',
     'amenities.meta.description':
-      'No Palma, a qualidade reina suprema, com todas as comodidades cuidadosamente seleccionadas para o seu estilo de vida. Veja os nossos serviços e comodidades, incluindo o Palma Beach Club.',
-    'amenities.title': 'Comodidades',
+      'No Palma, a qualidade reina suprema, com todas as amenidades cuidadosamente selecionadas para seu estilo de vida. Veja nossos serviços e amenidades, incluindo o Palma Beach Club.',
+    'amenities.title': 'Amenidades',
     'amenities.intro.start': 'No',
     'amenities.intro.middle':
-      'pode mergulhar na piscina de estilo mediterrânico, rodeada por cabanas elegantes, ou entreter-se na cozinha de verão e bar. O ginásio, concebido com equipamento de primeira linha, irá certamente impressionar, enquanto o salão privado para residentes oferece o espaço perfeito para entreter os seus amigos e família de noite ou de dia. Aqui, a qualidade reina suprema, com todas as comodidades cuidadosamente seleccionadas para o seu estilo de vida.',
+      'você pode mergulhar na piscina de estilo mediterrâneo, cercada por cabanas elegantes, ou se entreter na cozinha de verão e bar. A academia, projetada com equipamentos de primeira linha, certamente impressionará, enquanto o lounge privativo para residentes oferece o espaço perfeito para entreter seus amigos e família durante a noite ou o dia. Aqui, a qualidade reina suprema, com todas as amenidades cuidadosamente selecionadas para seu estilo de vida.',
     'amenities.intro.end':
-      'é onde saboreia o melhor de dois mundos—luxo tranquilo num ambiente boutique, com tudo o que precisa ao seu alcance.',
+      'é onde você saboreará o melhor de dois mundos—luxo tranquilo em um ambiente boutique, com tudo que você precisa ao seu alcance.',
 
     'amenities.building.features.title': 'Características do Edifício',
     'amenities.building.features.lobby':
-      'Átrio de pé-direito duplo com janelas do chão ao tecto',
+      'Lobby de pé-direito duplo com janelas do chão ao teto',
     'amenities.building.features.reception': 'Balcão de recepção',
     'amenities.building.features.security':
-      'Acesso seguro 24 horas ao edifício, comodidades, garagem e áreas residenciais privadas',
+      'Acesso seguro 24 horas ao edifício, amenidades, garagem e áreas residenciais privadas',
     'amenities.building.features.smart':
-      'Edifício SMART de tecnologia avançada com acesso à internet de alta velocidade por fibra óptica',
+      'Edifício SMART de tecnologia avançada com acesso à internet de alta velocidade por fibra ótica',
     'amenities.building.features.wifi': 'WIFI em todas as áreas comuns',
     'amenities.building.features.landmark':
-      'Edifício emblemático de 14 andares projectado pela Built Form',
+      'Edifício icônico de 14 andares projetado pela Built Form',
     'amenities.building.features.retail':
-      'Inquilinos comerciais seleccionados no rés-do-chão',
+      'Inquilinos comerciais selecionados no térreo',
     'amenities.building.features.beachClub':
-      'Luxe Beach Club com lugares reservados apenas para residentes',
+      'Luxe Beach Club com assentos reservados apenas para residentes',
 
-    'amenities.building.amenities.title': 'Comodidades do Edifício',
+    'amenities.building.amenities.title': 'Amenidades do Edifício',
     'amenities.building.amenities.pool':
-      'Piscina de estilo resort com espreguiçadeiras privadas e cabanas de luxo',
+      'Piscina estilo resort com espreguiçadeiras privadas e cabanas de luxo',
     'amenities.building.amenities.kitchen':
-      'Cozinha de verão exterior com bar e área de eventos no deck da piscina',
+      'Cozinha de verão ao ar livre com bar e área de eventos no deck da piscina',
     'amenities.building.amenities.lounge':
-      'Salão para residentes ao nível da piscina com lugares interiores e exteriores para eventos privados dos residentes',
+      'Lounge para residentes no nível da piscina com assentos internos e externos para eventos privados dos residentes',
     'amenities.building.amenities.fitness':
       'Centro de fitness de última geração totalmente equipado com Technogym com vista para a área da piscina do resort',
     'amenities.building.amenities.wellness':
@@ -2219,23 +2220,23 @@ export const ui = {
 
     'amenities.beachClub.title': 'Palma Beach Club',
     'amenities.beachClub.description':
-      'Bem-vindo à "praia de luxo", onde a indulgência encontra o relaxamento no coração de Miami Beach. Imagine-se a descansar nas nossas suntuosas cadeiras de praia, onde cada detalhe é adaptado ao seu conforto e prazer. A nossa equipa atenciosa antecipa todas as suas necessidades, garantindo um serviço impecável com um sorriso. Deseja sabores mediterrânicos? O nosso serviço de comida sob pedido traz o sabor do Mediterrâneo directamente à sua cabana. Finalmente um clube de praia que é seleccionado à perfeição.',
+      'Bem-vindo à "praia de luxo", onde a indulgência encontra o relaxamento no coração de Miami Beach. Imagine-se descansando em nossas suntuosas cadeiras de praia, onde cada detalhe é adaptado ao seu conforto e prazer. Nossa equipe atenciosa antecipa todas as suas necessidades, garantindo um serviço impecável com um sorriso. Deseja sabores mediterrâneos? Nosso serviço de comida sob demanda traz o sabor do Mediterrâneo diretamente à sua cabana. Finalmente um beach club selecionado à perfeição.',
     'amenities.beachClub.scene': 'Cenário de Praia',
-    'amenities.beachClub.relaxing': 'Mulher a Ler',
-    'amenities.beachClub.service': 'Serviço de Champanhe',
-    'amenities.beachClub.tagline': 'Muito Mais Que Um Lugar Para Viver',
+    'amenities.beachClub.relaxing': 'Mulher Lendo',
+    'amenities.beachClub.service': 'Serviço de Champagne',
+    'amenities.beachClub.tagline': 'Muito Mais Que Um Lugar Para Morar',
 
     // RESIDENCES PAGE
     'residences.meta.title':
       'Residências | Palma Miami Beach | Apartamentos de Luxo em Miami Beach',
     'residences.meta.description':
-      'As residências totalmente mobiladas e acabadas no Palma Miami Beach apresentam plantas impecáveis, servindo tanto como santuário quanto como espaço ideal para entretenimento.',
+      'As residências totalmente mobiliadas e acabadas no Palma Miami Beach apresentam plantas impecáveis, servindo tanto como santuário quanto como espaço ideal para entretenimento.',
     'residences.title': 'Residências',
     'residences.intro.start': 'As residências no',
     'residences.intro.middle':
-      'são uma mistura harmoniosa de elegância e conforto, concebidas para serem a sua casa a tempo inteiro, uma escapadela de fim de semana, ou um arrendamento flexível sem restrições. Cada espaço exala charme mediterrânico com layouts arejados, tectos altos e acabamentos seleccionados à mão que evocam beleza intemporal. A luz solar atravessa janelas amplas, iluminando áreas de estar abertas que fluem sem problemas para terraços privados, muitos com vistas para a água.',
+      'são uma mistura harmoniosa de elegância e conforto, projetadas para serem sua casa em tempo integral, um refúgio de fim de semana, ou um aluguel flexível sem restrições. Cada espaço exala charme mediterrâneo com layouts arejados, tetos altos e acabamentos selecionados à mão que evocam beleza atemporal. A luz solar atravessa janelas amplas, iluminando áreas de estar abertas que fluem perfeitamente para terraços privados, muitos com vista para a água.',
     'residences.intro.end':
-      'oferece versatilidade incomparável que é entregue chave na mão para si ou os seus convidados. Cada detalhe é elaborado para melhorar o seu estilo de vida, proporcionando um refúgio sereno que permanece ligado à energia vibrante de Miami Beach.',
+      'oferece versatilidade incomparável que é entregue chave na mão para você ou seus convidados. Cada detalhe é elaborado para melhorar seu estilo de vida, proporcionando um refúgio sereno que permanece conectado à energia vibrante de Miami Beach.',
 
     'residences.collage.alt': 'Vista da Varanda',
     'residences.overlay.alt': 'Ame a Vida',
@@ -2244,24 +2245,24 @@ export const ui = {
     'residences.features.beachLuxe':
       'Residências de luxo de praia com layouts modernos abertos',
     'residences.features.furnished':
-      'Todas as residências são entregues totalmente acabadas e mobiladas pelo premiado Studio Ramirez',
+      'Todas as residências são entregues totalmente acabadas e mobiliadas pelo premiado Studio Ramirez',
     'residences.features.views':
-      'Vistas panorâmicas do oceano e da baía em residências seleccionadas',
+      'Vistas panorâmicas do oceano e da baía em residências selecionadas',
     'residences.features.balconies':
-      'Varandas privadas para prazer ao ar livre a partir da sua casa',
+      'Varandas privadas para prazer ao ar livre a partir de sua casa',
     'residences.features.ceilings':
-      'Tectos luxuosos de 9-10 pés dando espaço e luz à sensação da sua residência',
+      'Tetos luxuosos de 9-10 pés dando espaço e luz à sensação de sua residência',
     'residences.features.doors':
-      'Portas de vidro deslizantes do chão ao tecto com vidro resistente a impactos',
+      'Portas de vidro deslizantes do chão ao teto com vidro resistente a impactos',
     'residences.features.smart': 'Tecnologia avançada Smart Building',
     'residences.features.internet':
-      'As residências estão pré-cabladas para internet de alta velocidade',
+      'As residências estão pré-cabeadas para internet de alta velocidade',
     'residences.features.hvac':
       'Sistema central de ar condicionado e aquecimento energeticamente eficiente',
     'residences.features.laundry':
-      'Combo de máquina de lavar e secar incluído com a residência',
+      'Combo de lavadora e secadora incluído com a residência',
     'residences.features.closets':
-      'Roupeiros espaçosos para o seu guarda-roupa chique de praia',
+      'Closets espaçosos para seu guarda-roupa chique de praia',
 
     'residences.gallery.feature1': 'Característica Residencial 1',
     'residences.gallery.feature2': 'Característica Residencial 2',
@@ -2273,22 +2274,23 @@ export const ui = {
     'residences.kitchen.cabinets':
       'Armários europeus importados com ferragens premium',
     'residences.kitchen.appliances':
-      'Pacote de electrodomésticos Bosch com frigorífico, forno, placa, microondas e máquina de lavar louça',
+      'Pacote de eletrodomésticos Bosch com geladeira, forno, cooktop, micro-ondas e lava-louças',
     'residences.kitchen.countertops':
-      'Bancadas de pedra premium e salpicos para a experiência culinária suprema',
+      'Bancadas de pedra premium e backsplashes para a experiência culinária suprema',
     'residences.kitchen.sink':
-      'Lava-louça contemporâneo de aço inoxidável sob a bancada',
-    'residences.kitchen.faucet': 'Torneira elegante com pulverizador integrado',
+      'Pia contemporânea de aço inoxidável sob a bancada',
+    'residences.kitchen.faucet': 'Torneira elegante com borrifador integrado',
 
-    'residences.bathroom.title': 'Casa de Banho Principal',
+    'residences.bathroom.title': 'Banheiro Principal',
     'residences.bathroom.cabinets':
       'Armários europeus importados com ferragens premium e puxadores de gaveta',
-    'residences.bathroom.countertops': 'Bancadas de pedra premium e salpicos',
+    'residences.bathroom.countertops':
+      'Bancadas de pedra premium e backsplashes',
     'residences.bathroom.sinks':
-      'Lavatórios rectangulares de porcelana com torneiras elegantes duplas (em residências seleccionadas)',
+      'Pias retangulares de porcelana com torneiras elegantes duplas (em residências selecionadas)',
     'residences.bathroom.floors':
-      'Pisos e paredes de porcelana com acabamento personalizado em áreas húmidas',
-    'residences.bathroom.shower': 'Cabines de duche em vidro',
+      'Pisos e paredes de porcelana com acabamento personalizado em áreas molhadas',
+    'residences.bathroom.shower': 'Boxes de chuveiro em vidro',
     'residences.bathroom.fixtures':
       'Acessórios e ferragens de estilo europeu premium',
 
@@ -2301,18 +2303,18 @@ export const ui = {
     'floorPlans.title': 'PLANTAS',
     'floorPlans.welcome': 'Bem-vindo Casa',
     'floorPlans.subtitle':
-      'Por favor seleccione a residência da planta do piso para ver a planta detalhada.',
-    'floorPlans.penthouse': 'PENTHOUSE',
-    'floorPlans.levels4to12': 'NÍVEIS 4-12',
-    'floorPlans.level3': 'NÍVEL 3',
+      'Por favor selecione a residência da planta do andar para ver a planta detalhada.',
+    'floorPlans.penthouse': 'COBERTURA',
+    'floorPlans.levels4to12': 'ANDARES 4-12',
+    'floorPlans.level3': 'ANDAR 3',
     'floorPlans.residence': 'RESIDÊNCIA',
-    'floorPlans.download': 'DESCARREGAR PLANTA',
+    'floorPlans.download': 'BAIXAR PLANTA',
     'floorPlans.floorPlanAlt': 'Planta',
 
-    'floorPlans.bedrooms.2bed1bath': '2 Quartos / 1 Casa de Banho',
-    'floorPlans.bedrooms.2bed2bath': '2 Quartos / 2 Casas de Banho',
-    'floorPlans.bedrooms.1bed1bath': '1 Quarto / 1 Casa de Banho',
-    'floorPlans.bedrooms.studio1bath': 'Estúdio / 1 Casa de Banho',
+    'floorPlans.bedrooms.2bed1bath': '2 Quartos / 1 Banheiro',
+    'floorPlans.bedrooms.2bed2bath': '2 Quartos / 2 Banheiros',
+    'floorPlans.bedrooms.1bed1bath': '1 Quarto / 1 Banheiro',
+    'floorPlans.bedrooms.studio1bath': 'Estúdio / 1 Banheiro',
 
     'floorPlans.specs.interior': 'Interior',
     'floorPlans.specs.exterior': 'Exterior',
@@ -2320,70 +2322,70 @@ export const ui = {
 
     // NEIGHBORHOOD PAGE
     'neighborhood.meta.title':
-      'Vizinhança | Palma Miami Beach | Apartamentos de Luxo à Venda',
+      'Bairro | Palma Miami Beach | Apartamentos de Luxo à Venda',
     'neighborhood.meta.description':
-      'Palma Miami Beach oferece uma residência boutique de estilo mediterrânico localizada perto do famoso Bal Harbour, praias de areia branca e a poucos minutos de South Beach.',
-    'neighborhood.title': 'Vizinhança',
+      'Palma Miami Beach oferece uma residência boutique de estilo mediterrâneo localizada perto do famoso Bal Harbour, praias de areia branca e a poucos minutos de South Beach.',
+    'neighborhood.title': 'Bairro',
     'neighborhood.intro.paragraph1':
-      'No coração de Miami Beach encontra-se uma vizinhança onde a vida se desenrola com elegância e emoção. Restauração requintada e entretenimento vibrante preenchem as ruas, enquanto o Centro Aquático e o Centro de Ténis de Miami Beach atendem ao seu lado activo. O próximo Normandy Shores Golf Club oferece relvados exuberantes para uma fuga serena, e os campos de voleibol de praia proporcionam um parque de diversões na areia para jogos animados.',
+      'No coração de Miami Beach encontra-se um bairro onde a vida se desenrola com elegância e emoção. Gastronomia refinada e entretenimento vibrante preenchem as ruas, enquanto o Centro Aquático e o Centro de Tênis de Miami Beach atendem ao seu lado ativo. O próximo Normandy Shores Golf Club oferece gramados exuberantes para um escape sereno, e as quadras de vôlei de praia proporcionam um playground na areia para jogos animados.',
     'neighborhood.intro.paragraph2':
-      'Quando o crepúsculo cai, concertos de jazz enchem o ar, criando momentos de pura magia. Para os aventureiros, alugueres de jet ski e caiaque prometem escapadas aquáticas emocionantes. O famoso Passeio Marítimo de Miami Beach convida-o numa jornada cénica da sua porta até ao animado South Pointe Park.',
+      'Quando o crepúsculo cai, concertos de jazz preenchem o ar, criando momentos de pura magia. Para os aventureiros, alugueis de jet ski e caiaque prometem escapadas aquáticas emocionantes. O famoso Calçadão de Miami Beach convida você numa jornada cênica da sua porta até o animado South Pointe Park.',
     'neighborhood.image.alt': 'Vista Palma Miami Beach',
 
     'map.title': 'No Coração de Miami Beach',
     'map.categories.hospitality': 'Hospitalidade',
-    'map.categories.neighborhood': 'Vizinhança',
+    'map.categories.neighborhood': 'Bairro',
     'map.categories.restaurants': 'Restaurantes',
     'map.categories.shops': 'Lojas',
     'map.categories.withinTenMinutes': 'Em Dez Minutos',
 
     'gallery.title': 'Apenas Minutos de Tudo',
     'gallery.subtitle.start':
-      'apresenta todo o fascínio de Miami Beach. Situado apenas a passos das suas praias pristinas e com vistas tanto do oceano quanto das ilhas vizinhas na baía,',
+      'apresenta todo o fascínio de Miami Beach. Situado apenas a passos de suas praias pristinas e com vistas tanto do oceano quanto das ilhas vizinhas na baía,',
     'gallery.subtitle.middle':
-      'os residentes deliciam-se num estilo de vida insular beijado pelo sol com um parque de diversões internacional no seu quintal.',
+      'os residentes se deliciam num estilo de vida insular beijado pelo sol com um playground internacional em seu quintal.',
 
-    'gallery.images.water': 'Actividades aquáticas em Miami Beach',
-    'gallery.images.party': 'Vida nocturna e entretenimento de Miami Beach',
+    'gallery.images.water': 'Atividades aquáticas em Miami Beach',
+    'gallery.images.party': 'Vida noturna e entretenimento de Miami Beach',
     'gallery.images.surfing': 'Surf em Miami Beach',
-    'gallery.images.sunset': 'Belo pôr-do-sol de Miami Beach',
-    'gallery.images.neighborhood': 'Estilo de vida da vizinhança',
+    'gallery.images.sunset': 'Belo pôr do sol de Miami Beach',
+    'gallery.images.neighborhood': 'Estilo de vida do bairro',
     'gallery.images.relaxing': 'Relaxar junto à água',
     'gallery.images.shop': 'Compras em Miami Beach',
     'gallery.images.jetski': 'Aventura de jet ski',
-    'gallery.images.fun': 'Actividades divertidas em Miami Beach',
-    'gallery.images.drinks': 'Cocktails e jantar',
-    'gallery.images.building': 'Arquitectura de Miami Beach',
+    'gallery.images.fun': 'Atividades divertidas em Miami Beach',
+    'gallery.images.drinks': 'Coquetéis e jantar',
+    'gallery.images.building': 'Arquitetura de Miami Beach',
     'gallery.images.woman': 'Fotografia de estilo de vida',
-    'gallery.images.table': 'Experiência gastronómica requintada',
+    'gallery.images.table': 'Experiência gastronômica refinada',
     'gallery.images.goodLife': 'A boa vida em Miami Beach',
     'gallery.images.coffee': 'Cultura do café',
     'gallery.images.woman2': 'Estilo de vida de praia',
-    'gallery.images.tennis': 'Actividades de ténis',
+    'gallery.images.tennis': 'Atividades de tênis',
     'gallery.images.tree': 'Beleza natural',
     'gallery.images.walking': 'Caminhada e fitness',
-    'gallery.images.golf': 'Actividades de golfe',
+    'gallery.images.golf': 'Atividades de golfe',
     'gallery.images.cheers': 'Celebração e socialização',
     'gallery.images.bicycle': 'Ciclismo em Miami Beach',
-    'gallery.images.beach': 'Actividades de praia',
+    'gallery.images.beach': 'Atividades de praia',
     'gallery.images.picture': 'Capturar memórias',
     'gallery.images.leaves': 'Elementos naturais',
-    'gallery.images.sushi': 'Restauração requintada e sushi',
+    'gallery.images.sushi': 'Gastronomia refinada e sushi',
 
     // TEAM PAGE
-    'team.title': 'Equipa',
+    'team.title': 'Equipe',
     'team.meta.title':
-      'Equipa | Palma Miami Beach | Apartamentos de Luxo em Miami Beach',
+      'Equipe | Palma Miami Beach | Apartamentos de Luxo em Miami Beach',
     'team.meta.description':
-      'Saiba mais sobre o promotor, arquitecto, designer de interiores e equipa de vendas e marketing que se juntaram para trazer Palma a Miami Beach.',
+      'Saiba mais sobre o desenvolvedor, arquiteto, designer de interiores e equipe de vendas e marketing que se juntaram para trazer Palma a Miami Beach.',
 
     'team.members.lefferts.name': 'LEFFERTS',
-    'team.members.lefferts.role': 'PROMOTOR',
-    'team.members.lefferts.alt': 'Lefferts - Promotor',
+    'team.members.lefferts.role': 'DESENVOLVEDOR',
+    'team.members.lefferts.alt': 'Lefferts - Desenvolvedor',
 
     'team.members.builtForm.name': 'BUILT FORM',
-    'team.members.builtForm.role': 'ARQUITECTO DE DESIGN',
-    'team.members.builtForm.alt': 'Built Form - Arquitecto de Design',
+    'team.members.builtForm.role': 'ARQUITETO DE DESIGN',
+    'team.members.builtForm.alt': 'Built Form - Arquiteto de Design',
 
     'team.members.studioRamirez.name': 'STUDIO RAMIREZ',
     'team.members.studioRamirez.role': 'DESIGN DE INTERIORES',
@@ -2393,63 +2395,63 @@ export const ui = {
     'team.members.cervera.role': 'VENDAS E MARKETING',
     'team.members.cervera.alt': 'Cervera - Vendas e Marketing',
 
-    'team.developer.title': 'Promotor | Lefferts',
+    'team.developer.title': 'Desenvolvedor | Lefferts',
     'team.developer.paragraph1':
-      'Lefferts é uma força incomparável no reino do desenvolvimento imobiliário de propriedade privada em Nova Iorque e no Sul da Florida.',
+      'Lefferts é uma força incomparável no reino do desenvolvimento imobiliário de propriedade privada em Nova York e no Sul da Flórida.',
     'team.developer.paragraph2':
-      'Estabelecida na paisagem vibrante da Cidade de Nova Iorque, a Lefferts emerge como uma força preeminente no domínio do desenvolvimento imobiliário de propriedade privada, ostentando um legado rico que abrange mais de duas décadas.',
+      'Estabelecida na paisagem vibrante da Cidade de Nova York, a Lefferts emerge como uma força preeminente no domínio do desenvolvimento imobiliário de propriedade privada, ostentando um legado rico que abrange mais de duas décadas.',
     'team.developer.paragraph3':
       'Com uma dedicação firme à excelência e sustentabilidade, a Lefferts cria propriedades residenciais e comerciais excepcionais que transcendem fronteiras convencionais, incorporando inovação, qualidade e inclusividade.',
     'team.developer.paragraph4':
       'No coração da missão da Lefferts encontra-se um compromisso para redefinir a vida urbana através de design visionário e atenção meticulosa ao detalhe.',
     'team.developer.paragraph5':
-      'O seu portfólio diversificado mostra um espectro de ofertas, desde edifícios de condomínio opulentos a desenvolvimentos dinâmicos de uso misto e espaços comerciais de luxo, pontilhando os horizontes de Nova Iorque e do Sul da Florida.',
+      'Seu portfólio diversificado mostra um espectro de ofertas, desde edifícios de condomínio opulentos a desenvolvimentos dinâmicos de uso misto e espaços comerciais de luxo, pontilhando os horizontes de Nova York e do Sul da Flórida.',
     'team.developer.paragraph6':
-      'Ao longo da sua jornada, a Lefferts permaneceu na vanguarda da indústria, liderando o co-desenvolvimento de mais de 3 milhões de pés quadrados de espaço de uso misto e canalizando investimentos superiores a $1,5 mil milhões numa miríade de empreendimentos imobiliários.',
+      'Ao longo de sua jornada, a Lefferts permaneceu na vanguarda da indústria, liderando o co-desenvolvimento de mais de 3 milhões de pés quadrados de espaço de uso misto e canalizando investimentos superiores a $1,5 bilhão numa miríade de empreendimentos imobiliários.',
     'team.developer.paragraph7':
-      'Empreendimentos colaborativos com arquitectos estimados, exemplificados pela parceria icónica com Renzo Piano para o emblemático 565 Broome SoHo, sublinham o compromisso da Lefferts com a inovação arquitectónica e proeza estética.',
+      'Empreendimentos colaborativos com arquitetos estimados, exemplificados pela parceria icônica com Renzo Piano para o emblemático 565 Broome SoHo, sublinham o compromisso da Lefferts com a inovação arquitetônica e proeza estética.',
     'team.developer.paragraph8':
-      'Não contente com mera construção, a Lefferts catalisa projectos transformadores que transcendem tijolo e argamassa, revitalizando bairros inteiros e remodelando paisagens urbanas.',
+      'Não contente com mera construção, a Lefferts catalisa projetos transformadores que transcendem tijolo e argamassa, revitalizando bairros inteiros e remodelando paisagens urbanas.',
     'team.developer.paragraph9':
-      'Projectos como Astoria North servem como testemunho da visão da Lefferts, deixando uma marca indelével no tecido das comunidades, fomentando orgulho local e servindo como faróis de distinção dentro das suas respectivas cidades.',
+      'Projetos como Astoria North servem como testemunho da visão da Lefferts, deixando uma marca indelével no tecido das comunidades, fomentando orgulho local e servindo como faróis de distinção dentro de suas respectivas cidades.',
     'team.developer.paragraph10':
-      'Em essência, a Lefferts personifica o epítome do desenvolvimento imobiliário, misturando sem problemas visão, experiência e engenhosidade para criar espaços que transcendem o ordinário, deixando um legado duradouro de excelência e inovação no seu rasto.',
+      'Em essência, a Lefferts personifica o epítome do desenvolvimento imobiliário, misturando perfeitamente visão, experiência e engenhosidade para criar espaços que transcendem o ordinário, deixando um legado duradouro de excelência e inovação em seu rastro.',
 
-    'team.architecture.title': 'ARQUITECTURA | BUILT FORM',
+    'team.architecture.title': 'ARQUITETURA | BUILT FORM',
     'team.architecture.paragraph1':
-      'Built Form, LLC é uma empresa de arquitectura de serviço completo com escritórios localizados em Chicago, Carolina do Norte e Miami. Nos últimos 16 anos, os directores da Built Form construíram uma prática que combina as energias criativas de uma empresa de design boutique com as capacidades técnicas de uma empresa maior para criar uma organização que executou projectos de escala, tipo e complexidade variados. Os seus tipos de projecto incluem projectos comunitários sem fins lucrativos, retalho, comercial, hotéis e uma gama completa de tipos de habitação multifamiliar incluindo uso misto, co-habitação, histórico e financiado pelo governo.',
+      'Built Form, LLC é uma empresa de arquitetura de serviço completo com escritórios localizados em Chicago, Carolina do Norte e Miami. Nos últimos 16 anos, os diretores da Built Form construíram uma prática que combina as energias criativas de uma empresa de design boutique com as capacidades técnicas de uma empresa maior para criar uma organização que executou projetos de escala, tipo e complexidade variados. Seus tipos de projeto incluem projetos comunitários sem fins lucrativos, varejo, comercial, hotéis e uma gama completa de tipos de habitação multifamiliar incluindo uso misto, co-habitação, histórico e financiado pelo governo.',
 
     'team.interiorDesign.title': 'DESIGN DE INTERIORES | STUDIO RAMIREZ',
     'team.interiorDesign.paragraph1':
-      'Studio Ramirez é um estúdio de design internacional baseado em Miami dirigido pela directora criativa, Ruby Ramirez. Definindo uma nova era de interiores de luxo, Studio Ramirez é a iteração fresca de uma história de 20+ anos em design de interiores. O portfólio crescente do estúdio é um tributo à nossa capacidade de superar diversos desafios de design com soluções de esquema tocantes.',
+      'Studio Ramirez é um estúdio de design internacional baseado em Miami dirigido pela diretora criativa, Ruby Ramirez. Definindo uma nova era de interiores de luxo, Studio Ramirez é a iteração fresca de uma história de 20+ anos em design de interiores. O portfólio crescente do estúdio é um tributo à nossa capacidade de superar diversos desafios de design com soluções de esquema tocantes.',
     'team.interiorDesign.paragraph2':
-      'O nosso âmbito de trabalho em constante expansão que inclui; design de interiores residencial, arquitectura de interiores, design de interiores de hospitalidade, programação de hospitalidade e design FF&E. O nosso objectivo como empresa é criar interiores duradouros que evoquem os sentidos enquanto criam experiências memoráveis.',
+      'Nosso escopo de trabalho em constante expansão que inclui; design de interiores residencial, arquitetura de interiores, design de interiores de hospitalidade, programação de hospitalidade e design FF&E. Nosso objetivo como empresa é criar interiores duradouros que evoquem os sentidos enquanto criam experiências memoráveis.',
     'team.interiorDesign.paragraph3':
-      'O nosso slogan "Not The Miami You Think It Is" pode melhor resumir a nossa estética pensativa, a provável antítese ao estereótipo "branco brilhante, brilhante, brilhante". O que distingue Studio Ramirez é a sua exposição internacional ao design e curiosidade perpétua para encontrar novos e únicos fabricantes e artesãos pelo globo. Preferimos ir o comprimento extra, seleccionando peças não vistas para os ambientes dos nossos clientes. Com o nosso ethos shop-the-globe . . . isto é frequentemente onde a magia acontece. Os clientes experimentam a jornada e desenvolvem uma relação directa com encontrar móveis, tecidos e tapetes incríveis para a sua casa. Os nossos projectos residenciais são unicamente estratificados e reflectem uma casa cuidadosamente seleccionada. Os clientes do Studio Ramirez são frequentemente clientes repetidos o que torna a narrativa ainda mais interessante na segunda ou terceira vez.',
+      'Nosso slogan "Not The Miami You Think It Is" pode melhor resumir nossa estética pensativa, a provável antítese ao estereótipo "branco brilhante, brilhante, brilhante". O que distingue Studio Ramirez é sua exposição internacional ao design e curiosidade perpétua para encontrar novos e únicos fabricantes e artesãos pelo globo. Preferimos ir o comprimento extra, selecionando peças não vistas para os ambientes de nossos clientes. Com nosso ethos shop-the-globe . . . isto é frequentemente onde a mágica acontece. Os clientes experimentam a jornada e desenvolvem uma relação direta com encontrar móveis, tecidos e tapetes incríveis para sua casa. Nossos projetos residenciais são unicamente estratificados e refletem uma casa cuidadosamente selecionada. Os clientes do Studio Ramirez são frequentemente clientes repetidos o que torna a narrativa ainda mais interessante na segunda ou terceira vez.',
 
     'team.salesMarketing.title': 'VENDAS E MARKETING | CERVERA',
     'team.salesMarketing.paragraph1':
-      'Cervera Real Estate é uma empresa imobiliária de propriedade familiar baseada no Sul da Florida. A sua transformação de meio século da paisagem do Sul da Florida provou que o serviço personalizado ao cliente garante a satisfação dos clientes. Uma rede internacional abrangente e incomparável e décadas no terreno cultivaram relações únicas e duradouras com promotores, arquitectos, investidores e empresas imobiliárias que são cruciais para o sucesso de clientes e parceiros.',
+      'Cervera Real Estate é uma empresa imobiliária de propriedade familiar baseada no Sul da Flórida. Sua transformação de meio século da paisagem do Sul da Flórida provou que o serviço personalizado ao cliente garante a satisfação dos clientes. Uma rede internacional abrangente e incomparável e décadas no terreno cultivaram relações únicas e duradouras com desenvolvedores, arquitetos, investidores e empresas imobiliárias que são cruciais para o sucesso de clientes e parceiros.',
 
     'team.gallery.image1':
-      'Espaço de trabalho da equipa de desenvolvimento Lefferts',
+      'Espaço de trabalho da equipe de desenvolvimento Lefferts',
     'team.gallery.image2':
-      'Designs arquitectónicos e espaço de trabalho Built Form',
+      'Designs arquitetônicos e espaço de trabalho Built Form',
     'team.gallery.image3': 'Mostra de design de interiores Studio Ramirez',
-    'team.gallery.image4': 'Escritório da equipa de vendas e marketing Cervera',
+    'team.gallery.image4': 'Escritório da equipe de vendas e marketing Cervera',
 
     // GALLERY PAGE
     'galleryPage.meta.title':
       'Galeria | Palma Miami Beach | Novas Residências Miami Beach',
     'galleryPage.meta.description':
-      'As residências Palma Miami Beach exalam charme mediterrânico com layouts arejados, tectos altos e acabamentos seleccionados à mão que evocam beleza intemporal. Veja a nossa galeria.',
+      'As residências Palma Miami Beach exalam charme mediterrâneo com layouts arejados, tetos altos e acabamentos selecionados à mão que evocam beleza atemporal. Veja nossa galeria.',
     'galleryPage.title': 'Galeria',
     'galleryPage.subtitle.start':
-      'apresenta todo o fascínio de Miami Beach estando situada apenas a passos das suas praias pristinas e com vistas tanto do oceano quanto das ilhas na baía.',
+      'apresenta todo o fascínio de Miami Beach estando situada apenas a passos de suas praias pristinas e com vistas tanto do oceano quanto das ilhas na baía.',
     'galleryPage.subtitle.end':
-      'os proprietários podem deliciar-se num estilo de vida insular beijado pelo sol neste oásis mediterrânico sob medida enquanto têm acesso rápido a um parque de diversões internacional – South Beach.',
+      'os proprietários podem se deliciar num estilo de vida insular beijado pelo sol neste oásis mediterrâneo sob medida enquanto têm acesso rápido a um playground internacional – South Beach.',
     'galleryPage.notice':
-      'REPRESENTAÇÕES CONCEPTUAIS DE ARTISTA. O PROMOTOR PODE ALTERAR SEM AVISO PRÉVIO.',
+      'REPRESENTAÇÕES CONCEITUAIS DE ARTISTA. O DESENVOLVEDOR PODE ALTERAR SEM AVISO PRÉVIO.',
 
     'galleryPage.modal.close': 'Fechar galeria',
     'galleryPage.modal.previous': 'Imagem anterior',
@@ -2457,15 +2459,15 @@ export const ui = {
 
     'galleryPage.images.crownshot': 'Vista aérea do edifício Palma Miami Beach',
     'galleryPage.images.pool': 'Área da piscina estilo resort',
-    'galleryPage.images.bath': 'Interior de casa de banho de luxo',
+    'galleryPage.images.bath': 'Interior de banheiro de luxo',
     'galleryPage.images.a1Living': 'Sala de estar da residência A1',
     'galleryPage.images.kitchen': 'Cozinha moderna com acabamentos premium',
-    'galleryPage.images.lobby': 'Átrio elegante do edifício',
-    'galleryPage.images.sunset': 'Bela vista do pôr-do-sol do Palma',
+    'galleryPage.images.lobby': 'Lobby elegante do edifício',
+    'galleryPage.images.sunset': 'Bela vista do pôr do sol do Palma',
     'galleryPage.images.hero': 'Vista exterior Palma Miami Beach',
     'galleryPage.images.fitness': 'Centro de fitness de última geração',
     'galleryPage.images.poolTrellis': 'Área da piscina com treliça decorativa',
-    'galleryPage.images.aquaLounge': 'Área de relaxamento do salão aquático',
+    'galleryPage.images.aquaLounge': 'Área de relaxamento do lounge aquático',
     'galleryPage.images.reception': 'Área de recepção e concierge',
     'galleryPage.images.a6Living': 'Espaço de estar da residência A6',
     'galleryPage.images.b1Living': 'Sala de estar da residência B1',
@@ -2478,20 +2480,21 @@ export const ui = {
       'Última cobertura de imprensa e notícias sobre Palma Miami Beach, apresentando residências boutique de luxo em Miami Beach.',
     'press.title': 'Imprensa',
     'press.subtitle':
-      'Descubra as últimas notícias e cobertura de imprensa sobre Palma Miami Beach, um ícone arquitetónico oferecendo residências boutique exclusivas no coração de Miami Beach.',
+      'Descubra as últimas notícias e cobertura de imprensa sobre Palma Miami Beach, um ícone arquitetônico oferecendo residências boutique exclusivas no coração de Miami Beach.',
     'press.readFullArticle': 'Ler Artigo Completo',
 
     // DISCLAIMERS
     'disclaimers.title': 'ISENÇÕES DE RESPONSABILIDADE',
     'disclaimers.close': 'Fechar isenções',
     'disclaimers.oralRepresentations':
-      'AS REPRESENTAÇÕES ORAIS NÃO PODEM SER CONSIDERADAS COMO UMA DECLARAÇÃO CORRECTA DAS REPRESENTAÇÕES DO PROMOTOR. PARA OBTER REPRESENTAÇÕES CORRECTAS, FAÇA REFERÊNCIA A ESTA BROCHURA E AOS DOCUMENTOS EXIGIDOS PELA SECÇÃO 718.503, ESTATUTOS DA FLÓRIDA, A SEREM FORNECIDOS POR UM PROMOTOR A UM COMPRADOR OU ARRENDATÁRIO.',
+      'AS REPRESENTAÇÕES ORAIS NÃO PODEM SER CONSIDERADAS COMO UMA DECLARAÇÃO CORRETA DAS REPRESENTAÇÕES DO DESENVOLVEDOR. PARA OBTER REPRESENTAÇÕES CORRETAS, FAÇA REFERÊNCIA A ESTA BROCHURA E AOS DOCUMENTOS EXIGIDOS PELA SEÇÃO 718.503, ESTATUTOS DA FLÓRIDA, A SEREM FORNECIDOS POR UM DESENVOLVEDOR A UM COMPRADOR OU LOCATÁRIO.',
     'disclaimers.developer':
-      'Palma Miami Beach (o "Condomínio") está sendo desenvolvido, oferecido e vendido por Palma Miami Beach, LLC, uma sociedade de responsabilidade limitada da Flórida (o "Desenvolvedor") e não por Lefferts Investments LLC ou suas outras afiliadas ("Lefferts"). O Desenvolvedor é uma entidade legal separada da Lefferts. Todas e quaisquer declarações, divulgações e/ou representações serão consideradas feitas pelo Promotor e não pela Lefferts e você concorda em olhar apenas para o Promotor (e não para a Lefferts) no que diz respeito a todos e quaisquer assuntos relacionados com o marketing e/ou desenvolvimento do Condomínio e no que diz respeito à venda de unidades no Condomínio.',
+      'Palma Miami Beach (o "Condomínio") está sendo desenvolvido, oferecido e vendido por Palma Miami Beach, LLC, uma sociedade de responsabilidade limitada da Flórida (o "Desenvolvedor") e não por Lefferts Investments LLC ou suas outras afiliadas ("Lefferts"). O Desenvolvedor é uma entidade legal separada da Lefferts. Todas e quaisquer declarações, divulgações e/ou representações serão consideradas feitas pelo Desenvolvedor e não pela Lefferts e você concorda em olhar apenas para o Desenvolvedor (e não para a Lefferts) no que diz respeito a todos e quaisquer assuntos relacionados com o marketing e/ou desenvolvimento do Condomínio e no que diz respeito à venda de unidades no Condomínio.',
     'disclaimers.notAnOffer':
-      'Esta oferta não pretende ser uma oferta de venda ou solicitação de compra de unidades de condomínio a residentes de qualquer jurisdição onde seja proibido por lei, e a sua elegibilidade para compra dependerá do seu estado de residência. Esta oferta é feita apenas pelo prospeto do condomínio e não se deve confiar em nenhuma declaração que não conste do prospeto.',
+      'Esta oferta não pretende ser uma oferta de venda ou solicitação de compra de unidades de condomínio a residentes de qualquer jurisdição onde seja proibido por lei, e sua elegibilidade para compra dependerá de seu estado de residência. Esta oferta é feita apenas pelo prospecto do condomínio e não se deve confiar em nenhuma declaração que não conste do prospecto.',
     'disclaimers.materials':
-      'Os esboços, renderizações, materiais gráficos, planos, especificações, termos, condições e declarações aqui contidos são apenas propostas, e o Promotor reserva-se o direito de modificar, rever ou retirar qualquer um ou todos eles, a seu exclusivo critério e sem aviso prévio. Não devem ser considerados como representações, expressas ou implícitas, dos detalhes finais das residências ou do Condomínio. Todas as dimensões e alturas de teto indicadas são aproximadas e todas as plantas baixas e planos de desenvolvimento estão sujeitos a alterações. Todas as caraterísticas e acabamentos das residências e comodidades do edifício estão sujeitos a alterações, incluindo, sem limitação, alterações nos fabricantes, marcas, comodidades, serviços e/ou equipa de design. As vistas das unidades do Condomínio variam consoante a unidade adquirida. Qualquer vista de qualquer unidade ou de outras partes da propriedade pode, no futuro, ser limitada ou eliminada por futuros desenvolvimentos ou circunstâncias ou eventos fora do nosso controlo, e o Promotor não garante, de forma alguma, a existência contínua de qualquer vista. O aluguer de unidades a curto prazo exige que cada proprietário obtenha um certificado de utilização da agência governamental aplicável e está sujeito a emissão à discrição da cidade de Miami Beach e das leis aplicáveis. Embora os alugueres a curto prazo sejam permitidos a partir da data deste documento, não há garantia de que este será sempre o caso. Os gráficos do projeto, renderizações e textos fornecidos neste documento são obras protegidas por direitos autorais de propriedade do Desenvolvedor. © 2023 Palma Miami Beach LLC ou © 2023 Lefferts Investments LLC, ou seus respectivos afiliados ou licenciadores. Todos os direitos reservados. A reprodução, exibição ou outra disseminação não autorizada de tais materiais é estritamente proibida e constitui violação de direitos autorais. Nenhum corretor de imóveis está autorizado a fazer quaisquer representações ou outras declarações sobre o Condomínio, e nenhum acordo com, depósitos pagados ou outros arranjos feitos com qualquer corretor de imóveis são ou serão vinculativos para o Desenvolvedor.',
+      'Os esboços, renderizações, materiais gráficos, plantas, especificações, termos, condições e declarações aqui contidos são apenas propostas, e o Desenvolvedor reserva-se o direito de modificar, revisar ou retirar qualquer um ou todos eles, a seu exclusivo critério e sem aviso prévio. Eles não devem ser considerados como representações, expressas ou implícitas, dos detalhes finais das residências ou do Condomínio. Todas as dimensões e alturas de pé-direito declaradas são aproximadas e todas as plantas baixas e planos de desenvolvimento estão sujeitos a alterações. Todas as características e acabamentos das residências e amenidades do edifício estão sujeitos a alterações, incluindo, sem limitação, alterações nos fabricantes, marcas, amenidades, serviços e/ou equipe de design. As vistas das unidades do Condomínio variarão dependendo da unidade adquirida. Qualquer vista de qualquer unidade ou de outras partes da propriedade pode, no futuro, ser limitada ou eliminada por desenvolvimentos futuros ou circunstâncias ou eventos além de nosso controle, e o Desenvolvedor de forma alguma garante a existência contínua de qualquer vista. O aluguel de temporada de unidades requer que cada proprietário obtenha um certificado de uso da agência governamental aplicável e está sujeito à emissão a critério da Cidade de Miami Beach e leis aplicáveis. Embora os aluguéis de temporada sejam permitidos a partir da data deste documento, não há garantia de que isso sempre será o caso. Os gráficos do projeto, renderizações e textos fornecidos neste documento são obras protegidas por direitos autorais de propriedade do Desenvolvedor. © 2023 Palma Miami Beach LLC ou © 2023 Lefferts Investments LLC ou seus respectivos afiliados ou licenciadores. Todos os direitos reservados. A reprodução, exibição ou outra disseminação não autorizada de tais materiais é estritamente proibida e constitui violação de direitos autorais. Nenhum corretor de imóveis está autorizado a fazer quaisquer representações ou outras declarações sobre o Condomínio, e nenhum acordo com, depósitos pagos ou outros arranjos feitos com qualquer corretor de imóveis são ou serão vinculativos para o Desenvolvedor.',
+
     // PRIVACY POLICY PAGE
     'privacy.meta.title':
       'Privacy Policy | Palma Miami Beach | Luxury Miami Beach Condos',
