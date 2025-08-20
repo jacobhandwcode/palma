@@ -165,15 +165,16 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     font-family: inherit;
     font-size: inherit;
     transition: background-color 0.2s ease;
-    border-radius: 4px;
   }
 
   .current-language:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background: rgba(168, 161, 149, 0.16);
+    backdrop-filter: blur(10px);
   }
 
   .current-language.active {
-    background-color: rgba(255, 255, 255, 0.15);
+    background: rgba(168, 161, 149, 0.16);
+    backdrop-filter: blur(10px);
   }
 
   .dropdown-arrow {
@@ -228,11 +229,6 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     background-color: rgba(255, 255, 255, 0.3);
     outline: none;
   }
-
-  /* .current-language:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    outline-offset: 2px;
-  } */
 
   /* Touch-friendly sizing for mobile */
   @media (max-width: 768px) {

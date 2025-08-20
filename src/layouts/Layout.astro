@@ -121,6 +121,20 @@ const schemaData = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullOgImage} />
     <meta name="twitter:image:alt" content={description || title} />
+    <link
+      rel="preload"
+      href="/fonts/didot-italic.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/didot-headline.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
     <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
     <script src="../scripts/main.js"></script>
   </head>

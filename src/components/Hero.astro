@@ -9,22 +9,21 @@ const { lang } = Astro.props;
 const currentLang = lang || getLangFromUrl(Astro.url);
 const t = useTranslations(currentLang);
 
-// Split the title into letters on the server side
 const titleText = t('hero.title');
 const titleLetters = titleText.split('').map((char, index) => ({
-  char: char === ' ' ? '\u00A0' : char, // Use non-breaking space
+  char: char === ' ' ? '\u00A0' : char,
   isSpace: char === ' ',
-  delay: index * 0.02, // Much faster timing
+  delay: index * 0.02,
 }));
 
-// Calculate when title animation completes
-const titleAnimationDuration = (titleLetters.length * 0.02) + 0.4; // last letter delay + animation duration
-const subtitleDelay = titleAnimationDuration; // small gap after title
-const arrowDelay = subtitleDelay + 0.4; // subtitle delay + subtitle duration + small gap
+const titleAnimationDuration = titleLetters.length * 0.02 + 0.4;
+const subtitleDelay = titleAnimationDuration;
+const arrowDelay = subtitleDelay + 0.4;
 ---
 
 <section class="hero">
   <div class="hero-video">
+    <div class="video-placeholder"></div>
     <video autoplay muted loop playsinline>
       <source src="/videos/home-video.mp4" type="video/mp4" />
       {t('hero.video.fallback')}
@@ -50,7 +49,7 @@ const arrowDelay = subtitleDelay + 0.4; // subtitle delay + subtitle duration + 
           {titleText}
         </span>
       </h1>
-      <p 
+      <p
         class="hero-subtitle hero-subtitle-animated"
         style={`animation-delay: ${subtitleDelay}s`}
       >
@@ -58,16 +57,81 @@ const arrowDelay = subtitleDelay + 0.4; // subtitle delay + subtitle duration + 
       </p>
     </div>
 
-    <div
-      class="arrow arrow-animated"
-      style={`animation-delay: ${arrowDelay}s`}
-    >
+    <div class="arrow arrow-animated" style={`animation-delay: ${arrowDelay}s`}>
       <a href="#palma" class="down-arrow"></a>
     </div>
   </div>
 </section>
 
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.querySelector(
+      '.hero-video video'
+    ) as HTMLVideoElement;
+    const placeholder = document.querySelector(
+      '.video-placeholder'
+    ) as HTMLElement;
+
+    if (video && placeholder) {
+      
+      const hidePlaceholder = () => {
+        placeholder.style.opacity = '0';
+        setTimeout(() => {
+          placeholder.style.display = 'none';
+        }, 500);
+      };
+
+      video.addEventListener('canplay', hidePlaceholder);
+
+      if (video.readyState >= 3) {
+        hidePlaceholder();
+      }
+      
+      setTimeout(() => {
+        if (placeholder.style.opacity !== '0') {
+          hidePlaceholder();
+        }
+      }, 3000);
+    }
+  });
+</script>
+
 <style>
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/video-placeholder.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 3;
+  }
+
+  .hero-video video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 2;
+  }
+
   .hero-subtitle-animated {
     opacity: 0;
     transform: translateY(30px);
@@ -114,7 +178,6 @@ const arrowDelay = subtitleDelay + 0.4; // subtitle delay + subtitle duration + 
     }
   }
 
-  /* Letter animation styles */
   .hero-title {
     overflow: hidden;
   }
@@ -171,7 +234,6 @@ const arrowDelay = subtitleDelay + 0.4; // subtitle delay + subtitle duration + 
     }
   }
 
-  /* Mobile responsive styles - disable stagger animation at 875px and below */
   @media (max-width: 875px) {
     .desktop-title {
       display: none;
@@ -193,7 +255,6 @@ const arrowDelay = subtitleDelay + 0.4; // subtitle delay + subtitle duration + 
     }
   }
 
-  /* Hide arrow at 650px and below */
   @media (max-width: 650px) {
     .arrow-animated {
       display: none;
