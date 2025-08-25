@@ -229,7 +229,8 @@ const t = useTranslations(currentLang);
 <Disclaimers lang={currentLang} />
 
 <!-- Load Cloudflare Turnstile -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
+></script>
 
 <script>
   (function (w, i, d, g, e, t) {
@@ -285,7 +286,9 @@ const t = useTranslations(currentLang);
       }
 
       // Check Turnstile verification
-      const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]')?.value;
+      const turnstileResponse = document.querySelector(
+        '[name="cf-turnstile-response"]'
+      )?.value;
       if (!turnstileResponse) {
         alert('Please complete the security verification.');
         submitBtn.textContent = originalText;
@@ -321,14 +324,22 @@ const t = useTranslations(currentLang);
         if (response.ok && result.success) {
           const footer = document.getElementById('contact');
           footer.innerHTML = `
-        <div class="success-message-container">
-          <h3 class="success-title">Thank You!</h3>
-          <p class="success-message">${result.message}</p>
-        </div>
-      `;
+    <div class="success-message-container">
+      <h3 class="success-title">Thank You!</h3>
+      <p class="success-message">${result.message}</p>
+    </div>
+  `;
 
+          // Existing widget tracker event
           if (window.widgetTracker) {
             window.widgetTracker('send', 'event', 'form', 'submit', 'contact');
+          }
+
+          // Add GTM form_submit event
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: 'form_submit',
+            });
           }
         } else {
           const errorMessage = result.error || 'Unknown error occurred';
