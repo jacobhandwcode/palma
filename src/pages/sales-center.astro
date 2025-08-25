@@ -1,0 +1,564 @@
+---
+import '../styles/main.scss';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Center | Palma Miami Beach</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.jpg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.jpg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.jpg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.jpg" />
+  </head>
+  <body>
+    <div class="form-container">
+      <header class="form-header">
+        <div class="sales-gallery-info">
+          <p class="gallery-label">SALES GALLERY:</p>
+          <p class="gallery-address">580 72<sup>nd</sup> STREET</p>
+          <p class="gallery-location">Miami Beach, FL 33141</p>
+        </div>
+        <div class="logo">
+          <img src="/images/icons/palma-logo.svg" alt="Palma Miami Beach" />
+        </div>
+      </header>
+
+      <main class="form-content">
+        <h1 class="welcome-title">WELCOME TO PALMA MIAMI BEACH</h1>
+
+        <form class="palma-form" id="salesCenterForm" method="POST">
+          <div class="form-row">
+            <p class="welcome-subtitle">
+              Please take a moment to let us get to know you better.
+            </p>
+            <div class="form-group half-width row">
+              <label for="visit-date">VISIT DATE:</label>
+              <input type="date" id="visit-date" name="visitDate" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="name">NAME:</label>
+              <input type="text" id="name" name="name" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="address">ADDRESS:</label>
+              <input type="text" id="address" name="address" />
+            </div>
+            <div class="form-group half-width">
+              <label for="email">EMAIL ADDRESS:</label>
+              <input type="email" id="email" name="email" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group third-width">
+              <label for="city">CITY:</label>
+              <input type="text" id="city" name="city" />
+            </div>
+            <div class="form-group third-width">
+              <label for="state">STATE:</label>
+              <input type="text" id="state" name="state" />
+            </div>
+            <div class="form-group third-width">
+              <label for="zip">ZIP:</label>
+              <input type="text" id="zip" name="zip" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="country">COUNTRY:</label>
+              <input type="text" id="country" name="country" />
+            </div>
+            <div class="form-group half-width">
+              <label for="phone">PHONE:</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="country-residence">COUNTRY OF RESIDENCES:</label>
+              <input
+                type="text"
+                id="country-residence"
+                name="countryOfResidence"
+              />
+            </div>
+            <div class="form-group half-width">
+              <label for="country-origin">COUNTRY OF ORIGIN:</label>
+              <input type="text" id="country-origin" name="countryOfOrigin" />
+            </div>
+          </div>
+
+          <div class="section-title">WHAT ARE YOU LOOKING FOR</div>
+
+          <div class="form-row checkbox-row">
+            <div class="form-group">
+              <label class="section-label">PRICE RANGE:</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="radio" name="priceRange" value="600k-800k" />
+                  <span class="checkmark"></span>
+                  $600k - $800k
+                </label>
+                <label class="checkbox-label">
+                  <input type="radio" name="priceRange" value="1m-2m" />
+                  <span class="checkmark"></span>
+                  $1 - $2 M
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row checkbox-row">
+            <div class="form-group">
+              <label class="section-label">UNIT TYPE:</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="radio" name="unitType" value="1-bed" />
+                  <span class="checkmark"></span>
+                  1 BED
+                </label>
+                <label class="checkbox-label">
+                  <input type="radio" name="unitType" value="2-bed" />
+                  <span class="checkmark"></span>
+                  2 BED
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row checkbox-row">
+            <div class="form-group">
+              <label class="section-label">PURCHASE REASON:</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input
+                    type="radio"
+                    name="purchaseReason"
+                    value="primary-residence"
+                  />
+                  <span class="checkmark"></span>
+                  PRIMARY RESIDENCES
+                </label>
+                <label class="checkbox-label">
+                  <input
+                    type="radio"
+                    name="purchaseReason"
+                    value="vacation-home"
+                  />
+                  <span class="checkmark"></span>
+                  VACATION/2ND HOME
+                </label>
+                <label class="checkbox-label">
+                  <input type="radio" name="purchaseReason" value="other" />
+                  <span class="checkmark"></span>
+                  OTHER:
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-title">BROKER INFORMATION</div>
+
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="office-name">OFFICE NAME:</label>
+              <input type="text" id="office-name" name="officeName" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="broker-name">BROKER NAME:</label>
+              <input type="text" id="broker-name" name="brokerName" />
+            </div>
+            <div class="form-group half-width">
+              <label for="broker-lic">BROKER LIC#</label>
+              <input type="text" id="broker-lic" name="brokerLic" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="agent-name">AGENT NAME:</label>
+              <input type="text" id="agent-name" name="agentName" />
+            </div>
+            <div class="form-group half-width">
+              <label for="agent-lic">AGENT LIC#</label>
+              <input type="text" id="agent-lic" name="agentLic" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="agent-email">AGENT EMAIL:</label>
+              <input type="email" id="agent-email" name="agentEmail" />
+            </div>
+            <div class="form-group half-width">
+              <label for="agent-phone">AGENT PH #</label>
+              <input type="tel" id="agent-phone" name="agentPhone" />
+            </div>
+          </div>
+
+          <div class="section-title">HOW DID YOU HEAR ABOUT THE PROJECT</div>
+
+          <div class="form-row radio-row">
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="website" />
+                <span class="radio-mark"></span>
+                WEBSITE
+              </label>
+              <label class="radio-label">
+                <input
+                  type="radio"
+                  name="hearAbout"
+                  value="online-advertising"
+                />
+                <span class="radio-mark"></span>
+                ONLINE ADVERTISING
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="drove-by" />
+                <span class="radio-mark"></span>
+                DROVE BY
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="broker" />
+                <span class="radio-mark"></span>
+                BROKER
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="newspaper" />
+                <span class="radio-mark"></span>
+                NEWSPAPER
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row radio-row">
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="email" />
+                <span class="radio-mark"></span>
+                EMAIL
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="friends-relative" />
+                <span class="radio-mark"></span>
+                FRIENDS/RELATIVE
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="magazine" />
+                <span class="radio-mark"></span>
+                MAGAZINE
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="event" />
+                <span class="radio-mark"></span>
+                EVENT
+              </label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group full-width option-other">
+              <label class="radio-label">
+                <input type="radio" name="hearAbout" value="other" />
+                <span class="radio-mark"></span>
+                OTHER
+              </label>
+              <input type="text" name="hearAboutOther" class="other-input" />
+            </div>
+          </div>
+
+          <div class="office-section">
+            <div class="section-title">OFFICE USE ONLY</div>
+
+            <div class="form-row initial-visit-row">
+              <div class="form-group half-width">
+                <label for="associate">ASSOCIATE</label>
+                <input type="text" id="associate" name="associate" />
+              </div>
+              <div class="form-group half-width initial-visit-group">
+                <label class="section-label initial-visit">INITIAL VISIT:</label
+                >
+                <div class="radio-group inline">
+                  <label class="radio-label">
+                    <input type="radio" name="initialVisit" value="yes" />
+                    <span class="radio-mark"></span>
+                    YES
+                  </label>
+                  <label class="radio-label">
+                    <input type="radio" name="initialVisit" value="no" />
+                    <span class="radio-mark"></span>
+                    NO
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group full-width">
+                <label for="comments">COMMENTS</label>
+                <textarea id="comments" name="comments" rows="3"></textarea>
+              </div>
+            </div>
+
+            <div class="form-row radio-row">
+              <div class="form-group">
+                <label class="section-label">INITIAL VISIT</label>
+                <div class="radio-group">
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="initialVisitType"
+                      value="walk-in-broker"
+                    />
+                    <span class="radio-mark"></span>
+                    WALK-IN WITH BROKER
+                  </label>
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="initialVisitType"
+                      value="internet"
+                    />
+                    <span class="radio-mark"></span>
+                    INTERNET
+                  </label>
+                  <label class="radio-label">
+                    <input
+                      type="radio"
+                      name="initialVisitType"
+                      value="walk-in"
+                    />
+                    <span class="radio-mark"></span>
+                    WALK-IN
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row radio-row">
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="initialVisitType"
+                    value="presentation"
+                  />
+                  <span class="radio-mark"></span>
+                  PRESENTATION
+                </label>
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="initialVisitType"
+                    value="phone-inquiry"
+                  />
+                  <span class="radio-mark"></span>
+                  PHONE INQUIRY
+                </label>
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="initialVisitType"
+                    value="referral"
+                  />
+                  <span class="radio-mark"></span>
+                  REFERRAL
+                </label>
+              </div>
+            </div>
+
+            <div class="form-row radio-row">
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="initialVisitType"
+                    value="appointment"
+                  />
+                  <span class="radio-mark"></span>
+                  APPOINTMENT
+                </label>
+                <label class="radio-label">
+                  <input
+                    type="radio"
+                    name="initialVisitType"
+                    value="other-visit"
+                  />
+                  <span class="radio-mark"></span>
+                  OTHER
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">SUBMIT</button>
+        </form>
+
+        <div id="successMessage" class="success-message" style="display: none;">
+          <h3>Thank You!</h3>
+          <p>
+            Your information has been recorded successfully. Thank you for
+            visiting our sales center!
+          </p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document
+        .getElementById('salesCenterForm')
+        .addEventListener('submit', async function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const submitBtn = this.querySelector('.submit-btn');
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = 'SUBMITTING...';
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = '0.7';
+
+          const formData = new FormData(this);
+          const data = {};
+
+          // Process regular form fields
+          for (let [key, value] of formData.entries()) {
+            if (data[key]) {
+              // Handle multiple values (checkboxes)
+              if (Array.isArray(data[key])) {
+                data[key].push(value);
+              } else {
+                data[key] = [data[key], value];
+              }
+            } else {
+              data[key] = value;
+            }
+          }
+
+          // Handle checkboxes specifically
+          const checkboxes = this.querySelectorAll('input[type="checkbox"]');
+          const checkboxGroups = {};
+
+          checkboxes.forEach((checkbox) => {
+            const name = checkbox.name;
+            if (!checkboxGroups[name]) {
+              checkboxGroups[name] = [];
+            }
+            if (checkbox.checked) {
+              checkboxGroups[name].push(checkbox.value);
+            }
+          });
+
+          // Replace checkbox data with arrays
+          Object.keys(checkboxGroups).forEach((name) => {
+            data[name] = checkboxGroups[name];
+          });
+
+          try {
+            const response = await fetch('/sales-center-handler.php', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+            });
+
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+              const textResponse = await response.text();
+              console.error('Non-JSON response:', textResponse);
+              throw new Error(
+                'Server returned non-JSON response: ' +
+                  textResponse.substring(0, 100)
+              );
+            }
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+              // Show success message
+              document.getElementById('successMessage').style.display = 'block';
+              this.style.display = 'none';
+
+              // Reset form and show it again after 3 seconds
+              setTimeout(() => {
+                this.reset(); // Clear all form fields
+                this.style.display = 'block';
+                document.getElementById('successMessage').style.display =
+                  'none';
+
+                // Reset submit button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+              }, 3000); // 3 second delay
+            } else {
+              const errorMessage = result.error || 'Unknown error occurred';
+              alert('Error: ' + errorMessage);
+
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+              submitBtn.style.opacity = '1';
+            }
+          } catch (error) {
+            console.error('Form submission error:', error);
+
+            let errorMessage =
+              'There was an error submitting your information. ';
+
+            if (error.name === 'TypeError' && error.message.includes('fetch')) {
+              errorMessage += 'Please check your internet connection.';
+            } else if (error.message.includes('JSON')) {
+              errorMessage += 'Server response format error.';
+            } else if (error.message.includes('non-JSON')) {
+              errorMessage += 'Server configuration issue.';
+            } else {
+              errorMessage += 'Please try again later or contact us directly.';
+            }
+
+            alert(errorMessage);
+
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+          }
+        });
+    </script>
+
+    <style>
+      .success-message-sales {
+        text-align: center;
+        padding: 40px 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      .success-message-sales h3 {
+        color: #6e8a7c;
+        margin-bottom: 15px;
+        font-size: 24px;
+      }
+
+      .success-message-sales p {
+        color: #333;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+    </style>
+  </body>
+</html>

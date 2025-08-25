@@ -5836,3 +5836,428 @@ body.modal-open {
   opacity: 0;
   pointer-events: none;
 }
+
+// sales center
+.form-container {
+  //
+  .submit-btn {
+    background: $green;
+    color: #fff;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-family: $montserrat;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: block;
+    margin: 0 auto;
+
+    &:hover {
+      background: darken($green, 10%);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  //
+  color: $green;
+  font-family: $montserrat;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 40px 60px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+
+  @media (max-width: 1024px) {
+    padding: 30px 40px;
+  }
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+
+    margin-top: 0;
+    position: unset;
+  }
+
+  .sales-gallery-info {
+    .gallery-label {
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .gallery-address {
+      font-weight: 400;
+      font-size: 12px;
+      margin-bottom: 2px;
+
+      sup {
+        font-size: 8px;
+        vertical-align: super;
+      }
+    }
+
+    .gallery-location {
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
+
+  .logo {
+    img {
+      height: 60px;
+      width: auto;
+      filter: brightness(0) saturate(100%) invert(53%) sepia(12%) saturate(551%)
+        hue-rotate(98deg) brightness(95%) contrast(84%);
+    }
+  }
+
+  .form-content {
+    .welcome-title {
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .welcome-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+  }
+
+  .palma-form {
+    .form-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      justify-content: space-between;
+
+      &.checkbox-row,
+      &.radio-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      &.initial-visit-row {
+        align-items: end;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      &.row {
+        flex-direction: row;
+        justify-content: start;
+        gap: 1rem;
+        flex: unset !important;
+        label {
+          margin: 0;
+        }
+        input {
+          padding: 0;
+          align-self: start;
+        }
+      }
+      &.option-other {
+        flex-direction: row;
+        input {
+          margin-top: 0;
+          padding: 0 0 8px 0;
+        }
+      }
+
+      &.full-width {
+        flex: 1;
+      }
+
+      &.half-width {
+        flex: 1;
+      }
+
+      &.third-width {
+        flex: 1;
+      }
+
+      &.initial-visit-group {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        flex: unset !important;
+      }
+    }
+
+    label {
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    input[type='date'],
+    textarea {
+      border: none;
+      border-bottom: 1px solid #6e8a7c;
+      padding: 8px 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: #6e8a7c;
+      background: transparent;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: rgba(110, 138, 124, 0.5);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+      padding-top: 8px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin: 75px 0 20px 0;
+      text-transform: uppercase;
+      border-bottom: 1px solid $green;
+      padding-bottom: 8px;
+    }
+
+    .section-label {
+      margin-bottom: 12px;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    // Checkbox Styles
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    // Updated checkbox styles to also work with radio buttons in checkbox-style sections
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      input[type='checkbox'],
+      input[type='radio'] {
+        display: none;
+      }
+
+      .checkmark {
+        width: 16px;
+        height: 16px;
+        border: 1px solid #6e8a7c;
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        &:after {
+          content: '';
+          border: solid #6e8a7c;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+          opacity: 0;
+          transition: opacity 0.2s;
+          position: relative;
+          width: 3px;
+          height: 8px;
+          top: -0.05rem;
+        }
+      }
+
+      input[type='checkbox']:checked + .checkmark:after,
+      input[type='radio']:checked + .checkmark:after {
+        opacity: 1;
+      }
+    }
+
+    // Touch-friendly improvements - also update this section
+    // Touch-friendly improvements for tablets
+    @media (hover: none) and (pointer: coarse) {
+      .checkbox-label,
+      .radio-label {
+        padding: 4px 0;
+        min-height: 44px;
+      }
+
+      .checkbox-label .checkmark,
+      .radio-label .radio-mark {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+      }
+
+      input[type='text'],
+      input[type='email'],
+      input[type='tel'],
+      input[type='date'],
+      textarea {
+        padding: 12px 0;
+        font-size: 16px; // Prevents zoom on iOS
+      }
+    }
+
+    // Radio Styles
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+
+      &.inline {
+        flex-direction: row;
+        gap: 16px;
+      }
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      input[type='radio'] {
+        display: none;
+      }
+
+      .radio-mark {
+        width: 16px;
+        height: 16px;
+        border: 1px solid #6e8a7c;
+        border-radius: 50%;
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        &:after {
+          content: '';
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #6e8a7c;
+          opacity: 0;
+          transition: opacity 0.2s;
+        }
+      }
+
+      input[type='radio']:checked + .radio-mark:after {
+        opacity: 1;
+      }
+    }
+
+    .other-input {
+      margin-top: 8px;
+      margin-left: 24px;
+      flex: 1;
+    }
+
+    // Office Section
+    .office-section {
+      margin-top: 100px;
+    }
+  }
+
+  // iPad Specific Optimizations
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .form-container {
+      padding: 40px 50px;
+    }
+
+    .palma-form {
+      .form-row {
+        gap: 24px;
+      }
+
+      .form-group.third-width {
+        flex: 0 0 calc(33.333% - 16px);
+      }
+
+      .checkbox-group,
+      .radio-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px 32px;
+      }
+    }
+
+    .welcome-title {
+      font-size: 32px;
+    }
+  }
+
+  // Touch-friendly improvements for tablets
+  @media (hover: none) and (pointer: coarse) {
+    .checkbox-label,
+    .radio-label {
+      padding: 4px 0;
+      min-height: 44px;
+    }
+
+    .checkbox-label .checkmark,
+    .radio-label .radio-mark {
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    input[type='date'],
+    textarea {
+      padding: 12px 0;
+      font-size: 16px; // Prevents zoom on iOS
+    }
+  }
+}
+
+.initial-visit {
+  margin-bottom: 5px !important;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%236e8a7c'%3e%3cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd'/%3e%3c/svg%3e");
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
