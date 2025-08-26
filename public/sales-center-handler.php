@@ -146,21 +146,17 @@ function map_sales_center_hear_about($hearAbout)
 }
 
 $campaign = map_sales_center_hear_about($hearAbout);
+
 $tags = [
     'Palma Miami Beach',
     'Sales Center Visit',
-    'In-Person Lead'
+    'In-Person Lead',
+    $hearAbout ? ucwords(str_replace('-', ' ', $hearAbout)) : 'Uknown Source',
+    $priceRange ? str_replace(['$', '-'], ['', ' to '], $priceRange) : 'Unknown Price Range',
+    $unitType ? ucwords(str_replace('-', ' ', $unitType)) : 'Unknown',
+    $purchaseReason ? ucwords(str_replace('-', ' ', $purchaseReason)) : 'Unknown Purpose',
+    $brokerName ? 'Has Broker' : 'No Broker',
 ];
-
-// Add price range to tags
-if (!empty($priceRange)) {
-    $tags[] = 'Price Range: ' . $priceRange;
-}
-
-// Add unit type to tags
-if (!empty($unitType)) {
-    $tags[] = 'Unit Type: ' . $unitType;
-}
 
 $subject = 'Sales Center Visit - Palma Miami Beach - ' . $name;
 
@@ -391,11 +387,11 @@ function save_sales_center_record($data, $config)
     }
 
     $result = file_put_contents($file, json_encode($records, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    
+
     if ($result === false) {
         error_log("Failed to save sales center record to sales_center_data.json");
         return false;
     }
-    
+
     return true;
 }
