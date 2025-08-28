@@ -2,9 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('log_errors', 1);
-ini_set('error_log', '../logs/form_errors.log'); // Optional: specify log file location
+ini_set('error_log', '../logs/form_errors.log');
 
-// Add logging for all requests
 error_log("=== NEW FORM SUBMISSION ===");
 error_log("Method: " . $_SERVER['REQUEST_METHOD']);
 error_log("IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Configuration
 $config = [
     'turnstile_secret' => '0x4AAAAAABr_qHGqiOr6KPwJTPFWV8PnEc8',
     'max_requests_per_hour' => 10,
@@ -36,12 +34,11 @@ $config = [
     'max_name_length' => 50
 ];
 
-// Rate limiting function
 function check_rate_limit($ip, $config)
 {
     $rate_file = $config['data_dir'] . 'rate_limits.json';
     $max_requests = $config['max_requests_per_hour'];
-    $time_window = 3600; // 1 hour
+    $time_window = 3600;
 
     if (!file_exists($config['data_dir'])) {
         if (!mkdir($config['data_dir'], 0755, true)) {
@@ -61,7 +58,6 @@ function check_rate_limit($ip, $config)
     $now = time();
     $user_requests = $rates[$ip] ?? [];
 
-    // Clean old requests
     $user_requests = array_filter($user_requests, function ($time) use ($now, $time_window) {
         return ($now - $time) < $time_window;
     });
@@ -71,11 +67,9 @@ function check_rate_limit($ip, $config)
         return false;
     }
 
-    // Add current request
     $user_requests[] = $now;
     $rates[$ip] = array_values($user_requests);
 
-    // Clean up old IPs
     foreach ($rates as $stored_ip => $requests) {
         $rates[$stored_ip] = array_filter($requests, function ($time) use ($now, $time_window) {
             return ($now - $time) < $time_window;
@@ -90,7 +84,6 @@ function check_rate_limit($ip, $config)
     return true;
 }
 
-// Verify Turnstile CAPTCHA
 function verify_turnstile($token, $secret)
 {
     if (empty($token) || empty($secret)) {
@@ -133,7 +126,6 @@ function verify_turnstile($token, $secret)
     return $success;
 }
 
-// Validation functions
 function validate_name($name, $max_length = 50)
 {
     return !empty($name) &&
@@ -155,7 +147,6 @@ function sanitize_input($input)
     return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
 }
 
-// Check rate limit
 $user_ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
 if (!check_rate_limit($user_ip, $config)) {
     http_response_code(429);
@@ -179,7 +170,6 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     exit;
 }
 
-// Verify Turnstile CAPTCHA
 $turnstile_token = $input['cf-turnstile-response'] ?? '';
 if (!verify_turnstile($turnstile_token, $config['turnstile_secret'])) {
     http_response_code(400);
@@ -197,7 +187,6 @@ $realtor = $input['realtor'] ?? 'no';
 $buyerBroker = $input['buyerBroker'] ?? 'buyer';
 $terms = $input['terms'] ?? false;
 
-// Validate required fields
 if (!validate_name($firstName, $config['max_name_length'])) {
     http_response_code(400);
     echo json_encode(['error' => 'Please enter a valid first name (letters, spaces, hyphens, apostrophes only)']);
@@ -222,7 +211,6 @@ if (!$terms) {
     exit;
 }
 
-// Sanitize inputs
 $firstName = sanitize_input($firstName);
 $lastName = sanitize_input($lastName);
 $email = filter_var(trim($email), FILTER_SANITIZE_EMAIL);
@@ -405,7 +393,6 @@ function save_lead_record($data, $config)
     $file = $config['data_dir'] . 'data.json';
     $leads = [];
 
-    // Ensure data directory exists
     if (!file_exists($config['data_dir'])) {
         if (!mkdir($config['data_dir'], 0755, true)) {
             error_log("Failed to create data directory for leads");
@@ -422,7 +409,6 @@ function save_lead_record($data, $config)
 
     $leads[] = $data;
 
-    // Keep only last 1000 leads to prevent file from getting too large
     if (count($leads) > 1000) {
         $leads = array_slice($leads, -1000);
     }

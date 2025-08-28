@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 ini_set('error_log', '../logs/sales_center_errors.log');
 
-// Add logging for all requests
 error_log("=== NEW SALES CENTER FORM SUBMISSION ===");
 error_log("Method: " . $_SERVER['REQUEST_METHOD']);
 error_log("IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
@@ -27,14 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Configuration
 $config = [
     'data_dir' => './data/',
     'max_message_length' => 5000,
     'max_name_length' => 100
 ];
 
-// Validation functions
 function validate_name($name, $max_length = 100)
 {
     return strlen($name) <= $max_length;
@@ -42,7 +39,7 @@ function validate_name($name, $max_length = 100)
 
 function validate_email($email)
 {
-    if (empty($email)) return true; // Email is not required
+    if (empty($email)) return true;
     $email = trim($email);
     return filter_var($email, FILTER_VALIDATE_EMAIL) &&
         strlen($email) <= 254 &&
@@ -76,7 +73,6 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     exit;
 }
 
-// Extract and sanitize form data
 $visitDate = sanitize_input($input['visitDate'] ?? '');
 $name = sanitize_input($input['name'] ?? '');
 $address = sanitize_input($input['address'] ?? '');
@@ -89,12 +85,10 @@ $phone = sanitize_input($input['phone'] ?? '');
 $countryOfResidence = sanitize_input($input['countryOfResidence'] ?? '');
 $countryOfOrigin = sanitize_input($input['countryOfOrigin'] ?? '');
 
-// Single values (now radio buttons)
 $priceRange = sanitize_input($input['priceRange'] ?? '');
 $unitType = sanitize_input($input['unitType'] ?? '');
 $purchaseReason = sanitize_input($input['purchaseReason'] ?? '');
 
-// Broker information
 $officeName = sanitize_input($input['officeName'] ?? '');
 $brokerName = sanitize_input($input['brokerName'] ?? '');
 $brokerLic = sanitize_input($input['brokerLic'] ?? '');
@@ -103,17 +97,14 @@ $agentLic = sanitize_input($input['agentLic'] ?? '');
 $agentEmail = sanitize_input($input['agentEmail'] ?? '');
 $agentPhone = sanitize_input($input['agentPhone'] ?? '');
 
-// How did you hear
 $hearAbout = sanitize_input($input['hearAbout'] ?? '');
 $hearAboutOther = sanitize_input($input['hearAboutOther'] ?? '');
 
-// Office use only
 $associate = sanitize_input($input['associate'] ?? '');
 $initialVisit = sanitize_input($input['initialVisit'] ?? '');
 $comments = sanitize_input($input['comments'] ?? '');
 $initialVisitType = sanitize_input($input['initialVisitType'] ?? '');
 
-// Basic validation
 if (!validate_email($email)) {
     http_response_code(400);
     echo json_encode(['error' => 'Please enter a valid email address']);
@@ -126,7 +117,6 @@ if (!validate_name($name, $config['max_name_length'])) {
     exit;
 }
 
-// Map hear about to campaign
 function map_sales_center_hear_about($hearAbout)
 {
     $mapping = [
@@ -251,7 +241,6 @@ error_log("=== SALES CENTER FORM SUBMISSION COMPLETED ===\n");
 
 function create_sales_center_followupboss_email($visitDate, $name, $address, $email, $city, $state, $zip, $country, $phone, $countryOfResidence, $countryOfOrigin, $priceRange, $unitType, $purchaseReason, $officeName, $brokerName, $brokerLic, $agentName, $agentLic, $agentEmail, $agentPhone, $hearAbout, $hearAboutOther, $associate, $initialVisit, $comments, $initialVisitType, $tags, $campaign, $user_ip, $sourceUrl)
 {
-    // Parse name into first and last
     $nameParts = explode(' ', $name, 2);
     $firstName = $nameParts[0] ?? '';
     $lastName = $nameParts[1] ?? '';
@@ -364,7 +353,6 @@ function save_sales_center_record($data, $config)
     $file = $config['data_dir'] . 'sales_center_data.json';
     $records = [];
 
-    // Ensure data directory exists
     if (!file_exists($config['data_dir'])) {
         if (!mkdir($config['data_dir'], 0755, true)) {
             error_log("Failed to create data directory for sales center records");
@@ -381,7 +369,6 @@ function save_sales_center_record($data, $config)
 
     $records[] = $data;
 
-    // Keep only last 1000 records to prevent file from getting too large
     if (count($records) > 1000) {
         $records = array_slice($records, -1000);
     }
