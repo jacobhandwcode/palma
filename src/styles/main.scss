@@ -5839,7 +5839,6 @@ body.modal-open {
 
 // sales center
 .form-container {
-  //
   .submit-btn {
     background: $green;
     color: #fff;
@@ -5864,7 +5863,6 @@ body.modal-open {
       transform: translateY(0);
     }
   }
-  //
   color: $green;
   font-family: $montserrat;
   max-width: 1024px;
@@ -6054,14 +6052,12 @@ body.modal-open {
       text-transform: uppercase;
     }
 
-    // Checkbox Styles
     .checkbox-group {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
     }
 
-    // Updated checkbox styles to also work with radio buttons in checkbox-style sections
     .checkbox-label {
       display: flex;
       align-items: center;
@@ -6106,8 +6102,6 @@ body.modal-open {
       }
     }
 
-    // Touch-friendly improvements - also update this section
-    // Touch-friendly improvements for tablets
     @media (hover: none) and (pointer: coarse) {
       .checkbox-label,
       .radio-label {
@@ -6128,11 +6122,10 @@ body.modal-open {
       input[type='date'],
       textarea {
         padding: 12px 0;
-        font-size: 16px; // Prevents zoom on iOS
+        font-size: 16px;
       }
     }
 
-    // Radio Styles
     .radio-group {
       display: flex;
       flex-wrap: wrap;
@@ -6190,13 +6183,11 @@ body.modal-open {
       flex: 1;
     }
 
-    // Office Section
     .office-section {
       margin-top: 100px;
     }
   }
 
-  // iPad Specific Optimizations
   @media screen and (min-width: 768px) and (max-width: 1024px) {
     .form-container {
       padding: 40px 50px;
@@ -6224,7 +6215,6 @@ body.modal-open {
     }
   }
 
-  // Touch-friendly improvements for tablets
   @media (hover: none) and (pointer: coarse) {
     .checkbox-label,
     .radio-label {
@@ -6245,7 +6235,7 @@ body.modal-open {
     input[type='date'],
     textarea {
       padding: 12px 0;
-      font-size: 16px; // Prevents zoom on iOS
+      font-size: 16px;
     }
   }
 }

@@ -230,7 +230,6 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     outline: none;
   }
 
-  /* Touch-friendly sizing for mobile */
   @media (max-width: 768px) {
     .current-language {
       min-height: 44px;
@@ -243,7 +242,6 @@ const otherLanguages = languages.filter((lang) => lang.code !== currentLang);
     }
   }
 
-  /* Prevent text selection on mobile */
   .language-switcher * {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
