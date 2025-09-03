@@ -224,7 +224,8 @@ $tags = [
     'Palma Miami Beach',
     $hearAbout ? ucwords(str_replace('-', ' ', $hearAbout)) : 'Unknown Source',
     $realtor === 'yes' ? 'Realtor' : 'Non-Realtor',
-    'Website Lead'
+    'Website Lead',
+    'Blackline'
 ];
 
 $subject = 'New Lead - Palma Miami Beach - ' . $firstName . ' ' . $lastName;
