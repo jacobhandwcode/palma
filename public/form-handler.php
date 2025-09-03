@@ -311,7 +311,8 @@ function create_followupboss_email($firstName, $lastName, $email, $phone, $comme
         'Palma Miami Beach',
         $hearAbout ? ucwords(str_replace('-', ' ', $hearAbout)) : 'Unknown Source',
         $realtor === 'yes' ? 'Realtor' : 'Non-Realtor',
-        'Website Lead'
+        'Website Lead',
+        'Blackline'
     ];
 
     $html_message = '

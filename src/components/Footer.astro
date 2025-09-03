@@ -228,34 +228,37 @@ const t = useTranslations(currentLang);
 
 <Disclaimers lang={currentLang} />
 
-<!-- Load Cloudflare Turnstile -->
+<!-- Load Cloudflare Turnstile FIRST -->
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
 ></script>
 
 <script>
-  (function (w, i, d, g, e, t) {
-    w['WidgetTrackerObject'] = g;
-    (w[g] =
-      w[g] ||
-      function () {
-        (w[g].q = w[g].q || []).push(arguments);
-      }),
-      (w[g].ds = 1 * new Date());
-    (e = 'script'),
-      (t = d.createElement(e)),
-      (e = d.getElementsByTagName(e)[0]);
-    t.async = 1;
-    t.src = i;
-    e.parentNode.insertBefore(t, e);
-  })(window, 'https://widgetbe.com/agent', document, 'widgetTracker');
-  window.widgetTracker('create', 'WT-JKXYEMIJ');
-  window.widgetTracker('send', 'pageview');
+  window.onTurnstileSuccess = function (token) {
+    console.log('Turnstile success:', token);
+  };
+
+  window.onTurnstileExpired = function () {
+    console.log('Turnstile token expired');
+    const turnstileElement = document.querySelector('.cf-turnstile');
+    if (turnstileElement && window.turnstile) {
+      turnstile.reset(turnstileElement);
+    }
+  };
+
+  window.onTurnstileError = function (errorCode) {
+    console.error('Turnstile error:', errorCode);
+    alert(
+      'Security verification failed. Please refresh the page and try again.'
+    );
+  };
 </script>
 
 <script>
-  document
-    .getElementById('contactForm')
-    .addEventListener('submit', async function (e) {
+  document.addEventListener('DOMContentLoaded', function () {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       e.stopPropagation();
 
@@ -268,7 +271,6 @@ const t = useTranslations(currentLang);
       const formData = new FormData(this);
       const data = Object.fromEntries(formData);
 
-      // Check required fields
       if (!data.firstName || !data.lastName || !data.email) {
         alert('Please fill in all required fields.');
         submitBtn.textContent = originalText;
@@ -285,12 +287,31 @@ const t = useTranslations(currentLang);
         return;
       }
 
-      // Check Turnstile verification
-      const turnstileResponse = document.querySelector(
-        '[name="cf-turnstile-response"]'
-      )?.value;
-      if (!turnstileResponse) {
-        alert('Please complete the security verification.');
+      let turnstileResponse;
+      try {
+        let attempts = 0;
+        while (attempts < 10) {
+          turnstileResponse = document.querySelector(
+            '[name="cf-turnstile-response"]'
+          )?.value;
+          if (turnstileResponse) break;
+
+          await new Promise((resolve) => setTimeout(resolve, 200));
+          attempts++;
+        }
+
+        if (!turnstileResponse) {
+          alert('Please complete the security verification and try again.');
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = '1';
+          return;
+        }
+      } catch (error) {
+        console.error('Turnstile error:', error);
+        alert(
+          'Security verification error. Please refresh the page and try again.'
+        );
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
@@ -324,22 +345,31 @@ const t = useTranslations(currentLang);
         if (response.ok && result.success) {
           const footer = document.getElementById('contact');
           footer.innerHTML = `
-    <div class="success-message-container">
-      <h3 class="success-title">Thank You!</h3>
-      <p class="success-message">${result.message}</p>
-    </div>
-  `;
+          <div class="success-message-container">
+            <h3 class="success-title">Thank You!</h3>
+            <p class="success-message">${result.message}</p>
+          </div>
+        `;
 
-          // Existing widget tracker event
-          if (window.widgetTracker) {
-            window.widgetTracker('send', 'event', 'form', 'submit', 'contact');
-          }
+          // Send tracking events after successful submission
+          try {
+            if (window.widgetTracker) {
+              window.widgetTracker(
+                'send',
+                'event',
+                'form',
+                'submit',
+                'contact'
+              );
+            }
 
-          // Add GTM form_submit event
-          if (window.dataLayer) {
-            window.dataLayer.push({
-              event: 'form_submit',
-            });
+            if (window.dataLayer) {
+              window.dataLayer.push({
+                event: 'form_submit',
+              });
+            }
+          } catch (trackingError) {
+            console.warn('Tracking error (non-critical):', trackingError);
           }
         } else {
           const errorMessage = result.error || 'Unknown error occurred';
@@ -348,6 +378,18 @@ const t = useTranslations(currentLang);
           submitBtn.textContent = originalText;
           submitBtn.disabled = false;
           submitBtn.style.opacity = '1';
+
+          // Reset Turnstile widget on error
+          try {
+            if (window.turnstile) {
+              const turnstileElement = document.querySelector('.cf-turnstile');
+              if (turnstileElement) {
+                turnstile.reset(turnstileElement);
+              }
+            }
+          } catch (resetError) {
+            console.warn('Turnstile reset error:', resetError);
+          }
         }
       } catch (error) {
         console.error('Form submission error:', error);
@@ -369,8 +411,59 @@ const t = useTranslations(currentLang);
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         submitBtn.style.opacity = '1';
+
+        // Reset Turnstile widget on error
+        try {
+          if (window.turnstile) {
+            const turnstileElement = document.querySelector('.cf-turnstile');
+            if (turnstileElement) {
+              turnstile.reset(turnstileElement);
+            }
+          }
+        } catch (resetError) {
+          console.warn('Turnstile reset error:', resetError);
+        }
       }
     });
+  });
+</script>
+
+<script>
+  window.addEventListener('load', function () {
+    try {
+      (function (w, i, d, g, e, t) {
+        w['WidgetTrackerObject'] = g;
+        (w[g] =
+          w[g] ||
+          function () {
+            (w[g].q = w[g].q || []).push(arguments);
+          }),
+          (w[g].ds = 1 * new Date());
+        (e = 'script'),
+          (t = d.createElement(e)),
+          (e = d.getElementsByTagName(e)[0]);
+        t.async = 1;
+        t.src = i;
+        t.onload = function () {
+          console.log('WidgetTracker loaded successfully');
+        };
+        t.onerror = function () {
+          console.warn('WidgetTracker failed to load');
+        };
+        e.parentNode.insertBefore(t, e);
+      })(window, 'https://widgetbe.com/agent', document, 'widgetTracker');
+
+      // Initialize after a short delay to ensure script is loaded
+      setTimeout(function () {
+        if (window.widgetTracker) {
+          window.widgetTracker('create', 'WT-JKXYEMIJ');
+          window.widgetTracker('send', 'pageview');
+        }
+      }, 1000);
+    } catch (error) {
+      console.warn('WidgetTracker initialization error:', error);
+    }
+  });
 </script>
 
 <style>
