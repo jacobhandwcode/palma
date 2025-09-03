@@ -146,6 +146,7 @@ $tags = [
     $unitType ? ucwords(str_replace('-', ' ', $unitType)) : 'Unknown',
     $purchaseReason ? ucwords(str_replace('-', ' ', $purchaseReason)) : 'Unknown Purpose',
     $brokerName ? 'Has Broker' : 'No Broker',
+    'Blackline',
 ];
 
 $subject = 'Sales Center Visit - Palma Miami Beach - ' . $name;
