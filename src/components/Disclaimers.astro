@@ -41,19 +41,13 @@ const t = useTranslations(currentLang);
       <div class="disclaimers-body">
         <div class="disclaimer-section">
           <p class="disclaimer-text">
-            {t('disclaimers.oralRepresentations')}
-          </p>
-        </div>
-
-        <div class="disclaimer-section">
-          <p class="disclaimer-text">
             {t('disclaimers.developer')}
           </p>
         </div>
 
         <div class="disclaimer-section">
           <p class="disclaimer-text">
-            {t('disclaimers.notAnOffer')}
+            {t('disclaimers.oralRepresentations')}
           </p>
         </div>
 
@@ -62,10 +56,66 @@ const t = useTranslations(currentLang);
             {t('disclaimers.materials')}
           </p>
         </div>
+
+        <div class="disclaimer-section">
+          <p class="disclaimer-text">
+            {t('disclaimers.investment')}
+          </p>
+        </div>
+
+        <div class="disclaimer-section">
+          <p class="disclaimer-text">
+            {t('disclaimers.copyright')}
+          </p>
+        </div>
+
+        <div class="disclaimer-section">
+          <p class="disclaimer-text">
+            {t('disclaimers.offering')}
+          </p>
+        </div>
+
+        <div class="disclaimer-section equal-housing-section">
+          <p class="disclaimer-text">
+            {t('disclaimers.equalHousing')}
+          </p>
+          <img
+            src="/images/equal-housing.png"
+            alt="Equal Housing Opportunity"
+            class="equal-housing-logo"
+          />
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .equal-housing-section {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .equal-housing-logo {
+    flex-shrink: 0;
+    width: 80px;
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  @media (max-width: 768px) {
+    .equal-housing-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .equal-housing-logo {
+      width: 60px;
+    }
+  }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
