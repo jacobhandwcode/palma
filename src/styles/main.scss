@@ -312,26 +312,32 @@ header {
             &:nth-child(7).animate-in {
               animation-delay: 0.7s;
             }
+            &:nth-child(8).animate-in {
+              animation-delay: 0.8s;
+            }
 
             &:nth-child(1).animate-out {
-              animation-delay: 0.6s;
+              animation-delay: 0.7s;
             }
             &:nth-child(2).animate-out {
-              animation-delay: 0.5s;
+              animation-delay: 0.6s;
             }
             &:nth-child(3).animate-out {
-              animation-delay: 0.4s;
+              animation-delay: 0.5s;
             }
             &:nth-child(4).animate-out {
-              animation-delay: 0.3s;
+              animation-delay: 0.4s;
             }
             &:nth-child(5).animate-out {
-              animation-delay: 0.2s;
+              animation-delay: 0.3s;
             }
             &:nth-child(6).animate-out {
-              animation-delay: 0.1s;
+              animation-delay: 0.2s;
             }
             &:nth-child(7).animate-out {
+              animation-delay: 0.1s;
+            }
+            &:nth-child(8).animate-out {
               animation-delay: 0s;
             }
           }

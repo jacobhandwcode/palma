@@ -24,6 +24,7 @@ export const ui = {
     'nav.gallery': 'Gallery',
     'nav.press': 'Press',
     'nav.inquire': 'Inquire',
+    'nav.terms': 'Terms of Use',
 
     // footer
     'footer.tagline':
@@ -978,6 +979,7 @@ export const ui = {
     'nav.gallery': 'Galería',
     'nav.press': 'Prensa',
     'nav.inquire': 'Consulte',
+    'nav.terms': 'Términos de Uso',
 
     // footer
     'footer.tagline':
@@ -1934,6 +1936,7 @@ export const ui = {
     'nav.gallery': 'Galeria',
     'nav.press': 'Imprensa',
     'nav.inquire': 'Informações',
+    'nav.terms': 'Termos de Uso',
 
     // footer
     'footer.tagline':

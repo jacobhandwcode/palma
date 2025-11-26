@@ -114,6 +114,13 @@ const hasInitialBackground = backgroundPages.includes(currentPath);
           >
             {t('nav.press').toUpperCase()}
           </a>
+          <a
+            href={getLocalizedUrl(currentLang, 'terms-use')}
+            class={`mobile-nav-item ${currentPath === 'terms-use' ? 'active' : ''}`}
+            data-hover-image="/images/amenities/woman.webp"
+          >
+            {t('nav.terms').toUpperCase()}
+          </a>
         </nav>
         <div class="mobile-menu-footer">
           <a
