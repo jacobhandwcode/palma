@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t('form.success.meta.title')}
+  description={t('form.success.meta.description')}
+  lang={lang}
+>
+  <main class="error-page">
+    <section class="error-hero">
+      <div class="error-hero-content">
+        <h1 class="error-title animate-on-scroll fade-up stagger-1">{t('form.success.title')}</h1>
+        <p class="error-subtitle animate-on-scroll fade-up stagger-2">{t('form.success.subtitle')}</p>
+        <div class="error-actions animate-on-scroll fade-up stagger-3">
+          <a href="/" class="error-btn primary">{t('form.success.backHome')}</a>
+        </div>
+      </div>
+
+      <div class="error-background">
+        <img src="/images/home/aqua-lounge.webp" alt="Palma Miami Beach" class="error-bg-image"/>
+        <div class="error-overlay"></div>
+      </div>
+    </section>
+
+    <section class="error-contact animate-on-scroll fade-up">
+      <div class="error-contact-content">
+        <h2>Need Assistance?</h2>
+        <p>Our team is here to help you find exactly what you're looking for.</p>
+        <div class="contact-options">
+          <a href="tel:+13059464264" class="contact-option">{t('form.success.callUs')}</a>
+          <a href="mailto:info@palmiami.com" class="contact-option">{t('form.success.emailUs')}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => { if(entry.isIntersecting) entry.target.classList.add('animate-in'); });
+      }, observerOptions);
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    });
+  </script>
+</Layout>

@@ -25,14 +25,20 @@ const t = useTranslations(currentLang);
     class="footer-logo"
   />
 
-  <form class="contact-form" id="contactForm">
+  <form
+    class="contact-form"
+    id="contactForm"
+    method="post"
+    action="https://spark.re/lefferts/palma/register/palma-form"
+    accept-charset="UTF-8"
+  >
     <div class="form-row">
       <div class="form-group">
         <input
           placeholder={t('form.firstName.placeholder')}
           type="text"
           id="firstName"
-          name="firstName"
+          name="contact[first_name]"
           required
         />
         <label for="firstName">{t('form.firstName.label')}*</label>
@@ -42,7 +48,7 @@ const t = useTranslations(currentLang);
           placeholder={t('form.lastName.placeholder')}
           type="text"
           id="lastName"
-          name="lastName"
+          name="contact[last_name]"
           required
         />
         <label for="lastName">{t('form.lastName.label')}*</label>
@@ -55,7 +61,7 @@ const t = useTranslations(currentLang);
           placeholder={t('form.email.placeholder')}
           type="email"
           id="email"
-          name="email"
+          name="contact[email]"
           required
         />
         <label for="email">{t('form.email.label')}*</label>
@@ -65,35 +71,24 @@ const t = useTranslations(currentLang);
           placeholder={t('form.phone.placeholder')}
           type="tel"
           id="phone"
-          name="phone"
+          name="contact[phone]"
         />
         <label for="phone">{t('form.phone.label')}</label>
       </div>
       <div class="form-group">
-        <select id="hearAbout" name="hearAbout">
+        <select id="hearAbout" name="answers[25009][answers]">
           <option value="">{t('form.hearAbout.label')}</option>
           <option value="area-driveby">{t('form.hearAbout.driveby')}</option>
-          <option value="gale-south-beach-loyalty-guest"
-            >{t('form.hearAbout.gale')}</option
-          >
+          <option value="gale-south-beach-loyalty-guest">{t('form.hearAbout.gale')}</option>
           <option value="broker">{t('form.hearAbout.broker')}</option>
           <option value="event">{t('form.hearAbout.event')}</option>
-          <option value="google-organic"
-            >{t('form.hearAbout.googleOrganic')}</option
-          >
+          <option value="google-organic">{t('form.hearAbout.googleOrganic')}</option>
           <option value="direct">{t('form.hearAbout.direct')}</option>
-          <option value="google-keywords"
-            >{t('form.hearAbout.googleKeywords')}</option
-          >
-          <option value="real-estate-site"
-            >{t('form.hearAbout.realEstate')}</option
-          >
-          <option value="social-media">{t('form.hearAbout.socialMedia')}</option
-          >
+          <option value="google-keywords">{t('form.hearAbout.googleKeywords')}</option>
+          <option value="real-estate-site">{t('form.hearAbout.realEstate')}</option>
+          <option value="social-media">{t('form.hearAbout.socialMedia')}</option>
           <option value="internet-ad">{t('form.hearAbout.internetAd')}</option>
-          <option value="internet-search"
-            >{t('form.hearAbout.internetSearch')}</option
-          >
+          <option value="internet-search">{t('form.hearAbout.internetSearch')}</option>
           <option value="magazine">{t('form.hearAbout.magazine')}</option>
           <option value="newspaper">{t('form.hearAbout.newspaper')}</option>
           <option value="referral">{t('form.hearAbout.referral')}</option>
@@ -105,8 +100,9 @@ const t = useTranslations(currentLang);
       <textarea
         placeholder={t('form.comments.placeholder')}
         id="comments"
-        name="comments"
-        rows="4"></textarea>
+        name="contact[comments]"
+        rows="4"
+      ></textarea>
       <label for="comments">{t('form.comments.label')}</label>
     </div>
 
@@ -118,12 +114,12 @@ const t = useTranslations(currentLang);
         </span>
         <div class="radio-options">
           <label class="radio-option">
-            <input type="radio" name="realtor" value="yes" />
+            <input type="radio" name="agent" value="true" />
             <span class="radio-custom"></span>
             {t('form.yes')}
           </label>
           <label class="radio-option">
-            <input type="radio" name="realtor" value="no" checked />
+            <input type="radio" name="agent" value="" checked />
             <span class="radio-custom"></span>
             {t('form.no')}
           </label>
@@ -152,15 +148,15 @@ const t = useTranslations(currentLang);
 
     <!-- Cloudflare Turnstile Integration -->
     <div class="form-group full-width turnstile-hidden">
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAABr_qHsmHh66T10c"></div>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAACEZf5RFbdNQeVFl"></div>
     </div>
 
     <div class="terms-section">
       <p class="terms-text">
         {t('form.terms.intro')}
-        <a href={getLocalizedUrl(currentLang, 'privacy-policy')}
-          >{t('form.terms.privacyPolicy')}</a
-        >.
+        <a href={getLocalizedUrl(currentLang, 'privacy-policy')}>
+          {t('form.terms.privacyPolicy')}
+        </a>.
         <span class="required">*</span>
       </p>
       <label class="checkbox-option">
@@ -205,13 +201,9 @@ const t = useTranslations(currentLang);
       </p>
 
       <div class="footer-links">
-        <a href={getLocalizedUrl(currentLang, 'privacy-policy')}
-          >{t('footer.links.privacy')}</a
-        >
+        <a href={getLocalizedUrl(currentLang, 'privacy-policy')}>{t('footer.links.privacy')}</a>
         <span>|</span>
-        <a href={getLocalizedUrl(currentLang, 'terms-use')}
-          >{t('footer.links.notices')}</a
-        >
+        <a href={getLocalizedUrl(currentLang, 'terms-use')}>{t('footer.links.notices')}</a>
         <span>|</span>
         <button
           type="button"
@@ -228,241 +220,12 @@ const t = useTranslations(currentLang);
 
 <Disclaimers lang={currentLang} />
 
-<!-- Load Cloudflare Turnstile FIRST -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
-></script>
-
-<script>
-  window.onTurnstileSuccess = function (token) {
-    console.log('Turnstile success:', token);
-  };
-
-  window.onTurnstileExpired = function () {
-    console.log('Turnstile token expired');
-    const turnstileElement = document.querySelector('.cf-turnstile');
-    if (turnstileElement && window.turnstile) {
-      turnstile.reset(turnstileElement);
-    }
-  };
-
-  window.onTurnstileError = function (errorCode) {
-    console.error('Turnstile error:', errorCode);
-    alert(
-      'Security verification failed. Please refresh the page and try again.'
-    );
-  };
-</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
-
-    contactForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const submitBtn = this.querySelector('.submit-btn');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Sending...';
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = '0.7';
-
-      const formData = new FormData(this);
-      const data = Object.fromEntries(formData);
-
-      if (!data.firstName || !data.lastName || !data.email) {
-        alert('Please fill in all required fields.');
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        return;
-      }
-
-      if (!data.terms) {
-        alert('Please accept the terms and privacy policy.');
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        return;
-      }
-
-      let turnstileResponse;
-      try {
-        let attempts = 0;
-        while (attempts < 10) {
-          turnstileResponse = document.querySelector(
-            '[name="cf-turnstile-response"]'
-          )?.value;
-          if (turnstileResponse) break;
-
-          await new Promise((resolve) => setTimeout(resolve, 200));
-          attempts++;
-        }
-
-        if (!turnstileResponse) {
-          alert('Please complete the security verification and try again.');
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = '1';
-          return;
-        }
-      } catch (error) {
-        console.error('Turnstile error:', error);
-        alert(
-          'Security verification error. Please refresh the page and try again.'
-        );
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        return;
-      }
-
-      // Add Turnstile response to data
-      data['cf-turnstile-response'] = turnstileResponse;
-
-      try {
-        const response = await fetch('/form-handler.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-          const textResponse = await response.text();
-          console.error('Non-JSON response:', textResponse);
-          throw new Error(
-            'Server returned non-JSON response: ' +
-              textResponse.substring(0, 100)
-          );
-        }
-
-        const result = await response.json();
-
-        if (response.ok && result.success) {
-          const footer = document.getElementById('contact');
-          footer.innerHTML = `
-          <div class="success-message-container">
-            <h3 class="success-title">Thank You!</h3>
-            <p class="success-message">${result.message}</p>
-          </div>
-        `;
-
-          // Send tracking events after successful submission
-          try {
-            if (window.widgetTracker) {
-              window.widgetTracker(
-                'send',
-                'event',
-                'form',
-                'submit',
-                'contact'
-              );
-            }
-
-            if (window.dataLayer) {
-              window.dataLayer.push({
-                event: 'form_submit',
-              });
-            }
-          } catch (trackingError) {
-            console.warn('Tracking error (non-critical):', trackingError);
-          }
-        } else {
-          const errorMessage = result.error || 'Unknown error occurred';
-          alert('Error: ' + errorMessage);
-
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = '1';
-
-          // Reset Turnstile widget on error
-          try {
-            if (window.turnstile) {
-              const turnstileElement = document.querySelector('.cf-turnstile');
-              if (turnstileElement) {
-                turnstile.reset(turnstileElement);
-              }
-            }
-          } catch (resetError) {
-            console.warn('Turnstile reset error:', resetError);
-          }
-        }
-      } catch (error) {
-        console.error('Form submission error:', error);
-
-        let errorMessage = 'There was an error submitting your inquiry. ';
-
-        if (error.name === 'TypeError' && error.message.includes('fetch')) {
-          errorMessage += 'Please check your internet connection.';
-        } else if (error.message.includes('JSON')) {
-          errorMessage += 'Server response format error.';
-        } else if (error.message.includes('non-JSON')) {
-          errorMessage += 'Server configuration issue.';
-        } else {
-          errorMessage += 'Please try again later or contact us directly.';
-        }
-
-        alert(errorMessage);
-
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-
-        // Reset Turnstile widget on error
-        try {
-          if (window.turnstile) {
-            const turnstileElement = document.querySelector('.cf-turnstile');
-            if (turnstileElement) {
-              turnstile.reset(turnstileElement);
-            }
-          }
-        } catch (resetError) {
-          console.warn('Turnstile reset error:', resetError);
-        }
-      }
-    });
-  });
-</script>
-
-<script>
-  window.addEventListener('load', function () {
-    try {
-      (function (w, i, d, g, e, t) {
-        w['WidgetTrackerObject'] = g;
-        (w[g] =
-          w[g] ||
-          function () {
-            (w[g].q = w[g].q || []).push(arguments);
-          }),
-          (w[g].ds = 1 * new Date());
-        (e = 'script'),
-          (t = d.createElement(e)),
-          (e = d.getElementsByTagName(e)[0]);
-        t.async = 1;
-        t.src = i;
-        t.onload = function () {
-          console.log('WidgetTracker loaded successfully');
-        };
-        t.onerror = function () {
-          console.warn('WidgetTracker failed to load');
-        };
-        e.parentNode.insertBefore(t, e);
-      })(window, 'https://widgetbe.com/agent', document, 'widgetTracker');
-
-      // Initialize after a short delay to ensure script is loaded
-      setTimeout(function () {
-        if (window.widgetTracker) {
-          window.widgetTracker('create', 'WT-JKXYEMIJ');
-          window.widgetTracker('send', 'pageview');
-        }
-      }, 1000);
-    } catch (error) {
-      console.warn('WidgetTracker initialization error:', error);
-    }
   });
 </script>
 
