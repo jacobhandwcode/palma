@@ -34,9 +34,22 @@
       "excerpt": "North Beach is undergoing a major development boom as planned luxury projects promise to redefine Miami Beach's north end. Why it matters: New development can bring the kind of investment city leaders have long wanted for North Beach, but luxury redevelopment won't help Miami's affordability crisis and could shutter local shops.",
       "image": {
         "src": "/images/press/press2.webp",
-        "alt": "Wall Street Journal Feature"
+        "alt": "Palma Building"
       },
       "link": "https://www.axios.com/local/miami/2025/03/26/miami-beach-new-development-projects",
+      "featured": false
+    },
+    {
+      "id": "4",
+      "source": "Lifestyles South Florida",
+      "date": "November 24 2025",
+      "headline": "Story Spaces",
+      "excerpt": "Miami-based interior architect Ruby Ramirez brings playful zest to the projects she designs throughout South Florida and around the world.",
+      "image": {
+        "src": "/images/amenities/lobby.webp",
+        "alt": "Palma Lobby"
+      },
+      "link": "https://www.calameo.com/read/003786447922ff5829006",
       "featured": false
     }
   ],
